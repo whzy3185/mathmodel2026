@@ -1,0 +1,130 @@
+{
+  "problem_id": "2026-MCM-C",
+  "subquestion": "Q2",
+  "target_claim": "Rank and percentage rules produce measurably different eliminations and fan influence under the same plausible votes.",
+  "data_audit": {
+    "unit_table_complete": true,
+    "temporal_order_preserved": true,
+    "leakage_risks": [
+      "final placement cannot determine weekly counterfactuals"
+    ],
+    "missingness_notes": "Only Q1-current active rosters and supported elimination weeks enter comparison."
+  },
+  "baseline": {
+    "name": "deterministic point replay",
+    "reason": "directly implements both published combination formulas",
+    "implementation": "src/baseline/q2_point_replay.py",
+    "validation": "replay consistency and hand-checked official appendix examples"
+  },
+  "candidates": [
+    {
+      "name": "uncertainty-integrated counterfactual replay",
+      "formulation": "Apply rank and percentage rules to every feasible/bootstrap Q1 vote draw and summarize disagreement and fan-favor metrics with intervals.",
+      "assumptions": [
+        "fan response is fixed under a counterfactual weekly rule",
+        "tie handling is common across rules"
+      ],
+      "parameter_sources": [
+        "RESULT-Q1-VOTES",
+        "official problem appendix formulas"
+      ],
+      "assumption_gate": "pass",
+      "data_gate": "pass",
+      "complexity_gate": "pass",
+      "identifiability_gate": "pass",
+      "engineering_gate": "pass",
+      "validation_gate": "pass",
+      "validation_plan": [
+        "official appendix hand checks",
+        "replay historical method",
+        "multi-draw stability",
+        "named controversy cases"
+      ],
+      "refutation_evidence": [
+        "rule recommendation reverses in more than 25% of feasible draws",
+        "appendix examples are not reproduced"
+      ],
+      "expected_failure_modes": [
+        "tie sensitivity",
+        "uncertain bottom-two save proxy",
+        "behavioral response omitted"
+      ],
+      "rejection_evidence": [],
+      "decision": "primary",
+      "decision_reason": "Propagates the central Q1 uncertainty into every comparison instead of treating one latent vector as truth."
+    },
+    {
+      "name": "deterministic maximum-entropy replay",
+      "formulation": "Apply both rules once to Q1 maximum-entropy point estimates.",
+      "assumptions": [
+        "point estimate is adequate for directional comparison"
+      ],
+      "parameter_sources": [
+        "RESULT-Q1-VOTES"
+      ],
+      "assumption_gate": "pass",
+      "data_gate": "pass",
+      "complexity_gate": "pass",
+      "identifiability_gate": "pass",
+      "engineering_gate": "pass",
+      "validation_gate": "pass",
+      "validation_plan": [
+        "formula unit tests",
+        "named controversy cases"
+      ],
+      "refutation_evidence": [
+        "direction differs from uncertainty-integrated result",
+        "more than 10% tie-sensitive weeks"
+      ],
+      "expected_failure_modes": [
+        "understates partial-identification uncertainty"
+      ],
+      "rejection_evidence": [],
+      "decision": "fallback",
+      "decision_reason": "Simple and reproducible when vote sampling fails, but conclusions must be weakened."
+    },
+    {
+      "name": "final-placement-only rule comparison",
+      "formulation": "Infer weekly rule quality from final season placement.",
+      "assumptions": [
+        "final placement is an unbiased weekly outcome label"
+      ],
+      "parameter_sources": [
+        "placement field"
+      ],
+      "assumption_gate": "fail",
+      "data_gate": "pass",
+      "complexity_gate": "pass",
+      "identifiability_gate": "pass",
+      "engineering_gate": "pass",
+      "validation_gate": "fail",
+      "validation_plan": [
+        "not valid without weekly outcomes"
+      ],
+      "refutation_evidence": [
+        "uses future outcome to evaluate prior weeks"
+      ],
+      "expected_failure_modes": [
+        "post-outcome leakage"
+      ],
+      "rejection_evidence": [
+        "EDA leakage_fields_forbidden_in_weekly_prediction includes placement"
+      ],
+      "decision": "rejected",
+      "decision_reason": "Final placement occurs after the weekly decisions and leaks the future."
+    }
+  ],
+  "primary_model": "uncertainty-integrated counterfactual replay",
+  "fallback_model": "deterministic maximum-entropy replay",
+  "stop_conditions": [
+    "Q1 evidence stale",
+    "human approval absent or stale",
+    "official combination formula unit test fails"
+  ],
+  "team_approval": {
+    "approved": false,
+    "approver": "",
+    "approved_at": "",
+    "plan_hash": ""
+  }
+}

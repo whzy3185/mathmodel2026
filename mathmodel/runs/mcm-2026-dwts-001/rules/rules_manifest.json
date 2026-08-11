@@ -1,0 +1,48 @@
+{
+  "competition": "MCM",
+  "year": 2026,
+  "accessed_at": "2026-08-11",
+  "timezone": "EST",
+  "sources": [
+    {
+      "source_id": "RULE-SOURCE-001",
+      "title": "2026 MCM/ICM Problems",
+      "url": "https://contest.comap.com/undergraduate/contests/mcm/contests/2026/problems/index.html",
+      "scope": ["year", "dates", "problem choices", "submission process"],
+      "status": "confirmed"
+    },
+    {
+      "source_id": "RULE-SOURCE-002",
+      "title": "2026 MCM Problem A",
+      "url": "https://contest.comap.com/undergraduate/contests/mcm/contests/2026/problems/2026_MCM_Problem_A.pdf",
+      "sha256": "1afb2971d364ae9467a0f63b5d5d1a9eebb609285c76888db9263f6195083744",
+      "scope": ["page limit", "AI report", "Problem A deliverables"],
+      "status": "confirmed"
+    },
+    {
+      "source_id": "RULE-SOURCE-003",
+      "title": "2026 MCM Problem B",
+      "url": "https://contest.comap.com/undergraduate/contests/mcm/contests/2026/problems/2026_MCM_Problem_B.pdf",
+      "sha256": "bbb6efb682e2d4a3cfb4a4170adfdd9184c294f549e03c7ed415dd819bb827ca",
+      "scope": ["page limit", "AI report", "Problem B letter"],
+      "status": "confirmed"
+    },
+    {
+      "source_id": "RULE-SOURCE-004",
+      "title": "2026 MCM Problem C",
+      "url": "https://contest.comap.com/undergraduate/contests/mcm/contests/2026/problems/2026_MCM_Problem_C.pdf",
+      "sha256": "f3c31a1128b5571f392046cea0cd64320a8b6e2617c1857114fa55f6966ce681",
+      "scope": ["page limit", "AI report", "Problem C memo", "data description"],
+      "status": "confirmed"
+    },
+    {
+      "source_id": "RULE-SOURCE-005",
+      "title": "COMAP Contest Rules, Registration and Instructions",
+      "url": "https://www.contest.comap.com/undergraduate/contests/mcm/instructions.html",
+      "scope": ["team", "anonymity", "language", "PDF", "citations", "AI disclosure"],
+      "snapshot_note": "2026 content retrieved from the official page's indexed historical snapshot; live page is now 2027",
+      "status": "confirmed_historical_snapshot"
+    }
+  ],
+  "unresolved": []
+}

@@ -12,7 +12,13 @@ REQUIRED = (
     "SKILL.md", "agents/openai.yaml", "sources/manifest.json",
     "references/problem-taxonomy.md", "references/model-selection.md",
     "references/validation.md", "references/failure-patterns.md",
-    "templates/candidate-model-tournament.json", "benchmarks/benchmark_cases.json"
+    "templates/candidate-model-tournament.json", "templates/claim-evidence.json",
+    "templates/artifact-registry.json", "templates/code/rolling_forecast.py",
+    "templates/code/tabular_pipeline.py", "templates/code/optimization_utils.py",
+    "templates/code/ode_utils.py", "templates/code/monte_carlo.py",
+    "templates/code/graph_robustness.py", "templates/code/result_io.py",
+    "scripts/check_evidence.py", "scripts/invalidate_artifacts.py",
+    "benchmarks/benchmark_cases.json"
 )
 BENCHMARK_CATEGORIES = {"forecasting", "optimization", "evaluation", "network", "mechanism", "spatial", "simulation", "policy"}
 
@@ -61,4 +67,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

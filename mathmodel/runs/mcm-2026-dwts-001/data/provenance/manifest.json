@@ -1,0 +1,47 @@
+{
+  "generated_by": "src/common/prepare_data.py",
+  "datasets": [
+    {
+      "dataset_id": "DATA-RAW-C",
+      "source": "official COMAP 2026 Problem C attachment",
+      "url": "https://contest.comap.com/undergraduate/contests/mcm/contests/2026/problems/2026_MCM_Problem_C_Data.csv",
+      "access_date": "2026-08-11",
+      "license": "COMAP page states problems may be reproduced for academic/research purposes; dataset-specific license not separately stated",
+      "original_filename": "2026_MCM_Problem_C_Data.csv",
+      "stored_path": "data/raw/2026_MCM_Problem_C_Data.csv",
+      "sha256": "ea99caec6ea243bdb450a1971a95ba8a95701a93be7ff29f0ba3c57d72ddff52",
+      "rows": 421,
+      "columns": 53,
+      "units": {
+        "judge_score": "points (1\u201310 per judge/dance average)",
+        "age": "years",
+        "placement": "rank"
+      },
+      "time_range": "seasons 1\u201334, weeks 1\u201311",
+      "geography": "contestant home state/country fields",
+      "missing_values": 4797,
+      "transformations": []
+    },
+    {
+      "dataset_id": "DATA-PROCESSED-C",
+      "source": "DATA-RAW-C",
+      "stored_path": "data/processed/contestant_weeks.csv",
+      "sha256": "6f75ebdb670006c33a4a200860b06dcb3b23de9b662550d0eda1d04b37eb82b7",
+      "rows": 4199,
+      "columns": 16,
+      "units": {
+        "judge_total": "points",
+        "judge_mean": "points",
+        "week": "ordinal week"
+      },
+      "time_range": "seasons 1\u201334, weeks 1\u201311",
+      "geography": "copied contestant metadata; no spatial calculation",
+      "missing_values": 1787,
+      "transformations": [
+        "wide weekly scores reshaped to contestant-week rows",
+        "structural post-elimination zeros flagged inactive",
+        "judge totals and means calculated from observed positive scores"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "artifacts": [
+    {
+      "artifact_id": "",
+      "type": "data|model|result|table|figure|paper",
+      "path": "",
+      "source_artifacts": [],
+      "content_hash": "",
+      "created_by": "",
+      "created_at": "",
+      "status": "current|stale"
+    }
+  ]
+}

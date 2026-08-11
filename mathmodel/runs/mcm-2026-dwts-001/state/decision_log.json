@@ -1,0 +1,47 @@
+{
+  "run_id": "mcm-2026-dwts-001",
+  "competition": "MCM",
+  "year": 2026,
+  "decisions": [
+    {
+      "decision_id": "DEC-001",
+      "stage": "three_problem_selection",
+      "timestamp": "2026-08-11T00:00:00+08:00",
+      "decision": "Select Problem C; second choice A; reject B for this run.",
+      "evidence": [
+        "selection/problem_selection.json",
+        "problem/problem_A_intake.md",
+        "problem/problem_B_intake.md",
+        "problem/problem_C_intake.md"
+      ],
+      "switch_condition": "Reconstruct fewer than 90% of evaluable active-roster weeks.",
+      "status": "current"
+    },
+    {
+      "decision_id": "DEC-002",
+      "stage": "data_preparation",
+      "timestamp": "2026-08-11T00:00:00+08:00",
+      "decision": "Preserve the official attachment as raw and generate contestant-week records deterministically.",
+      "evidence": [
+        "src/common/prepare_data.py",
+        "data/provenance/manifest.json",
+        "data/eda_report.md"
+      ],
+      "status": "current"
+    },
+    {
+      "decision_id": "DEC-003",
+      "stage": "candidate_tournament",
+      "timestamp": "2026-08-11T00:00:00+08:00",
+      "decision": "Propose Q1–Q4 primary/fallback routes but do not execute without human approval.",
+      "evidence": [
+        "problem/tournaments/Q1.json",
+        "problem/tournaments/Q2.json",
+        "problem/tournaments/Q3.json",
+        "problem/tournaments/Q4.json",
+        "problem/tournaments/APPROVAL_REQUEST.md"
+      ],
+      "status": "blocked_human_approval"
+    }
+  ]
+}

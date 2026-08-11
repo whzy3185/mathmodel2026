@@ -8,25 +8,39 @@
     "leakage_risks": [],
     "missingness_notes": ""
   },
-  "baseline": {"name": "", "reason": "", "validation": ""},
+  "baseline": {
+    "name": "",
+    "reason": "",
+    "implementation": "",
+    "validation": ""
+  },
   "candidates": [
     {
       "name": "",
       "formulation": "",
       "assumptions": [],
-      "data_gate": "pass|fail|unknown",
-      "complexity_gate": "pass|fail|unknown",
-      "identifiability_gate": "pass|fail|unknown",
-      "engineering_gate": "pass|fail|unknown",
+      "parameter_sources": [],
+      "assumption_gate": "pass|fail",
+      "data_gate": "pass|fail",
+      "complexity_gate": "pass|fail",
+      "identifiability_gate": "pass|fail",
+      "engineering_gate": "pass|fail",
+      "validation_gate": "pass|fail",
       "validation_plan": [],
       "refutation_evidence": [],
-      "decision": "primary|fallback|reject",
+      "expected_failure_modes": [],
+      "rejection_evidence": [],
+      "decision": "primary|fallback|rejected",
       "decision_reason": ""
     }
   ],
   "primary_model": "",
   "fallback_model": "",
   "stop_conditions": [],
-  "team_approval": false
+  "team_approval": {
+    "approved": false,
+    "approver": "",
+    "approved_at": "",
+    "plan_hash": ""
+  }
 }
-

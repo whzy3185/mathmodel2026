@@ -1,0 +1,142 @@
+{
+  "problem_id": "2026-MCM-C",
+  "subquestion": "Q4",
+  "target_claim": "A transparent weekly rule improves a documented judge-quality/fan-influence/stability trade-off across plausible vote distributions.",
+  "data_audit": {
+    "unit_table_complete": true,
+    "temporal_order_preserved": true,
+    "leakage_risks": [
+      "no engagement label exists",
+      "normative weights must not be fit to final placement"
+    ],
+    "missingness_notes": "Only weeks supported by current Q1 evidence enter the rule grid."
+  },
+  "baseline": {
+    "name": "50/50 percentage rule",
+    "reason": "transparent current-style reference and exact official formula family",
+    "implementation": "src/baseline/q4_equal_percent.py",
+    "validation": "historical replay over Q1 uncertainty and controversy cases"
+  },
+  "candidates": [
+    {
+      "name": "robust weighted-percent rule with bottom-two safeguard",
+      "formulation": "Choose judge weight a on a fixed grid to minimize worst-case normalized judge-discordance, fan-disfranchisement, and rule-instability loss over Q1 vote draws; judges save the technically stronger of the bottom two.",
+      "assumptions": [
+        "three published criteria represent the recommendation goal",
+        "weight preferences are reported as sensitivity ranges",
+        "judge save uses observed score only"
+      ],
+      "parameter_sources": [
+        "RESULT-Q1-VOTES",
+        "RESULT-Q2-COUNTERFACTUAL",
+        "criterion weights declared in config"
+      ],
+      "assumption_gate": "pass",
+      "data_gate": "pass",
+      "complexity_gate": "pass",
+      "identifiability_gate": "pass",
+      "engineering_gate": "pass",
+      "validation_gate": "pass",
+      "validation_plan": [
+        "multi-draw scenario grid",
+        "alternative criterion weights",
+        "rank-reversal test",
+        "controversy cases",
+        "failure boundary"
+      ],
+      "refutation_evidence": [
+        "selected weight changes by more than 0.20 across reasonable criterion weights",
+        "no Pareto improvement over baseline",
+        "more than 25% of draws reverse recommendation"
+      ],
+      "expected_failure_modes": [
+        "normative trade-off",
+        "fan behavioral response",
+        "bottom-two judge-save concentrates judge power"
+      ],
+      "rejection_evidence": [],
+      "decision": "primary",
+      "decision_reason": "Produces an explicit transparent rule and makes normative sensitivity visible rather than learning an unavailable engagement target."
+    },
+    {
+      "name": "trimmed rank aggregation",
+      "formulation": "Add judge and fan ranks after capping either side's maximum rank contribution, then apply a bottom-two safeguard.",
+      "assumptions": [
+        "rank robustness is preferable to cardinal differences",
+        "cap is policy-chosen"
+      ],
+      "parameter_sources": [
+        "RESULT-Q1-VOTES",
+        "official rank formula"
+      ],
+      "assumption_gate": "pass",
+      "data_gate": "pass",
+      "complexity_gate": "pass",
+      "identifiability_gate": "pass",
+      "engineering_gate": "pass",
+      "validation_gate": "pass",
+      "validation_plan": [
+        "tie frequency",
+        "counterfactual stability",
+        "criterion-weight sensitivity"
+      ],
+      "refutation_evidence": [
+        "excess ties",
+        "no improvement over baseline",
+        "controversy outcomes worsen"
+      ],
+      "expected_failure_modes": [
+        "information loss from ranks",
+        "tie handling dominates"
+      ],
+      "rejection_evidence": [],
+      "decision": "fallback",
+      "decision_reason": "Simple, communicable alternative if weighted-percent recommendation is fragile."
+    },
+    {
+      "name": "engagement-optimized learned rule",
+      "formulation": "Fit a policy to maximize viewer engagement and retention.",
+      "assumptions": [
+        "weekly engagement labels are available"
+      ],
+      "parameter_sources": [
+        "no engagement fields in official data"
+      ],
+      "assumption_gate": "pass",
+      "data_gate": "fail",
+      "complexity_gate": "pass",
+      "identifiability_gate": "fail",
+      "engineering_gate": "pass",
+      "validation_gate": "fail",
+      "validation_plan": [
+        "would require held-out engagement outcome"
+      ],
+      "refutation_evidence": [
+        "objective cannot be measured",
+        "proxy would be fabricated"
+      ],
+      "expected_failure_modes": [
+        "Goodhart effects",
+        "unverifiable black box"
+      ],
+      "rejection_evidence": [
+        "official 53-column file contains no audience or engagement field"
+      ],
+      "decision": "rejected",
+      "decision_reason": "The requested dataset contains no engagement target, so the objective is not identifiable."
+    }
+  ],
+  "primary_model": "robust weighted-percent rule with bottom-two safeguard",
+  "fallback_model": "trimmed rank aggregation",
+  "stop_conditions": [
+    "upstream Q1/Q2 evidence stale",
+    "human approval absent or stale",
+    "recommendation reverses in more than 25% of plausible vote draws"
+  ],
+  "team_approval": {
+    "approved": false,
+    "approver": "",
+    "approved_at": "",
+    "plan_hash": ""
+  }
+}

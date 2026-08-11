@@ -16,9 +16,9 @@ Work in a project workspace, never inside this skill folder. On first use, run `
 1. **Rules and intake** — Verify the current official rules, AI disclosure requirements, language, anonymity, page limit, files, and deadline. Read `references/contest-compliance.md` and `references/problem-taxonomy.md`.
 2. **Problem and data audit** — Restate each subquestion as decision variables, targets, constraints, outputs, evidence, and dependencies. Record units, missingness, provenance, temporal order, and leakage risks.
 3. **Candidate tournament** — Read `references/model-selection.md`. Propose a transparent baseline and at least two plausible candidates. Apply assumption, data, complexity, identifiability, engineering, and validation gates. Record rejection evidence and a fallback.
-4. **Formulation and execution** — Load only the relevant domain reference. Write symbols, units, equations, constraints, parameter sources, solver status checks, and reproducible code. Use exact optimization before heuristics when tractable.
+4. **Formulation and execution** — Require a human-approved, hash-current tournament before model execution. Load only the relevant domain reference. Write symbols, units, equations, constraints, parameter sources, solver status checks, and reproducible code. Start from the matching utility in `templates/code/` when applicable. Use exact optimization before heuristics when tractable.
 5. **Validation** — Read `references/validation.md`, `references/sensitivity.md`, and `references/failure-patterns.md`. Compare with a baseline; inspect residuals or feasibility; test perturbations, scenarios, and failure boundaries.
-6. **Evidence and figures** — Read `references/visualization.md`. Complete a Figure Contract before every final figure. A figure without a claim, units, expected pattern, and interpretation is not a deliverable.
+6. **Evidence and figures** — Register dependencies with `templates/claim-evidence.json` and `templates/artifact-registry.json`. Run `scripts/check_evidence.py`; when upstream data, parameters, or models change, run `scripts/invalidate_artifacts.py` before regenerating descendants. Read `references/visualization.md`. Complete a Figure Contract before every final figure. A figure without a claim, units, expected pattern, and interpretation is not a deliverable.
 7. **Paper** — Read `references/paper-writing.md`, `references/judges-commentary.md`, and `references/award-paper-patterns.md`. Write the summary last and report concrete results, uncertainty, weaknesses, and limits.
 8. **Audit and handoff** — Run `python <skill>/scripts/audit_skill.py <skill>` for the skill itself and use the project checklist in `references/contest-compliance.md` for a submission. Update `state/decision_log.json` after each gate.
 
@@ -51,11 +51,10 @@ Do not advance when any applicable gate fails:
 
 ## State and artifacts
 
-Use `templates/candidate-model-tournament.json`, `templates/figure-contract.md`, and the paper outline matching the contest. Validate a completed tournament with `python <skill>/scripts/check_plan.py <plan.json>`. Store machine-readable results separately from prose so a model change can propagate to figures, tables, summary, and conclusions.
+Use `templates/candidate-model-tournament.json`, `templates/figure-contract.md`, and the paper outline matching the contest. Obtain the content hash with `python <skill>/scripts/check_plan.py <plan.json> --print-hash`; a human team member must review the exact plan, set the structured approval, and copy that hash. Codex must never set `approved=true` or identify itself as the approver. Then validate with `python <skill>/scripts/check_plan.py <plan.json>`. Store machine-readable results separately from prose so a model change can propagate to figures, tables, summary, and conclusions.
 
 Read `references/state-and-collaboration.md` when several people or agents share work. Read `references/citation-license.md` before incorporating outside code, templates, or papers.
 
 ## Prohibitions
 
 Never invent citations, results, solver success, statistical significance, data provenance, or award status. Never use random train/test splits for ordered time series. Never call a heuristic solution optimal without a bound or proof. Never copy papers or unlicensed repository content into a public deliverable. Never hide AI use when disclosure is required.
-

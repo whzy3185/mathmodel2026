@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "claims": [
+    {
+      "claim_id": "",
+      "text": "",
+      "question_id": "",
+      "artifact_ids": [],
+      "metric": "",
+      "value": null,
+      "unit": "",
+      "uncertainty": "",
+      "baseline": "",
+      "failure_threshold": "",
+      "status": "draft|validated|stale|rejected"
+    }
+  ]
+}
