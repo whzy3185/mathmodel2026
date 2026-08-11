@@ -1,0 +1,47 @@
+{
+  "problem_id": "2026-HUASHUBEI-A",
+  "subquestion": "Q2: estimate the conduction probabilities at the four specified A-material volume fractions",
+  "target_claim": "Estimate each requested probability with a reproducible continuous-geometry Monte Carlo experiment and report sample size, successes, fixed seeds, and a 95% Wilson interval.",
+  "data_audit": {"unit_table_complete": true, "temporal_order_preserved": true, "leakage_risks": ["reusing final confirmation seeds during model selection"], "missingness_notes": "The problem supplies a stochastic placement mechanism but no sample size; sample size will be determined by interval precision."},
+  "baseline": {"name": "center-point random geometric graph", "reason": "Provides a cheap comparator and exposes the contribution of rod orientation and finite length.", "implementation": "Replace each rod by a center point with an effective connection radius and estimate percolation by simulation.", "validation": "Compare probability and monotonic ordering with the continuous-rod model; do not use for final claims."},
+  "candidates": [
+    {
+      "name": "continuous-rod Monte Carlo with spatial index and Wilson intervals",
+      "formulation": "Convert each volume fraction to an integer rod count using the stated rod volume, sample centers uniformly in the periodic cube and orientations uniformly on S^2, evaluate capsule connectivity with the Q1 kernel, and estimate Bernoulli percolation probability with Wilson intervals. Use a conservative broad phase before exact pair distances.",
+      "assumptions": ["Rod centers are spatially uniform and independent.", "Rod orientations are isotropic on the sphere.", "The periodic cube removes edge-density bias.", "Samples are independent within each reported estimate."],
+      "parameter_sources": ["official problem_A.pdf", "Q1 approved geometry kernel", "rod volume pi*30^2*5000 nm^3"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["verify uniform orientation moments E[u_i]≈0 and E[u_i^2]≈1/3", "run increasing batch sizes and track interval width", "compare indexed neighbor search to all-pairs on small samples", "repeat final estimates with independent seeds"],
+      "refutation_evidence": ["probabilities materially decrease with increasing volume fraction beyond interval overlap", "indexed and all-pairs graphs disagree", "orientation diagnostics reject isotropy"],
+      "expected_failure_modes": ["rod-count rounding alters nominal volume fraction", "rare-event variance near transition", "missed periodic neighbors", "runtime growth near dense regimes"],
+      "rejection_evidence": [], "decision": "primary", "decision_reason": "It preserves the stated geometry and stochastic mechanism while making uncertainty and convergence explicit."
+    },
+    {
+      "name": "continuous-rod Monte Carlo with periodic cell lists",
+      "formulation": "Use the identical random mechanism and exact geometry kernel, but enumerate candidate interactions through a periodic uniform cell list rather than the primary spatial index.",
+      "assumptions": ["The same spatially uniform, isotropic and independent placement model as the primary candidate."],
+      "parameter_sources": ["official problem_A.pdf", "Q1 approved geometry kernel"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["match all-pairs graphs on small cases", "match primary estimates under common samples", "audit neighbor-cell reach from rod length and threshold"],
+      "refutation_evidence": ["cell list omits a pair accepted by all-pairs distance", "probability differs under identical generated configurations"],
+      "expected_failure_modes": ["long rods span more cells than assumed", "duplicate pair enumeration", "suboptimal cell width"],
+      "rejection_evidence": [], "decision": "fallback", "decision_reason": "It retains the scientific model but replaces the most implementation-sensitive acceleration component."
+    },
+    {
+      "name": "deterministic mean-field percolation threshold",
+      "formulation": "Approximate conduction from expected neighbor degree alone.",
+      "assumptions": ["Local degree determines spanning probability without finite-size or orientation effects."],
+      "parameter_sources": ["derived approximation"],
+      "assumption_gate": "fail", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "fail", "engineering_gate": "pass", "validation_gate": "fail",
+      "validation_plan": ["compare with Monte Carlo probabilities"],
+      "refutation_evidence": ["finite-box Monte Carlo departs from mean-field response"],
+      "expected_failure_modes": ["biased transition location", "no valid uncertainty interval"],
+      "rejection_evidence": ["The question asks probabilities in a finite periodic cube; expected degree alone cannot identify spanning probabilities or their uncertainty."],
+      "decision": "rejected", "decision_reason": "Useful only as a rough plausibility check, not as the requested estimator."
+    }
+  ],
+  "primary_model": "continuous-rod Monte Carlo with spatial index and Wilson intervals",
+  "fallback_model": "continuous-rod Monte Carlo with periodic cell lists",
+  "stop_conditions": ["Q1 geometry kernel has not passed human-approved validation", "95% interval half-width remains above the preregistered tolerance at the compute budget", "independent seeds produce unresolved discrepancies", "neighbor acceleration disagrees with all-pairs checks"],
+  "team_approval": {"approved": false, "approver": "", "approved_at": "", "plan_hash": ""}
+}

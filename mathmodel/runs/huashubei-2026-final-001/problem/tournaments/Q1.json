@@ -1,0 +1,47 @@
+{
+  "problem_id": "2026-HUASHUBEI-A",
+  "subquestion": "Q1: determine whether each supplied microstructure conducts from the left charged face to the right charged face and return an auditable conductor path",
+  "target_claim": "For each of the three official coordinate groups, classify left-to-right connectivity under the stated 1.8 nm surface-gap rule and exhibit a valid node chain whenever connected.",
+  "data_audit": {"unit_table_complete": true, "temporal_order_preserved": true, "leakage_risks": [], "missingness_notes": "No missing coordinates; truncated boundary segments must remain truncated rather than being extended to 5000 nm."},
+  "baseline": {"name": "endpoint-and-center proximity graph", "reason": "A transparent lower-effort comparator reveals errors caused by replacing segment distance with point distance.", "implementation": "Connect rods when endpoint or center distances fall below 61.8 nm; add virtual left/right face nodes.", "validation": "Compare classifications and edges with the exact geometry model; disagreement is expected evidence against the baseline."},
+  "candidates": [
+    {
+      "name": "analytic capsule graph with periodic images and union-find",
+      "formulation": "Represent each supplied rod by its observed axis segment. Compute exact segment-to-segment minimum distance over the finite set of relevant periodic image translations, connect pairs at distance <=61.8 nm, connect face-touching rods to virtual electrodes, then use union-find and BFS parent recovery.",
+      "assumptions": ["The supplied endpoints define the conductive axis actually present in the cube.", "Periodic wrapping follows the official boundary rule.", "A surface gap <=1.8 nm is conductive."],
+      "parameter_sources": ["official problem_A.pdf", "data/raw/A/attachment.xlsx", "problem/problem_A_intake.md"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["unit-test intersecting, parallel, skew, tangent and degenerate segments", "recompute every selected path edge independently", "compare all near-threshold pairs with the fallback solver"],
+      "refutation_evidence": ["any returned path edge exceeds 61.8 nm after independent recomputation", "classification changes under algebraically equivalent endpoint ordering", "periodic translation search misses a brute-force image case"],
+      "expected_failure_modes": ["floating-point ambiguity at the threshold", "incorrect association of periodic fragments", "false face contact from radius/axis confusion"],
+      "rejection_evidence": [], "decision": "primary", "decision_reason": "It is exact for finite line segments, computationally trivial at 535 rods, and returns an auditable path rather than only a label."
+    },
+    {
+      "name": "independent bounded segment-distance minimization",
+      "formulation": "For every candidate rod pair and periodic image, minimize squared Euclidean distance over segment parameters (s,t) in [0,1]^2 using an independently implemented bounded quadratic solver, then build the same graph.",
+      "assumptions": ["The same finite-segment and periodic-boundary interpretation as the primary model."],
+      "parameter_sources": ["official problem_A.pdf", "data/raw/A/attachment.xlsx"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["cross-check near-threshold distances against the analytic implementation", "verify KKT/bound constraints and objective values", "reconstruct left-right paths"],
+      "refutation_evidence": ["solver returns an out-of-bounds segment parameter", "objective differs materially from brute-force dense samples on stress cases"],
+      "expected_failure_modes": ["optimizer tolerance masks a threshold edge", "slower all-pairs computation"],
+      "rejection_evidence": [], "decision": "fallback", "decision_reason": "It is algorithmically independent enough to diagnose analytic edge-case errors while remaining tractable."
+    },
+    {
+      "name": "whole-cube voxel percolation",
+      "formulation": "Rasterize the 10000 nm cube and test connected occupied voxels.",
+      "assumptions": ["A finite voxel width preserves 1.8 nm gaps."],
+      "parameter_sources": ["official problem_A.pdf"],
+      "assumption_gate": "fail", "data_gate": "pass", "complexity_gate": "fail", "identifiability_gate": "fail", "engineering_gate": "fail", "validation_gate": "fail",
+      "validation_plan": ["compare several voxel widths against exact tangent cases"],
+      "refutation_evidence": ["classification changes with voxel width"],
+      "expected_failure_modes": ["aliasing", "memory explosion", "false bridges"],
+      "rejection_evidence": ["Resolving a 1.8 nm gap in a 10000 nm cube would require an impractical grid and still introduces orientation aliasing."],
+      "decision": "rejected", "decision_reason": "It adds discretization bias and extreme cost where exact finite-segment geometry is available."
+    }
+  ],
+  "primary_model": "analytic capsule graph with periodic images and union-find",
+  "fallback_model": "independent bounded segment-distance minimization",
+  "stop_conditions": ["official periodic-boundary wording cannot be reconciled with the supplied coordinates", "primary and fallback disagree on any edge more than numerical tolerance permits", "an explicit conducting path cannot be reconstructed for a positive classification"],
+  "team_approval": {"approved": false, "approver": "", "approved_at": "", "plan_hash": ""}
+}

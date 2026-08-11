@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "A": {
+    "file": "data/raw/A/attachment.xlsx",
+    "sha256": "6dc68dd49356aeab483906a524ff79855b454fcaccd168f81ff3a3ad989c4c51",
+    "sheets": {
+      "组1": {
+        "medium_count": 12,
+        "coordinate_min_nm": -5000.0,
+        "coordinate_max_nm": 5000.0,
+        "segment_length_nm": {
+          "min": 1019.1172545934198,
+          "median": 2566.1397390650686,
+          "max": 5000.000000000005,
+          "near_5000_count": 2
+        },
+        "media_touching_any_boundary_face": 7,
+        "endpoint_coordinate_boundary_hits": 7,
+        "nonfinite_value_count": 0
+      },
+      "组2": {
+        "medium_count": 49,
+        "coordinate_min_nm": -5000.0,
+        "coordinate_max_nm": 5000.0,
+        "segment_length_nm": {
+          "min": 577.4739501397556,
+          "median": 2677.2638185886635,
+          "max": 5000.000000000008,
+          "near_5000_count": 11
+        },
+        "media_touching_any_boundary_face": 22,
+        "endpoint_coordinate_boundary_hits": 22,
+        "nonfinite_value_count": 0
+      },
+      "组3": {
+        "medium_count": 535,
+        "coordinate_min_nm": -5000.0,
+        "coordinate_max_nm": 5000.0,
+        "segment_length_nm": {
+          "min": 525.6973820490682,
+          "median": 3696.909631751418,
+          "max": 5000.000000000008,
+          "near_5000_count": 155
+        },
+        "media_touching_any_boundary_face": 380,
+        "endpoint_coordinate_boundary_hits": 410,
+        "nonfinite_value_count": 0
+      }
+    }
+  },
+  "B": {
+    "directory": "data/raw/B",
+    "cases": {
+      "n100": {
+        "declared_hard_blocks": 100,
+        "parsed_hard_blocks": 100,
+        "declared_terminals": 334,
+        "terminal_placement_rows": 334,
+        "declared_nets": 885,
+        "parsed_net_headers": 885,
+        "declared_pins": 1873,
+        "parsed_net_nodes": 1873,
+        "total_block_area": 179501,
+        "square_contour_side_dead_space_0_15": 454.3414464915126,
+        "file_hashes": {
+          "blocks": "c66f917c48f3c7ee9624bec8e0dc053eb349d10121d3278d25b09b67a2e94e2b",
+          "nets": "cd86e1b49547f9c76144aa2acef6d643c8fd9222c3a4b8c91a40bb6f7ca42193",
+          "pl": "cb8b03aff82241643ca899aa9759d8aa42bcf085ead64d5011f52c83f836355f"
+        }
+      },
+      "n200": {
+        "declared_hard_blocks": 200,
+        "parsed_hard_blocks": 200,
+        "declared_terminals": 564,
+        "terminal_placement_rows": 564,
+        "declared_nets": 1585,
+        "parsed_net_headers": 1585,
+        "declared_pins": 3599,
+        "parsed_net_nodes": 3599,
+        "total_block_area": 175696,
+        "square_contour_side_dead_space_0_15": 449.5001668520269,
+        "file_hashes": {
+          "blocks": "bed652bf55c2034b04a1c1bbe97ad617e027c11736bf069727a63baf575720ef",
+          "nets": "8867f3f167845d88623a5cadba68f7a19fe343278779538e7804c5ac0c5940a2",
+          "pl": "0400507fcb07124e01f6cdb86c5e71cdce1bbbb871030651f5583a2f66ec3589"
+        }
+      },
+      "n300": {
+        "declared_hard_blocks": 300,
+        "parsed_hard_blocks": 300,
+        "declared_terminals": 569,
+        "terminal_placement_rows": 569,
+        "declared_nets": 1893,
+        "parsed_net_headers": 1893,
+        "declared_pins": 4358,
+        "parsed_net_nodes": 4358,
+        "total_block_area": 273170,
+        "square_contour_side_dead_space_0_15": 560.4868419508169,
+        "file_hashes": {
+          "blocks": "88ca80814070d9578c7ccd31182ff31ab026a1a1ea9da5fd0e0342d26327bc82",
+          "nets": "39d9cc7b7d347dd0ecefb8d17e0adfbcbf2af1c071079fbf64caec34bcc0d94c",
+          "pl": "7b095ff15624666c3fdf95c71fda72e45ffff70acdf27d10302830ba3031f035"
+        }
+      }
+    }
+  },
+  "C": {
+    "directory": "data/raw/C",
+    "workload": {
+      "rows": 50000,
+      "columns": 11,
+      "task_type_counts": {
+        "RealTimeInference": 16724,
+        "BatchInference": 16717,
+        "AITraining": 16559
+      },
+      "source_region_counts": {
+        "RegionA": 10062,
+        "RegionD": 9560,
+        "RegionB": 9200,
+        "RegionC": 7559,
+        "RegionE": 6912,
+        "RegionF": 6707
+      },
+      "arrival_hour_range": [
+        0,
+        2399
+      ],
+      "last_24h_task_count": 538,
+      "gpu_demand_range": [
+        1,
+        127
+      ],
+      "duration_min_range": [
+        10,
+        399
+      ],
+      "duplicate_task_ids": 0,
+      "invalid_time_windows": 0,
+      "missing": {},
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    "region_time": {
+      "rows": 14442,
+      "expected_rows": 14442,
+      "hour_range": [
+        0,
+        2406
+      ],
+      "regions": [
+        "RegionA",
+        "RegionB",
+        "RegionC",
+        "RegionD",
+        "RegionE",
+        "RegionF"
+      ],
+      "duplicate_region_hour": 0,
+      "missing": {},
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    "dimension_tables": {
+      "gpu_rows": 6,
+      "latency_rows": 36,
+      "power_rows": 3,
+      "storage_rows": 6
+    },
+    "file_hashes": {
+      "GPU_information.xlsx": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f",
+      "network_latency.xlsx": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157",
+      "power_mapping.xlsx": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e",
+      "region_time_data.xlsx": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba",
+      "storage_information.xlsx": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4",
+      "workload_trace.xlsx": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    }
+  }
+}

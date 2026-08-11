@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generated_by": "src/common/audit_inputs.py",
+  "datasets": [
+    {
+      "dataset_id": "OFFICIAL-2026-BUNDLE",
+      "stored_path": "input/attachments/official_problem_bundle.zip",
+      "sha256": "f3be40932aeafcaec92af6447a770cd4fb6f9d21321afe9f66c8453f29a48cbd",
+      "usage": "authoritative immutable input"
+    },
+    {
+      "dataset_id": "A-CYLINDERS",
+      "stored_path": "data/raw/A/attachment.xlsx",
+      "sha256": "6dc68dd49356aeab483906a524ff79855b454fcaccd168f81ff3a3ad989c4c51",
+      "usage": "read-only geometry input"
+    },
+    {
+      "dataset_id": "B-BOOKSHELF",
+      "stored_path": "data/raw/B/*.{blocks,nets,pl}",
+      "per_file_hashes": "data/eda_summary.json#/B/cases",
+      "usage": "read-only floorplanning input"
+    },
+    {
+      "dataset_id": "C-COMPUTE-POWER",
+      "stored_path": "data/raw/C/*.xlsx",
+      "per_file_hashes": "data/eda_summary.json#/C/file_hashes",
+      "usage": "read-only scheduling input"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "competition": "2026 第七届华数杯大学生数学建模竞赛",
+  "accessed_at": "2026-08-11T00:00:00+08:00",
+  "official_contest_url": "https://m.saikr.com/chinamcm26",
+  "user_supplied_notice_url": "https://m.saikr.com/contest/notice_detail/46038",
+  "problem_bundle": {
+    "source_path": "E:/2026年第七届华数杯数学建模竞赛赛题.zip",
+    "stored_path": "input/attachments/official_problem_bundle.zip",
+    "sha256": "f3be40932aeafcaec92af6447a770cd4fb6f9d21321afe9f66c8453f29a48cbd"
+  },
+  "format_rules_sha256": "7aa7cc14ad61819a2b30444a6283dc6dba170dcd69c1232bc1b3be19f1ab4e22",
+  "ai_rules_sha256": "b3f4a1bcc86a80724b313b9690a59e9fb9ab157780591d3321b0c4d953bd31dc",
+  "status": "post-deadline AI workflow reproduction; no contest submission"
+}

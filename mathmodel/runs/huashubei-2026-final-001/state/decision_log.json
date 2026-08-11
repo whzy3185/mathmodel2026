@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "run_id": "huashubei-2026-final-001",
+  "competition": "2026 第七届华数杯",
+  "created_at": "2026-08-11T21:43:32+08:00",
+  "current_stage": "candidate-approval",
+  "official_rules_checked_at": "2026-08-11T00:00:00+08:00",
+  "problem_id": "2026-HUASHUBEI-A",
+  "decisions": [
+    {"decision_id": "DEC-001", "stage": "rules-and-intake", "decision": "Use the user-supplied 2026 seventh Huashu Cup ZIP as the authoritative problem bundle; it supersedes the previously matched 2024 titles for this run.", "evidence": ["rules/rules_manifest.json", "data/provenance/manifest.json"], "status": "current"},
+    {"decision_id": "DEC-002", "stage": "problem-selection", "decision": "Select 2026 problem A, retain B as second choice, and do not select C for the primary experiment.", "evidence": ["data/eda_report.md", "selection/problem_selection.json"], "switch_condition": "The official A geometry or periodic-boundary rule cannot be implemented consistently, or approved Q1 primary and fallback remain irreconcilable.", "status": "current"},
+    {"decision_id": "DEC-003", "stage": "training", "decision": "Use mature CUMCM work as link-only method exemplars; transfer verification patterns rather than prose, figures, or unlicensed code.", "evidence": ["training/source_manifest.json", "training/method_cards.md"], "status": "current"},
+    {"decision_id": "DEC-004", "stage": "candidate-tournament", "decision": "Prepare Q1-Q4 primary, fallback and rejected routes; prohibit model execution until a human approves the exact current hashes.", "evidence": ["problem/tournaments/Q1.json", "problem/tournaments/Q2.json", "problem/tournaments/Q3.json", "problem/tournaments/Q4.json", "problem/tournaments/APPROVAL_REQUEST.md"], "status": "blocked_human_approval"}
+  ],
+  "assumptions": [
+    "The cube is periodic and has side length 10000 nm.",
+    "A is modeled by its stated finite axis segment with radius 30 nm; B is a sphere of radius 200 nm.",
+    "A surface separation no greater than 1.8 nm creates an electrical connection.",
+    "Post-deadline work is an AI workflow reproduction experiment, not a live contest submission."
+  ],
+  "parameters": [
+    {"name": "A-A axis threshold", "value": 61.8, "unit": "nm", "source": "official geometry"},
+    {"name": "A-B center-axis threshold", "value": 231.8, "unit": "nm", "source": "official geometry"},
+    {"name": "B-B center threshold", "value": 401.8, "unit": "nm", "source": "official geometry"}
+  ],
+  "artifacts": ["data/eda_summary.json", "selection/problem_selection.json", "training/source_manifest.json", "problem/dependency_graph.json"],
+  "open_risks": ["human plan approval pending", "periodic finite-segment interpretation requires dual implementation", "Q3-Q4 confidence constraints may require substantial Monte Carlo compute"],
+  "ai_usage": [{"date": "2026-08-11", "usage": "source confirmation, read-only input audit, problem selection, original method notes, decomposition and candidate-plan drafting; no numerical model answer generated before approval"}]
+}

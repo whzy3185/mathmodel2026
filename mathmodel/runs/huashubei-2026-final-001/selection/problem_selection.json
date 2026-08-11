@@ -1,0 +1,15 @@
+{
+  "competition": "2026 第七届华数杯",
+  "run_id": "huashubei-2026-final-001",
+  "scale": {"clarity": 10, "data": 15, "external_risk": 10, "baseline": 10, "model_quality": 15, "validation": 15, "compute": 10, "figures": 5, "narrative": 5, "execution_risk": 5},
+  "problems": {
+    "A": {"scores": [10,15,10,10,14,14,9,5,5,4], "total": 96, "primary": "continuous capsule/sphere graph plus confidence-controlled Monte Carlo", "fatal_risk": "periodic boundary or confidence criterion implemented incorrectly"},
+    "B": {"scores": [9,15,10,9,14,11,6,5,5,3], "total": 87, "primary": "B*-Tree plus fast simulated annealing", "fatal_risk": "heuristic result mislabeled globally optimal"},
+    "C": {"scores": [10,15,10,8,15,13,3,5,5,2], "total": 86, "primary": "forecast plus decomposed multi-region scheduling and storage LP", "fatal_risk": "50000-task nonpreemptive scheduling exceeds compute budget or violates deadlines"}
+  },
+  "recommended_problem": "A",
+  "second_choice": "B",
+  "rejected_problem": "C",
+  "selection_reason": "A is fully self-contained, has small deterministic Q1 instances, a falsifiable continuous-geometry core, tractable stochastic experiments and direct uncertainty reporting.",
+  "switch_condition": "Switch to B only if periodic capsule distances fail independent verification or a pilot cannot complete 100 Monte Carlo trials within the declared budget."
+}
