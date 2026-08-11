@@ -18,7 +18,13 @@
 | Q3 | `Q3.json` | `cab4a03c25e6ab7b741c96c1d99a53bf07ca851803fee8bdc737c88ef9e6527a` |
 | Q4 | `Q4.json` | `c0e0d78c130b68ae3e90aa4cc6378b8afda6e869b678a2a8610fd78afb33769e` |
 
-审批后逐份运行：
+推荐由人类审批人直接运行交互脚本（Codex 不得代为输入）：
+
+```powershell
+python human_approve_plans.py
+```
+
+也可以手工填写。审批后逐份运行：
 
 ```powershell
 python mathmodel/math-modeling-competition/scripts/check_plan.py mathmodel/runs/huashubei-2024-final-001/problem/tournaments/Q1.json
