@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "run_id": "huashubei-2024-final-001",
+  "competition": "2024 第五届华数杯",
+  "created_at": "2026-08-11T00:00:00+08:00",
+  "current_stage": "candidate-approval",
+  "official_rules_checked_at": "2026-08-11T00:00:00+08:00",
+  "problem_id": "2024-HUASHUBEI-A",
+  "decisions": [
+    {
+      "decision_id": "DEC-001",
+      "stage": "rules-and-intake",
+      "decision": "Use the official 2024 fifth Huashu Cup package because the user-listed A/B/C titles match 2024, while the supplied notice URL points to different 2026 problems.",
+      "evidence": ["rules/official_rules.md", "rules/rules_manifest.json"],
+      "status": "current"
+    },
+    {
+      "decision_id": "DEC-002",
+      "stage": "problem-selection",
+      "decision": "Select A, retain B as fallback, reject C for this run.",
+      "evidence": ["data/eda_report.md", "selection/problem_selection.json"],
+      "switch_condition": "Two independent standard-DH implementations cannot reconcile the geometry, or approved Q1 primary and fallback both fail the 200 mm feasibility threshold.",
+      "status": "current"
+    },
+    {
+      "decision_id": "DEC-003",
+      "stage": "training",
+      "decision": "Use mature CUMCM papers as link-only method exemplars; transfer workflow patterns, not prose or code.",
+      "evidence": ["training/source_manifest.json", "training/method_cards.md"],
+      "status": "current"
+    },
+    {
+      "decision_id": "DEC-004",
+      "stage": "candidate-tournament",
+      "decision": "Propose Q1-Q4 primary and fallback routes; do not execute before human hash approval.",
+      "evidence": ["problem/tournaments/Q1.json", "problem/tournaments/Q2.json", "problem/tournaments/Q3.json", "problem/tournaments/Q4.json", "problem/tournaments/APPROVAL_REQUEST.md"],
+      "status": "blocked_human_approval"
+    }
+  ],
+  "assumptions": [
+    "Standard D-H transform convention is used and independently verified.",
+    "Only end-effector position is targeted because no orientation target is given.",
+    "Equivalent mechanical energy is a declared proxy, not measured electrical consumption.",
+    "Base motion uses four-neighbor grid steps and must return to Start."
+  ],
+  "parameters": [],
+  "artifacts": ["data/eda_summary.json", "selection/problem_selection.json", "training/source_manifest.json"],
+  "open_risks": ["human plan approval pending", "link mass and center-of-mass parameters are absent", "robot-arm swept-volume obstacle geometry is not supplied"],
+  "ai_usage": [
+    {"date": "2026-08-11", "usage": "problem intake, data audit code, candidate formulation and provenance notes; no numerical answer generated before approval"}
+  ]
+}
+

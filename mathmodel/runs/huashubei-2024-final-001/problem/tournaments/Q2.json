@@ -1,0 +1,47 @@
+{
+  "problem_id": "2024-HUASHUBEI-A",
+  "subquestion": "Q2",
+  "target_claim": "在末端误差不超过200 mm时给出误差—等效机械能 Pareto 前沿和一个可解释折中关节路径。",
+  "data_audit": {"unit_table_complete": true, "temporal_order_preserved": true, "leakage_risks": ["不能把未给出的连杆质量和质心伪装为真实动力学参数"], "missingness_notes": "仅给总质量、关节惯量和平均角速度，因此使用公开公式定义且做敏感性分析的等效能量代理。"},
+  "baseline": {"name": "Q1 最小误差解", "reason": "显示仅追求精度时的能耗参照", "implementation": "src/baseline/q2_q1_endpoint.py", "validation": "误差、关节位移与能量复算"},
+  "candidates": [
+    {
+      "name": "ε约束 Pareto 逆运动学",
+      "formulation": "定义 Eκ=Σ(0.5 I_i ω_i² |Δθ_i|)+κmgΣ max(Δz_k,0)，角度用弧度；在一组误差上限 ε∈[0,200] mm 下分别最小化 Eκ，形成 Pareto 前沿并以膝点选折中。",
+      "assumptions": ["0.5 Iω²按无量纲角行程缩放是等效驱动能代理", "总质量集中于末端只用于重力项情景", "κ在0到1之间表示可回收/未计重力功比例"],
+      "parameter_sources": ["题面表2", "题面总质量5 kg", "g=9.80665 m/s²标准重力"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["误差约束残差", "Pareto 非支配性", "κ=0,0.5,1 敏感性", "权重和目标位置扰动", "与Q1基线比较"],
+      "refutation_evidence": ["前沿点被另一点同时在误差和能量上严格支配", "误差约束违反超过1e-6 mm", "结论随微小κ变化完全反转"],
+      "expected_failure_modes": ["能量代理并非电机电耗", "非凸前沿漏点", "膝点不唯一"],
+      "rejection_evidence": [], "decision": "primary", "decision_reason": "避免任意单一加权和，并诚实区分等效机械能与真实电耗。"
+    },
+    {
+      "name": "词典序精度后能耗优化",
+      "formulation": "先求最小误差 e*，再在 e≤min(e*+δ,200) 下最小化 Eκ，并扫描 δ。",
+      "assumptions": ["精度优先级高于能耗", "δ由工程容差解释"],
+      "parameter_sources": ["同主模型"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["δ扫描", "与Pareto膝点比较", "约束复算"],
+      "refutation_evidence": ["无δ可显著节能", "约束不可行"],
+      "expected_failure_modes": ["结果依赖δ"],
+      "rejection_evidence": [], "decision": "fallback", "decision_reason": "当Pareto膝点不稳定时提供清晰优先级。"
+    },
+    {
+      "name": "单一固定加权和",
+      "formulation": "最小化 w e +(1-w)E。",
+      "assumptions": ["误差和能量可由一个未经标定的权重交换"],
+      "parameter_sources": ["无权威权重来源"],
+      "assumption_gate": "fail", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "fail", "engineering_gate": "pass", "validation_gate": "fail",
+      "validation_plan": ["需要外部偏好标定"],
+      "refutation_evidence": ["权重扰动改变结论"],
+      "expected_failure_modes": ["量纲混合", "遗漏非凸前沿"],
+      "rejection_evidence": ["题面没有给误差与能量的偏好权重"], "decision": "rejected", "decision_reason": "单点权重会掩盖真实折中且难以解释。"
+    }
+  ],
+  "primary_model": "ε约束 Pareto 逆运动学",
+  "fallback_model": "词典序精度后能耗优化",
+  "stop_conditions": ["人类审批缺失或哈希失效", "Q1正运动学未通过", "能量公式或单位未在论文中明确", "没有任何200 mm内可行点"],
+  "team_approval": {"approved": false, "approver": "", "approved_at": "", "plan_hash": ""}
+}
+

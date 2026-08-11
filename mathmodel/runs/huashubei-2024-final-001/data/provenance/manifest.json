@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "generated_by": "src/common/audit_inputs.py",
+  "datasets": [
+    {
+      "dataset_id": "OFFICIAL-BUNDLE",
+      "source": "2024 华数杯官方赛题发布页",
+      "url": "https://www.saikr.com/c/nd/22100",
+      "stored_path": "input/attachments/official_problem_bundle.zip",
+      "sha256": "b82d17045899f5a5b014d6340dd7d46b61c370c659324ad30b90aa6104f8dca6",
+      "usage": "official input archive"
+    },
+    {
+      "dataset_id": "A-GRID",
+      "source": "OFFICIAL-BUNDLE/A题/附件.xlsx",
+      "stored_path": "data/raw/A/attachment.xlsx",
+      "sha256": "6904d94c93dc3cc52438602239350493c8086dd0e6301312525287d46bb4c3d8",
+      "usage": "raw input; no mutation"
+    },
+    {
+      "dataset_id": "B-NETS",
+      "source": "OFFICIAL-BUNDLE/B题/附件1.txt",
+      "stored_path": "data/raw/B/附件1.txt",
+      "sha256": "0590133b1a2d97f63b5aabaefdf819a2a5af9d308b3293d887f1a493e057625e",
+      "usage": "raw input; no mutation"
+    },
+    {
+      "dataset_id": "B-CELLS",
+      "source": "OFFICIAL-BUNDLE/B题/附件2.txt",
+      "stored_path": "data/raw/B/附件2.txt",
+      "sha256": "6b5f18626fdb464d86b0b33074405447a04e6d85bc0363ab7ed579e68911e43d",
+      "usage": "raw input; no mutation"
+    },
+    {
+      "dataset_id": "C-ATTRACTIONS",
+      "source": "OFFICIAL-BUNDLE/C题/附件；题面注明源自去哪儿旅行",
+      "source_url": "https://travel.qunar.com/",
+      "stored_path": "data/raw/C/*.csv",
+      "file_count": 352,
+      "row_count": 33174,
+      "per_file_hashes": "data/eda_summary.json#/C/file_hashes",
+      "usage": "raw input; no mutation"
+    }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "competition": "2024 第五届华数杯全国大学生数学建模竞赛",
+  "accessed_at": "2026-08-11T00:00:00+08:00",
+  "official_problem_notice": "https://www.saikr.com/c/nd/22100",
+  "official_format_notice": "https://www.saikr.com/c/nd/22096",
+  "official_problem_bundle": {
+    "url": "https://publicqn.saikr.com/2024/08/04/contest/a7160e2032b24403b024bcd400d680371722749331121.zip",
+    "stored_path": "input/attachments/official_problem_bundle.zip",
+    "sha256": "b82d17045899f5a5b014d6340dd7d46b61c370c659324ad30b90aa6104f8dca6"
+  },
+  "official_format_pdf": {
+    "url": "https://publicqn.saikr.com/2024/08/03/contest/12a886b059463d337a955371e1db4c361722656572164.pdf",
+    "stored_path": "rules/official_format_rules.pdf",
+    "sha256": "fbc2dc86d29dd65f712df808d35107b26e26dce442efcaf517cdbdcacd369da5"
+  },
+  "status": "historical reproduction; no contest submission attempted"
+}
+

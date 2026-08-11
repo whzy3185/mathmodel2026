@@ -1,0 +1,47 @@
+{
+  "problem_id": "2024-HUASHUBEI-A",
+  "subquestion": "Q4",
+  "target_claim": "对 Sheet2 的5个货物联合确定访问次序、服务格、闭合底座路线和关节路径，并报告可复算的总末端误差与总等效能耗。",
+  "data_audit": {"unit_table_complete": true, "temporal_order_preserved": true, "leakage_risks": ["不能先固定访问顺序再声称全局最优", "不能遗漏返回Start"], "missingness_notes": "底座移动能耗不计，采用抓取质量优先、底座步数次级的词典序目标。"},
+  "baseline": {"name": "目标最近服务格 + 最近邻闭环", "reason": "提供简单可行路线和可量化改进基线", "implementation": "src/baseline/q4_nearest_neighbor.py", "validation": "全部5个目标恰访问一次、闭环、无穿障"},
+  "candidates": [
+    {
+      "name": "服务格—目标联合子集动态规划",
+      "formulation": "先为每个目标枚举非支配可行服务格及Q2关节代价，再以状态(mask,last_target,last_service_cell)做Held-Karp型动态规划，边权为精确BFS距离，词典序累计总误差、总能耗、底座步数并闭合回Start。",
+      "assumptions": ["每次抓取后关节回到零位以保证任务可加", "各目标抓取代价在给定服务格下独立", "5目标规模允许精确子集DP"],
+      "parameter_sources": ["Sheet2", "Q2批准模型", "四邻域BFS"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["穷举5!固定服务格顺序作独立核验", "状态回溯复算目标覆盖", "逐格路径审计", "总量等于逐任务求和", "服务格候选扩展稳定性"],
+      "refutation_evidence": ["存在词典序更优可行状态", "任一目标遗漏或重复", "未返回起点", "总误差或能耗求和不一致"],
+      "expected_failure_modes": ["服务格候选过多导致状态膨胀", "回零位假设增加能耗", "机械臂扫掠障碍信息不足"],
+      "rejection_evidence": [], "decision": "primary", "decision_reason": "目标数只有5，联合DP能保留离散层的最优性和完整回溯证据。"
+    },
+    {
+      "name": "两阶段 Held-Karp + 服务格局部修复",
+      "formulation": "每目标先选单独最佳服务格，再对5个节点做精确Held-Karp闭环；若相邻段不可达则局部更换服务格。",
+      "assumptions": ["单目标最佳服务格对全局路线接近最优"],
+      "parameter_sources": ["Sheet2", "Q2批准模型"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["与联合DP比较", "全路径审计", "报告最优性差距"],
+      "refutation_evidence": ["相对联合DP差距超过5%", "局部修复仍不可达"],
+      "expected_failure_modes": ["服务格与访问顺序强耦合"],
+      "rejection_evidence": [], "decision": "fallback", "decision_reason": "联合状态超出预算时仍保留访问顺序的精确解。"
+    },
+    {
+      "name": "蚁群多目标路径规划",
+      "formulation": "对目标顺序和底座路径做随机信息素搜索。",
+      "assumptions": ["随机搜索能在有限预算内接近最优"],
+      "parameter_sources": ["无参数标定来源"],
+      "assumption_gate": "fail", "data_gate": "pass", "complexity_gate": "fail", "identifiability_gate": "fail", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["与精确DP比较"],
+      "refutation_evidence": ["5目标已有可执行精确DP"],
+      "expected_failure_modes": ["随机波动", "罚函数产生不可行闭环", "无法证明最优"],
+      "rejection_evidence": ["5!访问顺序和20×20图规模无需元启发式"], "decision": "rejected", "decision_reason": "会降低可解释性和最优性证据。"
+    }
+  ],
+  "primary_model": "服务格—目标联合子集动态规划",
+  "fallback_model": "两阶段 Held-Karp + 服务格局部修复",
+  "stop_conditions": ["人类审批缺失或哈希失效", "Q2或Q3验证失败", "任一目标没有可行服务格", "联合DP超时且fallback差距无法界定"],
+  "team_approval": {"approved": false, "approver": "", "approved_at": "", "plan_hash": ""}
+}
+

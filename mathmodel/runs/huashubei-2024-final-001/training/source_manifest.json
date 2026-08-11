@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "accessed_at": "2026-08-11",
+  "sources": [
+    {
+      "id": "CUMCM-OFFICIAL-RESULTS",
+      "title": "全国大学生数学建模竞赛历年结果与论文展示入口",
+      "url": "https://www.mcm.edu.cn/html_cn/block/018500ec1a6bd8c7e9997133def2b590.html",
+      "grade": "S",
+      "license": "copyright retained",
+      "usage": "link-only; award and publication context"
+    },
+    {
+      "id": "CUMCM-OFFICIAL-JOURNAL",
+      "title": "全国大学生数学建模竞赛优秀论文与点评期刊链",
+      "url": "https://www.mcm.edu.cn/html_cn/block/0d24174bfce844efa33374cbe64d1845.html",
+      "grade": "S",
+      "license": "copyright retained",
+      "usage": "link-only; confirms publication venue and reviewer commentary route"
+    },
+    {
+      "id": "CUMCM-2023-A",
+      "title": "定日镜场优化设计模型",
+      "year": 2023,
+      "claimed_award": "全国一等奖；仓库自述，官方结果页提供年度名单但未按队号匹配",
+      "url": "https://github.com/linggm3/2023_CUMCM_National-First-Prize",
+      "commit": "486768dc1aa6e74622f8b0628ae32db3b51291f4",
+      "detected_license": "MIT repository; paper copyright treated separately",
+      "usage": "metadata and original method notes only",
+      "local_copy": "none"
+    },
+    {
+      "id": "CUMCM-2020-B",
+      "title": "沙漠游戏",
+      "year": 2020,
+      "claimed_award": "全国一等奖；作者仓库自述",
+      "url": "https://github.com/seanys/CUMCM2020-Desert-Game",
+      "commit": "d5757bbb41e3435b22278bd36156bd8ba2d6274a",
+      "detected_license": "none",
+      "usage": "link-only plus original method notes",
+      "local_copy": "none"
+    },
+    {
+      "id": "CUMCM-2019-A",
+      "title": "高压油管的压力控制方法研究",
+      "year": 2019,
+      "claimed_award": "全国一等奖；作者仓库自述",
+      "url": "https://github.com/ZPZhou-lab/MathematicalModeling/tree/main/2019%20CUMCM",
+      "commit": "fc5603f1cda3720dd7f96a137667ff96bc68b4ad",
+      "detected_license": "none",
+      "usage": "link-only plus original method notes",
+      "local_copy": "none"
+    }
+  ]
+}
+

@@ -1,0 +1,12 @@
+{
+  "nodes": ["D-H", "A-grid", "FK", "Q1-IK", "Q2-Pareto", "Q3-route", "Q4-route", "validation", "figures", "paper"],
+  "edges": [
+    ["D-H", "FK"], ["FK", "Q1-IK"], ["Q1-IK", "Q2-Pareto"],
+    ["A-grid", "Q3-route"], ["Q2-Pareto", "Q3-route"],
+    ["A-grid", "Q4-route"], ["Q2-Pareto", "Q4-route"],
+    ["Q1-IK", "validation"], ["Q2-Pareto", "validation"],
+    ["Q3-route", "validation"], ["Q4-route", "validation"],
+    ["validation", "figures"], ["figures", "paper"]
+  ]
+}
+

@@ -1,0 +1,47 @@
+{
+  "problem_id": "2024-HUASHUBEI-A",
+  "subquestion": "Q3",
+  "target_claim": "对 Sheet1 找到不穿障、从起点出发并返回的底座最短路径，以及满足抓取误差和能耗目标的服务格与关节路径。",
+  "data_audit": {"unit_table_complete": true, "temporal_order_preserved": true, "leakage_risks": ["不得把障碍格当可服务格", "不得用斜向移动缩短路径"], "missingness_notes": "底座移动能耗按题意忽略；底座步数仅作同抓取质量下的次级目标。"},
+  "baseline": {"name": "目标最近可达格 + BFS往返", "reason": "透明且能证明四邻域最短步数", "implementation": "src/baseline/q3_nearest_bfs.py", "validation": "路径逐格相邻、无障碍、首尾均为Start"},
+  "candidates": [
+    {
+      "name": "服务格枚举 + 精确 BFS + ε约束逆运动学",
+      "formulation": "枚举所有从Start可达的自由格，将货物相对底座坐标送入Q2模型；以抓取误差、能耗、往返BFS步数作词典序比较，保存完整父节点路径。",
+      "assumptions": ["抓取阶段底座静止", "底座位于栅格中心", "障碍禁止底座进入且机械臂不得从上方跨越"],
+      "parameter_sources": ["Sheet1", "Q2批准模型"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["BFS距离与NetworkX独立复算", "路径邻接/障碍/回程审计", "服务格IK误差和边界复算", "障碍单格扰动"],
+      "refutation_evidence": ["存在更短可行往返路径", "任一步穿障或斜移", "抓取误差超过200 mm"],
+      "expected_failure_modes": ["障碍对机械臂扫掠体约束信息不足", "多个词典序同优解"],
+      "rejection_evidence": [], "decision": "primary", "decision_reason": "20×20图可精确遍历，不需要启发式路径算法。"
+    },
+    {
+      "name": "A* 服务格搜索 + 差分进化逆解",
+      "formulation": "用曼哈顿启发式A*搜索候选服务格路径，关节角使用Q1 fallback求解。",
+      "assumptions": ["曼哈顿启发式一致", "固定随机种子"],
+      "parameter_sources": ["Sheet1", "Q1 fallback"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["与BFS距离比较", "三种种子", "全路径审计"],
+      "refutation_evidence": ["A*距离与BFS不一致", "逆解不可行"],
+      "expected_failure_modes": ["重复搜索开销", "随机逆解不稳定"],
+      "rejection_evidence": [], "decision": "fallback", "decision_reason": "主模型局部逆解失败时保留相同的精确图搜索性质。"
+    },
+    {
+      "name": "遗传算法同时编码栅格路径和关节角",
+      "formulation": "用染色体编码路径节点和关节角。",
+      "assumptions": ["罚函数能稳定产生可行路径"],
+      "parameter_sources": ["无"],
+      "assumption_gate": "fail", "data_gate": "pass", "complexity_gate": "fail", "identifiability_gate": "fail", "engineering_gate": "fail", "validation_gate": "pass",
+      "validation_plan": ["与BFS精确距离比较"],
+      "refutation_evidence": ["小规模图已有精确解"],
+      "expected_failure_modes": ["穿障", "不闭环", "只得到近似解"],
+      "rejection_evidence": ["400节点四邻域图可由BFS精确求解"], "decision": "rejected", "decision_reason": "增加随机性且失去最短路证明。"
+    }
+  ],
+  "primary_model": "服务格枚举 + 精确 BFS + ε约束逆运动学",
+  "fallback_model": "A* 服务格搜索 + 差分进化逆解",
+  "stop_conditions": ["人类审批缺失或哈希失效", "Start与End不在同一可达分量且无可行服务格", "Q2模型未通过", "路径审计失败"],
+  "team_approval": {"approved": false, "approver": "", "approved_at": "", "plan_hash": ""}
+}
+

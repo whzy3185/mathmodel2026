@@ -1,0 +1,47 @@
+{
+  "problem_id": "2024-HUASHUBEI-A",
+  "subquestion": "Q1",
+  "target_claim": "在题给标准 D-H 参数和关节边界内，求得可复算的终端关节角与平滑路径，使末端到 (1500,1200,200) mm 的欧氏误差最小。",
+  "data_audit": {"unit_table_complete": true, "temporal_order_preserved": true, "leakage_risks": ["不得用目标答案反推 D-H 约定"], "missingness_notes": "题面未给姿态目标，因此只优化位置；路径持续时间采用归一化时间。"},
+  "baseline": {"name": "零位与最小关节位移局部解", "reason": "给出零运动误差基线并检验目标是否在零位邻域可达", "implementation": "src/baseline/q1_local_ik.py", "validation": "正运动学复算、边界检查、不同初值重复"},
+  "candidates": [
+    {
+      "name": "多初值有界最小二乘逆运动学 + 五次时间标度",
+      "formulation": "在六个关节上下界内最小化末端位置平方误差，并以关节位移二范数作同误差下的次级目标；用固定种子拉丁超立方多初值求解，终端角通过五次时间标度生成路径。",
+      "assumptions": ["采用标准 D-H 变换顺序", "目标只规定位置而不规定姿态", "关节运动可由归一化五次时间标度表示"],
+      "parameter_sources": ["input/problems/problem_A.pdf 表1和问题1", "零位由题面给定"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["独立矩阵乘法复算终点", "至少64个确定性初值", "报告最优/中位误差和成功率", "逐时刻关节边界检查"],
+      "refutation_evidence": ["最优误差大于200 mm", "两套正运动学实现差异大于1e-8 mm", "优化器失败或关节越界"],
+      "expected_failure_modes": ["局部极小", "D-H 角度偏置误读", "目标姿态未指定导致多解"],
+      "rejection_evidence": [], "decision": "primary", "decision_reason": "模型透明、规模小、可多初值验证，并把整条轨迹降为可解释的终端角。"
+    },
+    {
+      "name": "差分进化全局搜索 + SLSQP 精修",
+      "formulation": "在关节盒约束内用固定种子差分进化搜索终端角，再以 SLSQP 精修位置误差和次级位移目标。",
+      "assumptions": ["有限种群可覆盖主要吸引域", "固定随机种子保证复现"],
+      "parameter_sources": ["同主模型"],
+      "assumption_gate": "pass", "data_gate": "pass", "complexity_gate": "pass", "identifiability_gate": "pass", "engineering_gate": "pass", "validation_gate": "pass",
+      "validation_plan": ["与主模型终点误差比较", "三种种子重复", "边界和终止状态检查"],
+      "refutation_evidence": ["预算内不能达到主模型误差", "不同种子结果离散且无稳定最优值"],
+      "expected_failure_modes": ["运行时间较长", "种群早熟"],
+      "rejection_evidence": [], "decision": "fallback", "decision_reason": "当局部多初值方法未进入可行吸引域时提供更广搜索。"
+    },
+    {
+      "name": "监督式神经网络逆运动学",
+      "formulation": "从末端坐标预测六关节角。",
+      "assumptions": ["存在覆盖工作空间的带标签训练集"],
+      "parameter_sources": ["题面没有训练集"],
+      "assumption_gate": "fail", "data_gate": "fail", "complexity_gate": "fail", "identifiability_gate": "fail", "engineering_gate": "pass", "validation_gate": "fail",
+      "validation_plan": ["需要独立标注工作空间"],
+      "refutation_evidence": ["官方附件没有训练样本"],
+      "expected_failure_modes": ["工作空间外推", "多解平均导致不可行角"],
+      "rejection_evidence": ["无真实关节角标签，且六维小规模确定性优化足够"], "decision": "rejected", "decision_reason": "会制造训练标签且复杂度无验证收益。"
+    }
+  ],
+  "primary_model": "多初值有界最小二乘逆运动学 + 五次时间标度",
+  "fallback_model": "差分进化全局搜索 + SLSQP 精修",
+  "stop_conditions": ["人类审批缺失或哈希失效", "D-H 双实现不一致", "主模型和 fallback 均无法得到200 mm内可行解"],
+  "team_approval": {"approved": false, "approver": "", "approved_at": "", "plan_hash": ""}
+}
+

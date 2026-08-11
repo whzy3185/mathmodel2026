@@ -1,0 +1,27 @@
+{
+  "competition": "2024 第五届华数杯",
+  "run_id": "huashubei-2024-final-001",
+  "scale": {
+    "problem_clarity": 10,
+    "data_availability": 15,
+    "external_data_risk": 10,
+    "baseline_feasibility": 10,
+    "candidate_model_quality": 15,
+    "validation_feasibility": 15,
+    "computational_feasibility": 10,
+    "visualization_evidence_potential": 5,
+    "paper_narrative_coherence": 5,
+    "team_execution_risk": 5
+  },
+  "problems": {
+    "A": {"scores": [10,15,10,10,14,13,9,5,5,5], "total": 96, "baseline": "bounded D-H inverse kinematics plus BFS", "primary": "multi-start bounded IK, Pareto energy, exact lattice shortest paths and subset DP", "fatal_risk": "D-H convention or energy proxy left implicit"},
+    "B": {"scores": [9,15,10,9,14,12,6,5,5,3], "total": 88, "baseline": "HPWL plus current layout", "primary": "coordinate-feature wirelength regression plus constrained analytical placement", "fatal_risk": "calling a heuristic 444-dimensional placement globally optimal"},
+    "C": {"scores": [9,10,3,9,13,8,7,5,5,2], "total": 71, "baseline": "rating aggregation plus greedy route", "primary": "robust MCDM plus resource-constrained orienteering", "fatal_risk": "untraceable high-speed-rail and city-indicator data"}
+  },
+  "recommended_problem": "A",
+  "second_choice": "B",
+  "rejected_problem": "C",
+  "selection_reason": "A has complete official parameters, a small exact discrete routing layer, a falsifiable kinematic core, strong figures and the lowest external-data risk. It supports a full end-to-end paper without inventing transport data.",
+  "switch_condition": "Switch to B only if two independently implemented standard D-H calculations cannot reconcile the target and zero-state geometry or no feasible Q1 solution within 200 mm is found after the approved fallback."
+}
+
