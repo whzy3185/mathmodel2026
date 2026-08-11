@@ -1,0 +1,122 @@
+[
+  {
+    "name": "math-modeling-skills", "type": "github-skill", "url": "https://github.com/Lupynow/math-modeling-skills", "source": "GitHub", "repository": "Lupynow/math-modeling-skills", "commit": "3a9428c006cc", "license": "MIT", "award_level": "", "year": "2026", "topic": ["competition", "skill", "paper"], "methods": ["workflow", "cookbooks", "code-templates"], "quality": "A", "usage": "architecture study; adapt only with attribution", "notes": "Two-skill solver/paper split, decision matrix and many templates; broad coverage needs stronger falsification gates.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "mathmodel-skill", "type": "github-skill", "url": "https://github.com/handsomeZR-netizen/mathmodel-skill", "source": "GitHub", "repository": "handsomeZR-netizen/mathmodel-skill", "commit": "d3941e14d869", "license": "MIT", "award_level": "", "year": "2026", "topic": ["competition", "state", "quality-gates"], "methods": ["decision-log", "feedback", "paper-rendering"], "quality": "A", "usage": "architecture study; permitted adaptation with attribution", "notes": "Best operational state, deterministic checks and fail-closed delivery; empirical paper percentiles are non-official and competition coverage is uneven.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "math-modeling-contest-route-selection", "type": "github-skill", "url": "https://github.com/y3519712124-ui/math-modeling-contest-route-selection", "source": "GitHub", "repository": "y3519712124-ui/math-modeling-contest-route-selection", "commit": "bb15e079e6e4", "license": "MIT", "award_level": "", "year": "2026", "topic": ["problem-selection", "route-selection"], "methods": ["screening", "model-route"], "quality": "B", "usage": "narrow-stage design reference", "notes": "Useful intake and route-selection specialization; not a full modeling lifecycle.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "LLM-MM-Agent", "type": "github-agent", "url": "https://github.com/usail-hkust/LLM-MM-Agent", "source": "GitHub", "repository": "usail-hkust/LLM-MM-Agent", "commit": "8abc1300e378", "license": "conflict: GitHub GPL-3.0; README says CC-BY-NC-4.0", "award_level": "peer-reviewed", "year": "2025", "topic": ["mathematical-modeling", "agent", "benchmark"], "methods": ["HMML", "actor-critic", "code-execution", "report"], "quality": "A", "usage": "research and architecture study only until license clarified", "notes": "Four-stage end-to-end agent and 111-problem MM-Bench; explicit license inconsistency requires caution.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "scientific-agents", "type": "github-agent-profiles", "url": "https://github.com/K-Dense-AI/scientific-agents", "source": "GitHub", "repository": "K-Dense-AI/scientific-agents", "commit": "48dedd20b82c", "license": "MIT", "award_level": "", "year": "2026", "topic": ["scientific-method", "expert-profiles"], "methods": ["identifiability", "V&V", "failure-modes"], "quality": "A", "usage": "adapt domain rigor with attribution", "notes": "Strong mathematical modeler, OR, statistics, network and numerical-analysis failure modes; lacks contest state and paper assembly.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "MathModel-QA-Engine", "type": "github-rag", "url": "https://github.com/Kirito-Elucidator/MathModel-QA-Engine", "source": "GitHub", "repository": "Kirito-Elucidator/MathModel-QA-Engine", "commit": "32bcbcbcd233", "license": "MIT", "award_level": "author claims 2026 C Finalist", "year": "2026", "topic": ["award-papers", "RAG"], "methods": ["LlamaIndex", "chapter-retrieval"], "quality": "B", "usage": "retrieval architecture; verify corpus rights separately", "notes": "Useful metadata filters and section-level paper comparison; answer quality cannot exceed corpus provenance.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "XiaoMa math-modeling-skill", "type": "github-skill", "url": "https://github.com/XiaoMaColtAI/math-modeling-skill", "source": "GitHub", "repository": "XiaoMaColtAI/math-modeling-skill", "commit": "ccfaeb0612bb", "license": "NOASSERTION", "award_level": "", "year": "2026", "topic": ["competition", "subagents", "docx", "latex"], "methods": ["three-stage-workflow", "python", "matlab"], "quality": "B", "usage": "link and architecture study only", "notes": "Broad execution and paper tooling with feedback gates; no detected license prevents content reuse.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "math-modeling-single", "type": "github-skill", "url": "https://github.com/Yoki-cmd/math-modeling-single", "source": "GitHub", "repository": "Yoki-cmd/math-modeling-single", "commit": "ccbf76dcaa96", "license": "NOASSERTION", "award_level": "", "year": "2026", "topic": ["competition", "latex", "security"], "methods": ["strategy", "solve", "write", "review"], "quality": "B", "usage": "link and security-pattern study only", "notes": "Explicit untrusted-input boundary and executable-paper workflow; narrow and unlicensed.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "MCM-ICM 2004-2020 O papers", "type": "github-paper-archive", "url": "https://github.com/dick20/MCM-ICM", "source": "GitHub", "repository": "dick20/MCM-ICM", "commit": "e9a060887be6", "license": "NOASSERTION", "award_level": "Outstanding collection", "year": "2004-2020", "topic": ["MCM", "ICM", "papers"], "methods": [], "quality": "A", "usage": "link/metadata/derived notes only", "notes": "Large discovery archive; award and copyright must be verified item by item; do not redistribute PDFs.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "2024 ICM E Outstanding INFORMS paper and code", "type": "github-award-paper", "url": "https://github.com/ydchen0806/24ICM_E_O_Award_Paper_code", "source": "GitHub", "repository": "ydchen0806/24ICM_E_O_Award_Paper_code", "commit": "8194d982ff80", "license": "NOASSERTION", "award_level": "Outstanding / INFORMS Prize", "year": "2024", "topic": ["ICM-E", "sustainability", "paper-source"], "methods": [], "quality": "S", "usage": "link/metadata/derived pattern notes only", "notes": "High-value paper+source+code example; no detected license means no copying.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "2023 CUMCM National First Prize heliostat", "type": "github-award-paper", "url": "https://github.com/linggm3/2023_CUMCM_National-First-Prize", "source": "GitHub", "repository": "linggm3/2023_CUMCM_National-First-Prize", "commit": "486768dc1aa6", "license": "MIT", "award_level": "National First Prize", "year": "2023", "topic": ["CUMCM-A", "heliostat", "optimization"], "methods": ["ray-tracing", "monte-carlo", "optimization"], "quality": "S", "usage": "study and permitted adaptation with attribution; paper rights still verify", "notes": "Paper, data, code and defense slides; strong mechanism-to-optimization chain.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "CUMCMThesis", "type": "github-template", "url": "https://github.com/latexstudio/CUMCMThesis", "source": "GitHub", "repository": "latexstudio/CUMCMThesis", "commit": "90d3e854534a", "license": "NOASSERTION", "award_level": "", "year": "2023", "topic": ["CUMCM", "LaTeX"], "methods": [], "quality": "B", "usage": "link only; current official format overrides", "notes": "Popular template but detected license absent and last advertised format is 2023.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OptiMUS", "type": "github-agent", "url": "https://github.com/teshnizi/OptiMUS", "source": "GitHub", "repository": "teshnizi/OptiMUS", "commit": "", "license": "repository LICENSE; dataset CC-BY-NC-4.0", "award_level": "research", "year": "2023-2024", "topic": ["optimization", "agent"], "methods": ["constraint-extraction", "code-generation", "reflexion"], "quality": "A", "usage": "architecture study; respect code/data licenses separately", "notes": "Sequential and agent variants separate variables, objective and constraints; solver feedback is reusable.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OptiBench and ReSocratic", "type": "github-benchmark", "url": "https://github.com/yangzhch6/ReSocratic", "source": "GitHub", "repository": "yangzhch6/ReSocratic", "commit": "27ff7ecb3c6a", "license": "Apache-2.0", "award_level": "ICLR 2025", "year": "2024", "topic": ["optimization", "benchmark", "data-synthesis"], "methods": ["end-to-end-solving", "ReSocratic"], "quality": "A", "usage": "benchmark design and permitted adaptation with notice", "notes": "Tests formulation plus executable solving, not only equation similarity.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "Mamo", "type": "github-benchmark", "url": "https://github.com/FreedomIntelligence/Mamo", "source": "GitHub", "repository": "FreedomIntelligence/Mamo", "commit": "2c91069dee5c", "license": "CC-BY-SA-4.0", "award_level": "research", "year": "2024", "topic": ["mathematical-modeling", "optimization"], "methods": ["solver-grounded-evaluation"], "quality": "A", "usage": "evaluation data under share-alike terms", "notes": "Useful easy/complex formulation benchmark; optimization-only scope.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "LLM4OPT survey list", "type": "github-curation", "url": "https://github.com/ishmael233/LLM4OPT", "source": "GitHub", "repository": "ishmael233/LLM4OPT", "commit": "", "license": "verify repository", "award_level": "", "year": "2026", "topic": ["optimization", "LLM", "survey"], "methods": ["taxonomy"], "quality": "B", "usage": "discovery only; return to primary papers", "notes": "Good map of modeling vs solving work, not primary evidence.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "MM-Agent paper", "type": "paper", "url": "https://arxiv.org/abs/2505.14148", "source": "arXiv/NeurIPS", "repository": "usail-hkust/LLM-MM-Agent", "commit": "", "license": "paper terms", "award_level": "NeurIPS 2025", "year": "2025", "topic": ["mathematical-modeling", "agent"], "methods": ["four-stage-agent", "HMML", "actor-critic"], "quality": "A", "usage": "cite and derive architecture notes", "notes": "Introduces 111-problem MM-Bench and reports Finalist-assisted field use; benchmark construction and evaluation deserve close study.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "MathematicalModelingAgent Space", "type": "huggingface-space", "url": "https://huggingface.co/spaces/MathematicalModelingAgent/MathematicalModelingAgent", "source": "Hugging Face", "repository": "", "commit": "", "license": "verify space files", "award_level": "", "year": "2026", "topic": ["mathematical-modeling", "demo"], "methods": ["interactive-agent"], "quality": "B", "usage": "behavioral inspection only", "notes": "Running demonstration; not a substitute for code and benchmark evidence.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OptMATH paper", "type": "paper", "url": "https://huggingface.co/papers/2502.11102", "source": "Hugging Face/arXiv", "repository": "optsuite/OptMATH", "commit": "", "license": "dataset/repository Apache-2.0 as downstream cards report", "award_level": "research", "year": "2025", "topic": ["optimization", "data-synthesis"], "methods": ["bidirectional-synthesis", "rejection-sampling"], "quality": "A", "usage": "cite; use schema/evaluation ideas", "notes": "Forward-model rejection sampling is a strong pattern for generated modeling data.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OptMATH-Train", "type": "huggingface-dataset", "url": "https://huggingface.co/datasets/Aurora-Gem/OptMATH-Train", "source": "Hugging Face", "repository": "optsuite/OptMATH", "commit": "", "license": "verify dataset card", "award_level": "", "year": "2025", "topic": ["optimization", "training-data"], "methods": ["NL-to-formulation"], "quality": "A", "usage": "benchmark/sample only after license check", "notes": "Large synthetic training corpus; contest relevance is strongest for constrained optimization formulation.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "IndustryOR", "type": "huggingface-dataset", "url": "https://huggingface.co/datasets/CardinalOperations/IndustryOR", "source": "Hugging Face", "repository": "", "commit": "", "license": "CC-BY-NC-4.0", "award_level": "research", "year": "2024", "topic": ["operations-research", "benchmark"], "methods": ["LP", "IP", "MILP", "NLP"], "quality": "A", "usage": "noncommercial evaluation with attribution", "notes": "100 real-world OR problems; outputs alone do not fully assess formulation quality.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OR-Space paper", "type": "paper", "url": "https://arxiv.org/abs/2605.28158", "source": "arXiv/Hugging Face", "repository": "", "commit": "", "license": "paper terms", "award_level": "research", "year": "2026", "topic": ["operations-research", "agent-benchmark"], "methods": ["build", "revise", "explain", "workspace"], "quality": "A", "usage": "benchmark architecture reference", "notes": "Most directly transferable benchmark design: persistent multi-file workspaces and full lifecycle tasks.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OR-Space dataset", "type": "huggingface-dataset", "url": "https://huggingface.co/datasets/Chenyu-Zhou/OR-Space", "source": "Hugging Face", "repository": "", "commit": "", "license": "CC-BY-NC-4.0", "award_level": "", "year": "2026", "topic": ["operations-research", "workspace"], "methods": ["executable-evaluation"], "quality": "A", "usage": "noncommercial benchmark study", "notes": "300 workspaces with separate business, data, code, solver and evaluator artifacts.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "NEMO execution-aware artifacts", "type": "huggingface-dataset", "url": "https://huggingface.co/datasets/c3aiia3c/nemo-icml2026", "source": "Hugging Face", "repository": "", "commit": "", "license": "CC-BY-4.0", "award_level": "ICML 2026 paper artifacts", "year": "2026", "topic": ["optimization", "agents", "execution"], "methods": ["multi-candidate-extraction", "validation"], "quality": "A", "usage": "evaluation artifacts with attribution", "notes": "Per-problem traces and executable workspaces across nine benchmarks expose failure analysis.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "JOR-Bench", "type": "huggingface-dataset", "url": "https://huggingface.co/datasets/cyberagent/JOR-Bench", "source": "Hugging Face", "repository": "", "commit": "", "license": "mixed by subset", "award_level": "research", "year": "2026", "topic": ["operations-research", "bilingual", "benchmark"], "methods": ["formulation"], "quality": "A", "usage": "use subsets under their original licenses", "notes": "1,319 English/Japanese paired problems; demonstrates license propagation and cross-lingual evaluation.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "LogiOR", "type": "huggingface-dataset", "url": "https://huggingface.co/datasets/Georgeay/LogiOR", "source": "Hugging Face", "repository": "", "commit": "", "license": "verify dataset card", "award_level": "research", "year": "2025", "topic": ["logistics", "optimization"], "methods": ["LP", "ILP", "MILP", "NLP", "Gurobi"], "quality": "A", "usage": "evaluation after license verification", "notes": "92 expert-guided problems with formulations, executable code and optimal solutions.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OR-LLM-Agent", "type": "paper", "url": "https://huggingface.co/papers/2503.10009", "source": "Hugging Face/arXiv", "repository": "", "commit": "", "license": "paper/repository terms", "award_level": "research", "year": "2025", "topic": ["operations-research", "agent"], "methods": ["modeling", "code-generation", "debugging"], "quality": "A", "usage": "cite and study decomposition", "notes": "Dedicated subagents and BWOR critique highlight benchmark quality problems.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "ORQA", "type": "paper-benchmark", "url": "https://huggingface.co/papers/2412.17874", "source": "Hugging Face/arXiv", "repository": "", "commit": "", "license": "verify data/code", "award_level": "research", "year": "2024", "topic": ["operations-research", "reasoning"], "methods": ["expert-authored-QA"], "quality": "A", "usage": "benchmark design reference", "notes": "Shows specialized OR generalization remains difficult; not an end-to-end contest benchmark.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "OptiMind-SFT", "type": "huggingface-model", "url": "https://huggingface.co/microsoft/OptiMind-SFT", "source": "Hugging Face/Microsoft Research", "repository": "", "commit": "", "license": "model card terms", "award_level": "research", "year": "2025", "topic": ["optimization", "model"], "methods": ["class-aware-error-analysis", "MILP"], "quality": "A", "usage": "model evaluation; inspect card before deployment", "notes": "Specialized 20B model; useful evidence that error-taxonomy feedback matters more than generic prompting.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "STORM-Qwen3-4B", "type": "huggingface-model", "url": "https://huggingface.co/tangzhy/STORM-Qwen3-4B", "source": "Hugging Face", "repository": "", "commit": "", "license": "verify model card", "award_level": "", "year": "2025", "topic": ["operations-research", "small-model"], "methods": ["optimization-reasoning"], "quality": "B", "usage": "comparative evaluation only", "notes": "Interesting small specialized model; benchmark and licensing determine usability.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "JSSP OpenEnv Space", "type": "huggingface-space", "url": "https://huggingface.co/spaces/Wauplin/jssp_openenv", "source": "Hugging Face", "repository": "", "commit": "", "license": "verify space repository", "award_level": "", "year": "2025", "topic": ["scheduling", "environment"], "methods": ["job-shop", "RL-environment"], "quality": "B", "usage": "environment design reference", "notes": "Concrete interactive optimization environment; narrow scheduling domain.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "COMAP MCM/ICM instructions", "type": "official-rules", "url": "https://www.contest.comap.com/undergraduate/contests/mcm/instructions.php", "source": "COMAP", "repository": "", "commit": "", "license": "official site copyright", "award_level": "official", "year": "current", "topic": ["MCM", "ICM", "rules", "judging"], "methods": [], "quality": "S", "usage": "authoritative link and paraphrase", "notes": "Primary source for summary, judging, testing, AI, anonymity and submission requirements; re-check current contest year.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "COMAP MCM/ICM resources", "type": "official-resource-index", "url": "https://contest.comap.com/undergraduate/contests/resources/index.html", "source": "COMAP", "repository": "", "commit": "", "license": "official site copyright", "award_level": "official", "year": "current", "topic": ["MCM", "ICM", "resources"], "methods": [], "quality": "S", "usage": "authoritative link", "notes": "Entry to resource guides, articles, prior problems and Mathmodels.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "UMAP Journal 45.4 2024 MCM", "type": "official-journal-issue", "url": "https://www.comap.org/membership/member-resources/item/umap-journal-45-4-winter-2024-edition", "source": "COMAP/UMAP Journal", "repository": "", "commit": "", "license": "membership/copyright", "award_level": "official Outstanding summaries/commentary", "year": "2024", "topic": ["MCM", "judges-commentary", "outstanding"], "methods": [], "quality": "S", "usage": "metadata/link/derived notes; do not redistribute issue", "notes": "Official issue table of contents includes Outstanding summaries and judges' commentary for A-C.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "COMAP 2025 results and Outstanding papers", "type": "official-award-index", "url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2025/results/", "source": "COMAP", "repository": "", "commit": "", "license": "official site/submission terms", "award_level": "Outstanding", "year": "2025", "topic": ["MCM", "ICM", "papers"], "methods": [], "quality": "S", "usage": "award verification and paper entry", "notes": "Official result lists and unabridged Outstanding paper entrance.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "Mathmodels.org", "type": "official-modeling-library", "url": "https://www.mathmodels.org/", "source": "COMAP", "repository": "", "commit": "", "license": "official site copyright", "award_level": "official resources", "year": "current", "topic": ["problems", "solutions", "modeling"], "methods": [], "quality": "S", "usage": "link and classroom/problem metadata", "notes": "COMAP points teams to previous problems and solutions; availability may require membership.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "CUMCM official home", "type": "official-site", "url": "https://www.mcm.edu.cn/", "source": "CUMCM/CSIAM", "repository": "", "commit": "", "license": "official site copyright", "award_level": "official", "year": "current", "topic": ["CUMCM", "rules", "results"], "methods": [], "quality": "S", "usage": "authoritative link and paraphrase", "notes": "Primary current notices, rules, format, results and journal links.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "CUMCM 2026 paper format", "type": "official-rules", "url": "https://www.mcm.edu.cn/html_cn/node/4cd596519c9eb9fbd866398f6df0caa3.html", "source": "CUMCM", "repository": "", "commit": "", "license": "official site copyright", "award_level": "official", "year": "2026", "topic": ["CUMCM", "format", "supporting-material"], "methods": [], "quality": "S", "usage": "authoritative current-year checklist", "notes": "2026 revision; future contests must retrieve their current revision.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "CUMCM excellent-paper publication chain", "type": "official-resource-index", "url": "https://www.mcm.edu.cn/html_cn/block/0d24174bfce844efa33374cbe64d1845.html", "source": "CUMCM", "repository": "", "commit": "", "license": "journal/author copyright", "award_level": "official excellent papers/commentary", "year": "2000-current", "topic": ["CUMCM", "papers", "commentary"], "methods": [], "quality": "S", "usage": "bibliographic entry and source tracing", "notes": "Official note: since 2022 papers/commentary appear in Mathematical Modeling and Its Applications; earlier years in named journals.", "accessed_at": "2026-08-11"
+  },
+  {
+    "name": "CUMCM historical result and paper-display index", "type": "official-award-index", "url": "https://www.mcm.edu.cn/html_cn/block/018500ec1a6bd8c7e9997133def2b590.html", "source": "CUMCM", "repository": "", "commit": "", "license": "official/author copyright", "award_level": "official awards", "year": "historical", "topic": ["CUMCM", "awards", "papers"], "methods": [], "quality": "S", "usage": "award verification and discovery", "notes": "Official entry to annual results, award lookup and historical paper display.", "accessed_at": "2026-08-11"
+  }
+]

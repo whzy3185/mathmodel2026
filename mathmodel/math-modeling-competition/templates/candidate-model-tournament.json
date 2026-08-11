@@ -1,0 +1,32 @@
+{
+  "problem_id": "",
+  "subquestion": "",
+  "target_claim": "",
+  "data_audit": {
+    "unit_table_complete": false,
+    "temporal_order_preserved": true,
+    "leakage_risks": [],
+    "missingness_notes": ""
+  },
+  "baseline": {"name": "", "reason": "", "validation": ""},
+  "candidates": [
+    {
+      "name": "",
+      "formulation": "",
+      "assumptions": [],
+      "data_gate": "pass|fail|unknown",
+      "complexity_gate": "pass|fail|unknown",
+      "identifiability_gate": "pass|fail|unknown",
+      "engineering_gate": "pass|fail|unknown",
+      "validation_plan": [],
+      "refutation_evidence": [],
+      "decision": "primary|fallback|reject",
+      "decision_reason": ""
+    }
+  ],
+  "primary_model": "",
+  "fallback_model": "",
+  "stop_conditions": [],
+  "team_approval": false
+}
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mathematical Modeling Competition"
+  short_description: "Evidence-first modeling competition workflow"
+  default_prompt: "Use $math-modeling-competition to analyze this contest problem, select defensible models, validate them, and plan the paper."

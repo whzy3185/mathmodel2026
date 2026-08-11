@@ -1,0 +1,67 @@
+[
+  {
+    "id": "forecast-demand-01", "category": "forecasting",
+    "prompt_archetype": "Forecast daily demand with weekly seasonality, promotions and a future inventory decision.",
+    "expected_decomposition": ["data audit", "forecast origin/horizon", "forecast distribution", "inventory propagation"],
+    "required_baseline": "seasonal naive", "reasonable_candidates": ["ETS/SARIMA", "boosted trees with available lags"],
+    "must_reject_or_condition": ["random split", "LSTM without sufficient series", "future promotion leakage"],
+    "validation": ["rolling-origin error", "interval coverage", "scenario inventory regret"], "fallback": "seasonal naive plus safety stock"
+  },
+  {
+    "id": "routing-capacity-01", "category": "optimization",
+    "prompt_archetype": "Allocate capacitated vehicles to customers under time and service constraints.",
+    "expected_decomposition": ["sets/units", "variables", "objective", "capacity/time constraints", "uncertainty"],
+    "required_baseline": "greedy feasible route", "reasonable_candidates": ["MILP/CP-SAT", "validated local-search heuristic"],
+    "must_reject_or_condition": ["TSP without capacity", "heuristic called optimal", "unchecked infeasibility"],
+    "validation": ["constraint recomputation", "small exact instances", "gap/runtime", "demand scenarios"], "fallback": "greedy feasible with repair"
+  },
+  {
+    "id": "site-ranking-01", "category": "evaluation",
+    "prompt_archetype": "Rank candidate sites using cost, access, risk and stakeholder preferences.",
+    "expected_decomposition": ["measurement", "preference", "dominance", "decision"],
+    "required_baseline": "equal weights and Pareto dominance", "reasonable_candidates": ["AHP with consistency", "TOPSIS after justified scaling"],
+    "must_reject_or_condition": ["entropy weights treated as preference", "rank without sensitivity"],
+    "validation": ["weight perturbation", "rank reversal", "top-k overlap"], "fallback": "Pareto set plus qualitative decision"
+  },
+  {
+    "id": "network-resilience-01", "category": "network",
+    "prompt_archetype": "Assess a transport network and prioritize resilience investments.",
+    "expected_decomposition": ["graph construction", "performance metric", "failure scenarios", "intervention"],
+    "required_baseline": "random-failure curve", "reasonable_candidates": ["flow/cut analysis", "targeted attack simulation"],
+    "must_reject_or_condition": ["centrality equals causality", "decorative hairball"],
+    "validation": ["alternative metrics", "edge-weight perturbation", "degree-preserving null"], "fallback": "connectivity and max-flow stress test"
+  },
+  {
+    "id": "epidemic-control-01", "category": "mechanism",
+    "prompt_archetype": "Model spread and compare interventions using limited time-series observations.",
+    "expected_decomposition": ["states/flows", "observation model", "identifiability", "control scenarios"],
+    "required_baseline": "reduced SIR or empirical growth", "reasonable_candidates": ["SEIR", "age/network extension if supported"],
+    "must_reject_or_condition": ["too many free rates", "fit and validate on same wave", "negative states"],
+    "validation": ["conservation", "profile likelihood", "held-out trajectory", "scenario sensitivity"], "fallback": "reduced compartment model"
+  },
+  {
+    "id": "spatial-risk-01", "category": "spatial",
+    "prompt_archetype": "Estimate regional risk from environmental and socioeconomic measurements.",
+    "expected_decomposition": ["spatial unit/CRS", "exposure", "outcome", "policy scale"],
+    "required_baseline": "non-spatial regularized regression", "reasonable_candidates": ["spatial error/lag", "kriging for field interpolation"],
+    "must_reject_or_condition": ["random CV", "GWR causal claims", "unreported aggregation"],
+    "validation": ["spatial blocked CV", "weight-matrix sensitivity", "boundary/scale sensitivity"], "fallback": "global model with spatially robust uncertainty"
+  },
+  {
+    "id": "queue-simulation-01", "category": "simulation",
+    "prompt_archetype": "Redesign service resources under variable arrivals and service durations.",
+    "expected_decomposition": ["entities/events", "arrival/service evidence", "warm-up", "decision metrics"],
+    "required_baseline": "simple queueing approximation", "reasonable_candidates": ["discrete-event simulation", "robust staffing optimization"],
+    "must_reject_or_condition": ["one seed", "no warm-up", "invented distributions"],
+    "validation": ["event trace tests", "Little's law", "replication CI", "holdout distribution"], "fallback": "queueing bound plus conservative staffing"
+  },
+  {
+    "id": "policy-allocation-01", "category": "policy",
+    "prompt_archetype": "Recommend a phased public investment across regions with equity, cost and uncertain benefit.",
+    "expected_decomposition": ["stakeholders", "estimand/benefit", "equity constraint", "budget", "implementation"],
+    "required_baseline": "proportional and equal allocation", "reasonable_candidates": ["multi-objective optimization", "robust scenario planning"],
+    "must_reject_or_condition": ["single opaque index", "causal benefit from correlation", "one forecast scenario"],
+    "validation": ["Pareto frontier", "budget/scenario stress", "distributional outcomes"], "fallback": "transparent rule with guardrails"
+  }
+]
+
