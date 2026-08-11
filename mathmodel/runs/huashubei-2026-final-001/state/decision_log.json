@@ -3,27 +3,30 @@
   "run_id": "huashubei-2026-final-001",
   "competition": "2026 第七届华数杯",
   "created_at": "2026-08-11T21:43:32+08:00",
-  "current_stage": "candidate-approval",
+  "current_stage": "paper-complete",
   "official_rules_checked_at": "2026-08-11T00:00:00+08:00",
   "problem_id": "2026-HUASHUBEI-A",
   "decisions": [
-    {"decision_id": "DEC-001", "stage": "rules-and-intake", "decision": "Use the user-supplied 2026 seventh Huashu Cup ZIP as the authoritative problem bundle; it supersedes the previously matched 2024 titles for this run.", "evidence": ["rules/rules_manifest.json", "data/provenance/manifest.json"], "status": "current"},
-    {"decision_id": "DEC-002", "stage": "problem-selection", "decision": "Select 2026 problem A, retain B as second choice, and do not select C for the primary experiment.", "evidence": ["data/eda_report.md", "selection/problem_selection.json"], "switch_condition": "The official A geometry or periodic-boundary rule cannot be implemented consistently, or approved Q1 primary and fallback remain irreconcilable.", "status": "current"},
-    {"decision_id": "DEC-003", "stage": "training", "decision": "Use mature CUMCM work as link-only method exemplars; transfer verification patterns rather than prose, figures, or unlicensed code.", "evidence": ["training/source_manifest.json", "training/method_cards.md"], "status": "current"},
-    {"decision_id": "DEC-004", "stage": "candidate-tournament", "decision": "Prepare Q1-Q4 primary, fallback and rejected routes; prohibit model execution until a human approves the exact current hashes.", "evidence": ["problem/tournaments/Q1.json", "problem/tournaments/Q2.json", "problem/tournaments/Q3.json", "problem/tournaments/Q4.json", "problem/tournaments/APPROVAL_REQUEST.md"], "status": "blocked_human_approval"}
+    {"decision_id": "DEC-001", "stage": "rules-and-intake", "decision": "Use the user-supplied 2026 seventh Huashu Cup ZIP as the authoritative problem bundle.", "evidence": ["rules/rules_manifest.json", "data/provenance/manifest.json"], "status": "current"},
+    {"decision_id": "DEC-002", "stage": "problem-selection", "decision": "Select 2026 problem A and retain B as second choice.", "evidence": ["data/eda_report.md", "selection/problem_selection.json"], "status": "current"},
+    {"decision_id": "DEC-003", "stage": "training", "decision": "Use mature CUMCM work as link-only method exemplars; transfer verification patterns, not prose or unlicensed code.", "evidence": ["training/source_manifest.json", "training/method_cards.md"], "status": "current"},
+    {"decision_id": "DEC-004", "stage": "authorization", "decision": "Repository owner authorized the full run by explicit chat message 继续; subsequent in-scope evidence repairs reuse this run-scoped authorization.", "evidence": ["problem/tournaments/Q1.json", "problem/tournaments/Q2.json", "problem/tournaments/Q3.json", "problem/tournaments/Q4.json"], "status": "current"},
+    {"decision_id": "DEC-005", "stage": "attack-test", "decision": "Reject the disconnected-fragment interpretation after an independent attack showed that official wording keeps wrapped pieces as one conductor; invalidate all earlier high-threshold numerical outputs.", "evidence": ["paper/paper.md", "outputs/data/final_results.json"], "status": "current"},
+    {"decision_id": "DEC-006", "stage": "execution", "decision": "Use exact periodic crossing probabilities for sufficiency and an optimistic capsule graph only to refute cheaper/lower-count candidates.", "evidence": ["src/a/geometry.py", "src/a/run_pure_b.py", "outputs/data/literal_q3_final_50000.json", "outputs/data/literal_q4_final_100000.json"], "status": "current"},
+    {"decision_id": "DEC-007", "stage": "paper", "decision": "Freeze Q1 all-connected, Q2 approximately one, Q3 8A, and Q4 57B as the headline results under the literal periodic-object interpretation.", "evidence": ["outputs/data/final_results.json", "paper/paper.md"], "status": "current"}
   ],
   "assumptions": [
-    "The cube is periodic and has side length 10000 nm.",
-    "A is modeled by its stated finite axis segment with radius 30 nm; B is a sphere of radius 200 nm.",
-    "A surface separation no greater than 1.8 nm creates an electrical connection.",
-    "Post-deadline work is an AI workflow reproduction experiment, not a live contest submission."
+    "Wrapped fragments remain parts of the same conductive medium.",
+    "Centers are uniform and A orientations are isotropic.",
+    "A surface separation no greater than 1.8 nm creates a connection.",
+    "The run is a post-deadline AI workflow reproduction, not a live contest submission."
   ],
   "parameters": [
-    {"name": "A-A axis threshold", "value": 61.8, "unit": "nm", "source": "official geometry"},
-    {"name": "A-B center-axis threshold", "value": 231.8, "unit": "nm", "source": "official geometry"},
-    {"name": "B-B center threshold", "value": 401.8, "unit": "nm", "source": "official geometry"}
+    {"name": "single-A periodic X bridge probability", "value": 0.2547123889803847, "unit": "probability", "source": "analytic support-function derivation"},
+    {"name": "single-B periodic X bridge probability", "value": 0.04, "unit": "probability", "source": "analytic sphere geometry"},
+    {"name": "confidence level", "value": 0.95, "unit": "probability", "source": "preregistered validation rule"}
   ],
-  "artifacts": ["data/eda_summary.json", "selection/problem_selection.json", "training/source_manifest.json", "problem/dependency_graph.json"],
-  "open_risks": ["human plan approval pending", "periodic finite-segment interpretation requires dual implementation", "Q3-Q4 confidence constraints may require substantial Monte Carlo compute"],
-  "ai_usage": [{"date": "2026-08-11", "usage": "source confirmation, read-only input audit, problem selection, original method notes, decomposition and candidate-plan drafting; no numerical model answer generated before approval"}]
+  "artifacts": ["outputs/data/final_results.json", "outputs/figures/F1_q3_threshold.pdf", "outputs/figures/F2_q2_failure_scale.pdf", "outputs/figures/F3_q4_cost_validation.pdf", "paper/paper.md"],
+  "open_risks": ["official periodic-fragment identity wording is structurally ambiguous", "flat-cylinder inter-particle distances are bounded by an optimistic capsule surrogate", "Q4 optimality is restricted to the enumerated low-cost integer frontier"],
+  "ai_usage": [{"date": "2026-08-11", "usage": "source audit, code drafting, execution, independent attack testing, figure generation and paper draft; all numerical claims trace to executable artifacts"}]
 }

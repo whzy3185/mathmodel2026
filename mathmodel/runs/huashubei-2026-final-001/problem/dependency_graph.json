@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "nodes": [
-    {"id": "geometry_kernel", "type": "model", "units": "nm", "status": "planned"},
-    {"id": "q1_connectivity", "type": "result", "units": "boolean/path", "status": "blocked_by_approval"},
-    {"id": "q2_probability", "type": "result", "units": "probability", "status": "blocked_by_approval"},
-    {"id": "q3_threshold", "type": "result", "units": "volume fraction", "status": "blocked_by_approval"},
-    {"id": "q4_mixture", "type": "result", "units": "volume fraction/CNY", "status": "blocked_by_approval"}
+    {"id": "geometry_kernel", "type": "model", "units": "nm", "status": "validated"},
+    {"id": "q1_connectivity", "type": "result", "units": "boolean/path", "status": "validated"},
+    {"id": "q2_probability", "type": "result", "units": "probability", "status": "validated"},
+    {"id": "q3_threshold", "type": "result", "units": "volume fraction", "status": "validated"},
+    {"id": "q4_mixture", "type": "result", "units": "volume fraction/CNY", "status": "validated"}
   ],
   "edges": [
     {"from": "geometry_kernel", "to": "q1_connectivity", "artifact": "exact pairwise and boundary predicates"},

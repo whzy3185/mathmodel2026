@@ -18,6 +18,7 @@ REQUIRED = (
     "templates/code/ode_utils.py", "templates/code/monte_carlo.py",
     "templates/code/graph_robustness.py", "templates/code/result_io.py",
     "scripts/check_evidence.py", "scripts/invalidate_artifacts.py",
+    "scripts/record_user_approval.py",
     "benchmarks/benchmark_cases.json"
 )
 BENCHMARK_CATEGORIES = {"forecasting", "optimization", "evaluation", "network", "mechanism", "spatial", "simulation", "policy"}

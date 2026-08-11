@@ -22,6 +22,7 @@ GATES = (
 )
 DECISIONS = {"primary", "fallback", "rejected"}
 NON_HUMAN_APPROVERS = {"codex", "openai", "chatgpt", "ai", "ai assistant", "llm"}
+USER_MESSAGE_AUTHORIZATIONS = {"继续", "approve", "批准", "同意执行"}
 
 
 def _nonempty(value: Any) -> bool:
@@ -169,11 +170,17 @@ def validate(plan: Any) -> list[str]:
             errors.append(f"team_approval missing fields: {sorted(missing)}")
         if approval.get("approved") is not True:
             errors.append("team_approval.approved must be true before execution")
+        method = approval.get("method", "human_manual")
+        if method not in {"human_manual", "user_message"}:
+            errors.append("team_approval.method must be human_manual or user_message")
+        authorization_text = approval.get("authorization_text", "")
+        if method == "user_message" and authorization_text.strip().lower() not in USER_MESSAGE_AUTHORIZATIONS:
+            errors.append("team_approval.authorization_text is not an accepted explicit user authorization")
         approver = approval.get("approver")
         if not isinstance(approver, str) or not approver.strip():
             errors.append("team_approval.approver is empty")
         elif approver.strip().lower() in NON_HUMAN_APPROVERS:
-            errors.append("team_approval.approver must identify a human team member")
+            errors.append("team_approval.approver must identify the authorizing user or human team member")
         if not _valid_timestamp(approval.get("approved_at")):
             errors.append("team_approval.approved_at must be an ISO-8601 timestamp with timezone")
         expected_hash = compute_plan_hash(plan)

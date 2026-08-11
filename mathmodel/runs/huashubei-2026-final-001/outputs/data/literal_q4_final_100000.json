@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "seed": 20260904,
+  "replications": 100000,
+  "sphere_boundary_scenario": "uniform-center clipped-cap primary",
+  "results": [
+    {
+      "name": "selected_0A_57B",
+      "a_count": 0,
+      "b_count": 57,
+      "a_fraction": 0.0,
+      "b_fraction": 0.0019100883333825942,
+      "cost_cny": 0.09550441666912972,
+      "successes": 90280,
+      "trials": 100000,
+      "probability": 0.9028,
+      "wilson_95": [
+        0.9009484789937976,
+        0.9046205754027057
+      ],
+      "confidence_feasible": true
+    },
+    {
+      "name": "cheaper_0A_56B",
+      "a_count": 0,
+      "b_count": 56,
+      "a_fraction": 0.0,
+      "b_fraction": 0.001876578011744303,
+      "cost_cny": 0.09382890058721516,
+      "successes": 89855,
+      "trials": 100000,
+      "probability": 0.89855,
+      "wilson_95": [
+        0.8966633559136853,
+        0.9004060249942748
+      ],
+      "confidence_feasible": false
+    },
+    {
+      "name": "cheaper_1A_48B",
+      "a_count": 1,
+      "b_count": 48,
+      "a_fraction": 1.4137166941154069e-05,
+      "b_fraction": 0.001608495438637974,
+      "cost_cny": 0.09526879722011047,
+      "successes": 89463,
+      "trials": 100000,
+      "probability": 0.89463,
+      "wilson_95": [
+        0.8927118631188188,
+        0.896517818947944
+      ],
+      "confidence_feasible": false
+    },
+    {
+      "name": "cheaper_2A_39B",
+      "a_count": 2,
+      "b_count": 39,
+      "a_fraction": 2.8274333882308137e-05,
+      "b_fraction": 0.001306902543893354,
+      "cost_cny": 0.09503317777109124,
+      "successes": 88567,
+      "trials": 100000,
+      "probability": 0.88567,
+      "wilson_95": [
+        0.8836829074852971,
+        0.8876274629444431
+      ],
+      "confidence_feasible": false
+    },
+    {
+      "name": "pure_8A",
+      "a_count": 8,
+      "b_count": 0,
+      "a_fraction": 0.00011309733552923255,
+      "b_fraction": 0.0,
+      "cost_cny": 0.1187522023056942,
+      "successes": 90461,
+      "trials": 100000,
+      "probability": 0.90461,
+      "wilson_95": [
+        0.902773760612256,
+        0.9064151547287796
+      ],
+      "confidence_feasible": true
+    }
+  ]
+}

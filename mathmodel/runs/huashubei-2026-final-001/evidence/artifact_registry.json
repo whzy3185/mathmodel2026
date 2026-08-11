@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "artifacts": [
+    {
+      "artifact_id": "official-a",
+      "type": "data",
+      "path": "input/problems/problem_A.pdf",
+      "source_artifacts": [],
+      "content_hash": "6d31c44022b08840b5e791dd11b431cbcdc187e0f2ff33f613d45728646d0c0a",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "q3-mc",
+      "type": "result",
+      "path": "outputs/data/literal_q3_final_50000.json",
+      "source_artifacts": [
+        "official-a"
+      ],
+      "content_hash": "d39118cee4c04f34b050ae87968fea35f23a4160e26a41e3aab79155cf3a2288",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "q4-mc",
+      "type": "result",
+      "path": "outputs/data/literal_q4_final_100000.json",
+      "source_artifacts": [
+        "official-a"
+      ],
+      "content_hash": "852828f571f8f633bd21c96ff1ff4f56f27f35550e39be08e90e00dc7a01ded6",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "final-results",
+      "type": "result",
+      "path": "outputs/data/final_results.json",
+      "source_artifacts": [
+        "q3-mc",
+        "q4-mc"
+      ],
+      "content_hash": "f5f279547666351b8160e6cfa4d9f30b217bc7a8f218685a51053c9d19d0b6ee",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "figure-f1",
+      "type": "figure",
+      "path": "outputs/figures/F1_q3_threshold.pdf",
+      "source_artifacts": [
+        "final-results"
+      ],
+      "content_hash": "cee159365f1a0c2d5ffa49809abbc87229b532ca8875ed4a82713e1177b3946f",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "figure-f2",
+      "type": "figure",
+      "path": "outputs/figures/F2_q2_failure_scale.pdf",
+      "source_artifacts": [
+        "final-results"
+      ],
+      "content_hash": "ebd2e4e50f074e4805aba4f8961b4fbd6ab72f09bbd35fb4090c5a6e3a21d3c9",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "figure-f3",
+      "type": "figure",
+      "path": "outputs/figures/F3_q4_cost_validation.pdf",
+      "source_artifacts": [
+        "final-results"
+      ],
+      "content_hash": "9f5292914a3627440468abd9e96b9cfa8d5424cf4bbac45ba39e5ddd1cb84e82",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "paper",
+      "type": "paper",
+      "path": "paper/paper.md",
+      "source_artifacts": [
+        "final-results",
+        "figure-f1",
+        "figure-f2",
+        "figure-f3"
+      ],
+      "content_hash": "38a8e6b9e13412975c3d703046c56592b2efc28475175901c1f7fc8295fa14a6",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "status": "current"
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "model_interpretation": "wrapped fragments remain one conductive medium; literal official wording",
+  "geometry": {
+    "q_A_single_rod_periodic_x_bridge": 0.2547123889803847,
+    "q_B_single_sphere_periodic_x_bridge": 0.04,
+    "a_axis_surrogate_is_only_used_as_an_optimistic_refutation_model": true
+  },
+  "Q1": {
+    "model": "finite-axis distance graph",
+    "axis_threshold_nm": 61.8,
+    "groups": [
+      {
+        "group": "组1",
+        "fragment_count": 12,
+        "connected": true,
+        "conductive_path_1_based": [
+          "LEFT",
+          1,
+          12,
+          "RIGHT"
+        ],
+        "edge_count": 7,
+        "left_contact_count": 3,
+        "right_contact_count": 4,
+        "minimum_accepted_edge_threshold_margin_nm": 8.052601519542897,
+        "broadphase_match": true,
+        "periodic_identity_edge_count": 5
+      },
+      {
+        "group": "组2",
+        "fragment_count": 49,
+        "connected": true,
+        "conductive_path_1_based": [
+          "LEFT",
+          1,
+          47,
+          "RIGHT"
+        ],
+        "edge_count": 48,
+        "left_contact_count": 11,
+        "right_contact_count": 11,
+        "minimum_accepted_edge_threshold_margin_nm": 3.4371777076875887,
+        "broadphase_match": true,
+        "periodic_identity_edge_count": 21
+      },
+      {
+        "group": "组3",
+        "fragment_count": 535,
+        "connected": true,
+        "conductive_path_1_based": [
+          "LEFT",
+          2,
+          505,
+          "RIGHT"
+        ],
+        "edge_count": 344,
+        "left_contact_count": 92,
+        "right_contact_count": 90,
+        "minimum_accepted_edge_threshold_margin_nm": 0.021328912892961682,
+        "broadphase_match": true,
+        "periodic_identity_edge_count": 178
+      }
+    ]
+  },
+  "Q2": [
+    {
+      "requested_fraction": 0.005,
+      "a_count": 354,
+      "achieved_fraction": 0.00500455709716854,
+      "direct_bridge_probability_lower_bound": 1.0,
+      "log10_failure_probability_upper_bound": -45.19733870065948
+    },
+    {
+      "requested_fraction": 0.006,
+      "a_count": 424,
+      "achieved_fraction": 0.005994158783049325,
+      "direct_bridge_probability_lower_bound": 1.0,
+      "log10_failure_probability_upper_bound": -54.13466556237181
+    },
+    {
+      "requested_fraction": 0.007,
+      "a_count": 495,
+      "achieved_fraction": 0.006997897635871263,
+      "direct_bridge_probability_lower_bound": 1.0,
+      "log10_failure_probability_upper_bound": -63.199668522108595
+    },
+    {
+      "requested_fraction": 0.01,
+      "a_count": 707,
+      "achieved_fraction": 0.009994977027395926,
+      "direct_bridge_probability_lower_bound": 1.0,
+      "log10_failure_probability_upper_bound": -90.26700130329449
+    }
+  ],
+  "Q3": {
+    "minimum_a_count": 8,
+    "volume_fraction": 0.00011309733552923255,
+    "reported_percent_2dp": 0.01,
+    "validation": [
+      {
+        "a_count": 1,
+        "direct_bridge_probability": 0.2547123889803846,
+        "graph_probability": 0.25604,
+        "graph_wilson_95": [
+          0.2522333112668657,
+          0.25988417234505506
+        ]
+      },
+      {
+        "a_count": 2,
+        "direct_bridge_probability": 0.44454637686067444,
+        "graph_probability": 0.44744,
+        "graph_wilson_95": [
+          0.4430858723424877,
+          0.4518022033200903
+        ]
+      },
+      {
+        "a_count": 3,
+        "direct_bridge_probability": 0.5860272961783024,
+        "graph_probability": 0.58912,
+        "graph_wilson_95": [
+          0.584800879607934,
+          0.5934254274116824
+        ]
+      },
+      {
+        "a_count": 4,
+        "direct_bridge_probability": 0.6914712725413961,
+        "graph_probability": 0.69328,
+        "graph_wilson_95": [
+          0.6892233525191599,
+          0.6973069506759867
+        ]
+      },
+      {
+        "a_count": 5,
+        "direct_bridge_probability": 0.7700573617814551,
+        "graph_probability": 0.77088,
+        "graph_wilson_95": [
+          0.7671755412424132,
+          0.7745428389805861
+        ]
+      },
+      {
+        "a_count": 6,
+        "direct_bridge_probability": 0.8286266004905529,
+        "graph_probability": 0.82984,
+        "graph_wilson_95": [
+          0.8265209519663459,
+          0.833108369256166
+        ]
+      },
+      {
+        "a_count": 7,
+        "direct_bridge_probability": 0.8722775284872941,
+        "graph_probability": 0.87272,
+        "graph_wilson_95": [
+          0.8697700081952089,
+          0.8756127246633125
+        ]
+      },
+      {
+        "a_count": 8,
+        "direct_bridge_probability": 0.9048100243327746,
+        "graph_probability": 0.90444,
+        "graph_wilson_95": [
+          0.9018319799815943,
+          0.9069858792084152
+        ]
+      },
+      {
+        "a_count": 9,
+        "direct_bridge_probability": 0.9290560904419582,
+        "graph_probability": 0.9285,
+        "graph_wilson_95": [
+          0.9262084958370704,
+          0.9307256666169872
+        ]
+      },
+      {
+        "a_count": 10,
+        "direct_bridge_probability": 0.9471263831290954,
+        "graph_probability": 0.94698,
+        "graph_wilson_95": [
+          0.9449813831279237,
+          0.9489099399379217
+        ]
+      }
+    ],
+    "replications": 50000,
+    "seed": 20260902
+  },
+  "Q4": {
+    "selected": {
+      "name": "selected_0A_57B",
+      "a_count": 0,
+      "b_count": 57,
+      "a_fraction": 0.0,
+      "b_fraction": 0.0019100883333825942,
+      "cost_cny": 0.09550441666912972,
+      "successes": 90280,
+      "trials": 100000,
+      "probability": 0.9028,
+      "wilson_95": [
+        0.9009484789937976,
+        0.9046205754027057
+      ],
+      "confidence_feasible": true
+    },
+    "all_tested_candidates": [
+      {
+        "name": "selected_0A_57B",
+        "a_count": 0,
+        "b_count": 57,
+        "a_fraction": 0.0,
+        "b_fraction": 0.0019100883333825942,
+        "cost_cny": 0.09550441666912972,
+        "successes": 90280,
+        "trials": 100000,
+        "probability": 0.9028,
+        "wilson_95": [
+          0.9009484789937976,
+          0.9046205754027057
+        ],
+        "confidence_feasible": true
+      },
+      {
+        "name": "cheaper_0A_56B",
+        "a_count": 0,
+        "b_count": 56,
+        "a_fraction": 0.0,
+        "b_fraction": 0.001876578011744303,
+        "cost_cny": 0.09382890058721516,
+        "successes": 89855,
+        "trials": 100000,
+        "probability": 0.89855,
+        "wilson_95": [
+          0.8966633559136853,
+          0.9004060249942748
+        ],
+        "confidence_feasible": false
+      },
+      {
+        "name": "cheaper_1A_48B",
+        "a_count": 1,
+        "b_count": 48,
+        "a_fraction": 1.4137166941154069e-05,
+        "b_fraction": 0.001608495438637974,
+        "cost_cny": 0.09526879722011047,
+        "successes": 89463,
+        "trials": 100000,
+        "probability": 0.89463,
+        "wilson_95": [
+          0.8927118631188188,
+          0.896517818947944
+        ],
+        "confidence_feasible": false
+      },
+      {
+        "name": "cheaper_2A_39B",
+        "a_count": 2,
+        "b_count": 39,
+        "a_fraction": 2.8274333882308137e-05,
+        "b_fraction": 0.001306902543893354,
+        "cost_cny": 0.09503317777109124,
+        "successes": 88567,
+        "trials": 100000,
+        "probability": 0.88567,
+        "wilson_95": [
+          0.8836829074852971,
+          0.8876274629444431
+        ],
+        "confidence_feasible": false
+      },
+      {
+        "name": "pure_8A",
+        "a_count": 8,
+        "b_count": 0,
+        "a_fraction": 0.00011309733552923255,
+        "b_fraction": 0.0,
+        "cost_cny": 0.1187522023056942,
+        "successes": 90461,
+        "trials": 100000,
+        "probability": 0.90461,
+        "wilson_95": [
+          0.902773760612256,
+          0.9064151547287796
+        ],
+        "confidence_feasible": true
+      }
+    ],
+    "replications": 100000,
+    "seed": 20260904,
+    "claim_scope": "lowest confidence-feasible candidate after exhaustive direct-bridge enumeration and explicit testing of every cheaper frontier neighbor"
+  },
+  "source_hashes": {
+    "outputs\\data\\literal_q3_final_50000.json": "d39118cee4c04f34b050ae87968fea35f23a4160e26a41e3aab79155cf3a2288",
+    "outputs\\data\\literal_q4_final_100000.json": "852828f571f8f633bd21c96ff1ff4f56f27f35550e39be08e90e00dc7a01ded6"
+  }
+}

@@ -127,7 +127,27 @@ class PlanValidationTests(unittest.TestCase):
         plan = valid_plan()
         plan["team_approval"]["approver"] = "Codex"
         plan["team_approval"]["plan_hash"] = compute_plan_hash(plan)
-        self.assert_invalid(plan, "human team member")
+        self.assert_invalid(plan, "authorizing user or human team member")
+
+    def test_explicit_user_message_approval_passes(self) -> None:
+        plan = valid_plan()
+        plan["team_approval"].update(
+            method="user_message",
+            authorization_text="继续",
+            approver="Repository owner",
+        )
+        plan["team_approval"]["plan_hash"] = compute_plan_hash(plan)
+        self.assertEqual([], validate(plan))
+
+    def test_unsupported_user_message_fails(self) -> None:
+        plan = valid_plan()
+        plan["team_approval"].update(
+            method="user_message",
+            authorization_text="maybe later",
+            approver="Repository owner",
+        )
+        plan["team_approval"]["plan_hash"] = compute_plan_hash(plan)
+        self.assert_invalid(plan, "not an accepted explicit user authorization")
 
 
 if __name__ == "__main__":

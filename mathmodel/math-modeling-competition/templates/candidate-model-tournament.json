@@ -41,6 +41,8 @@
     "approved": false,
     "approver": "",
     "approved_at": "",
-    "plan_hash": ""
+    "plan_hash": "",
+    "method": "human_manual|user_message",
+    "authorization_text": ""
   }
 }
