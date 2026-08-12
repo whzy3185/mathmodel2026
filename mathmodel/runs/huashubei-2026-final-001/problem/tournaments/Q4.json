@@ -1,7 +1,7 @@
 {
   "problem_id": "2026-HUASHUBEI-A",
   "subquestion": "Q4: choose A/B volume fractions minimizing material cost while conduction probability is at least 0.90",
-  "target_claim": "Return the lowest-cost independently verified A/B mixture found on a declared two-dimensional search domain whose 95% Wilson lower bound for conduction is at least 0.90, and distinguish best-verified from globally optimal.",
+  "target_claim": "Prove the globally lowest-cost integer A/B combination under analytic probability bounds, and also solve the strictly-positive mixture interpretation.",
   "data_audit": {
     "unit_table_complete": true,
     "temporal_order_preserved": true,
@@ -19,8 +19,8 @@
   },
   "candidates": [
     {
-      "name": "integer direct-bridge cost enumeration with held-out graph validation",
-      "formulation": "Enumerate low-cost integer (n_A,n_B) combinations using 1-(1-q_A)^n_A(1-q_B)^n_B, minimize 1000*(1.05 phi_A+0.05 phi_B), and validate the selected point plus every cheaper frontier neighbor with 100000 independent periodic-graph replications and Wilson intervals.",
+      "name": "exhaustive integer cost proof with analytic lower and upper bounds",
+      "formulation": "Enumerate every integer (n_A,n_B) cheaper than the candidate. Prove the candidate feasible by the direct-bridge lower bound and prove every cheaper point infeasible by adding the ordered terminal-pair union upper bound. Solve both the nonnegative and strictly-positive mixture domains.",
       "assumptions": [
         "A and B centers are uniform and mutually independent in the periodic cube.",
         "A orientations are isotropic.",
@@ -39,22 +39,20 @@
       "engineering_gate": "pass",
       "validation_gate": "pass",
       "validation_plan": [
-        "recover pure-A and pure-B endpoints",
-        "audit all three pair predicates against independent distance calculations",
-        "check non-dominated frontier and locally cheaper neighbors",
-        "confirm final and cheaper-neighbor candidates on held-out seeds"
+        "enumerate every integer point cheaper than the candidate",
+        "verify the candidate direct-bridge lower bound exceeds 0.90",
+        "verify every cheaper candidate's analytic upper bound is below 0.90",
+        "repeat the proof with n_A,n_B>=1"
       ],
       "refutation_evidence": [
-        "mixture does not improve on the best pure endpoint",
-        "a tested cheaper neighbor is also confidence-feasible",
-        "held-out Wilson lower bound falls below 0.90",
-        "pair predicates disagree with exact checks"
+        "candidate direct-bridge lower bound does not exceed 0.90",
+        "any cheaper integer candidate has an upper bound at least 0.90",
+        "integer enumeration omits a lower-cost point"
       ],
       "expected_failure_modes": [
-        "large 2D compute demand",
         "discrete particle-count staircase",
-        "misleading response interpolation",
-        "frontier holes from simulation noise"
+        "cost-unit conversion error",
+        "random-distribution assumptions are not applicable"
       ],
       "rejection_evidence": [],
       "decision": "primary",
@@ -129,22 +127,21 @@
       "decision_reason": "It removes the mechanism the question is designed to evaluate."
     }
   ],
-  "primary_model": "integer direct-bridge cost enumeration with held-out graph validation",
+  "primary_model": "exhaustive integer cost proof with analytic lower and upper bounds",
   "fallback_model": "coarse non-dominated grid with independent confirmation",
   "stop_conditions": [
-    "Q1/Q2 kernels are not approved and validated",
-    "pure endpoints cannot be reproduced",
-    "no candidate achieves the probability constraint within the declared domain",
-    "held-out confirmation fails",
-    "compute cap prevents resolving the cheapest frontier neighborhood"
+    "Q2 analytic probabilities are not validated",
+    "no candidate has a lower bound above 0.90",
+    "a cheaper candidate has an upper bound at least 0.90",
+    "the cost or random-generation assumptions change"
   ],
   "team_approval": {
     "approved": true,
     "approver": "repository owner whzy3185",
-    "approved_at": "2026-08-12T00:12:58+08:00",
-    "plan_hash": "cfda60acaa346d74f2289beae8a2a061542cffd7c52b3832138d48c94517120f",
+    "approved_at": "2026-08-12T09:22:13+08:00",
+    "plan_hash": "ed8fb4ec43ad996025f169e2a1208dbef10fd5f7682291d728b741b6b0de5e7e",
     "method": "user_message",
     "authorization_text": "继续",
-    "record_reason": "run-scoped authorization reused after attack-test evidence forced an in-scope model repair"
+    "record_reason": "run-scoped authorization reused for final plan alignment after adversarial review"
   }
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # AI assistance disclosure: drafted with OpenAI Codex and verified by check_evidence.py.
-"""Build hash-current claim and artifact registries for the final paper."""
+"""Build hash-current dependency and claim registries."""
 
 from __future__ import annotations
 
@@ -15,43 +15,34 @@ def digest(path: Path) -> str:
 
 
 def main() -> int:
-    root = Path(__file__).resolve().parents[2]
-    created_at = datetime.now(timezone.utc).isoformat()
+    root = Path(__file__).resolve().parents[2]; created_at = datetime.now(timezone.utc).isoformat()
     specs = [
         ("official-a", "data", "input/problems/problem_A.pdf", []),
-        ("q3-mc", "result", "outputs/data/literal_q3_final_50000.json", ["official-a"]),
-        ("q4-mc", "result", "outputs/data/literal_q4_final_100000.json", ["official-a"]),
-        ("final-results", "result", "outputs/data/final_results.json", ["q3-mc", "q4-mc"]),
-        ("figure-f1", "figure", "outputs/figures/F1_q3_threshold.pdf", ["final-results"]),
-        ("figure-f2", "figure", "outputs/figures/F2_q2_failure_scale.pdf", ["final-results"]),
-        ("figure-f3", "figure", "outputs/figures/F3_q4_cost_validation.pdf", ["final-results"]),
+        ("attachment-a", "data", "data/raw/A/attachment.xlsx", ["official-a"]),
+        ("requirements", "model", "requirements.txt", []),
+        ("geometry-code", "model", "src/a/geometry.py", ["requirements"]),
+        ("bounds-code", "model", "src/a/analytic_bounds.py", ["requirements"]),
+        ("result-builder", "model", "src/a/build_corrected_results.py", ["geometry-code", "bounds-code"]),
+        ("final-results", "result", "outputs/data/final_results.json", ["official-a", "attachment-a", "result-builder"]),
+        ("figure-code", "model", "src/a/build_final_artifacts.py", ["requirements"]),
+        ("figure-f1", "figure", "outputs/figures/F1_q3_threshold.pdf", ["final-results", "figure-code"]),
+        ("figure-f2", "figure", "outputs/figures/F2_q2_failure_scale.pdf", ["final-results", "figure-code"]),
+        ("figure-f3", "figure", "outputs/figures/F3_q4_cost_validation.pdf", ["final-results", "figure-code"]),
         ("paper", "paper", "paper/paper.md", ["final-results", "figure-f1", "figure-f2", "figure-f3"]),
     ]
     artifacts = []
     for artifact_id, artifact_type, relative, sources in specs:
         path = root / relative
-        artifacts.append({
-            "artifact_id": artifact_id,
-            "type": artifact_type,
-            "path": relative,
-            "source_artifacts": sources,
-            "content_hash": digest(path),
-            "created_by": "reproducible project workflow",
-            "created_at": created_at,
-            "status": "current",
-        })
+        artifacts.append({"artifact_id": artifact_id, "type": artifact_type, "path": relative, "source_artifacts": sources, "content_hash": digest(path), "created_by": "reproducible project workflow", "created_at": created_at, "status": "current"})
     claims = [
-        {"claim_id": "C-Q1", "text": "All three supplied groups conduct under periodic fragment identity.", "question_id": "Q1", "artifact_ids": ["final-results", "paper"], "metric": "connected groups", "value": 3, "unit": "groups", "uncertainty": "deterministic graph", "baseline": "fragment-independent graph", "failure_threshold": "any missing left-right path", "status": "validated"},
-        {"claim_id": "C-Q2", "text": "All four requested A fractions have conduction probability indistinguishable from one at reporting precision.", "question_id": "Q2", "artifact_ids": ["final-results", "figure-f2", "paper"], "metric": "largest failure-probability upper bound", "value": 6.35e-46, "unit": "probability", "uncertainty": "analytic direct-bridge bound", "baseline": "direct periodic bridge only", "failure_threshold": "bound not negligible", "status": "validated"},
-        {"claim_id": "C-Q3", "text": "Eight A conductors are sufficient and seven are insufficient under the stated confidence rule.", "question_id": "Q3", "artifact_ids": ["q3-mc", "final-results", "figure-f1", "paper"], "metric": "minimum A count", "value": 8, "unit": "conductors", "uncertainty": "50000 replications; Wilson intervals", "baseline": "analytic direct bridge", "failure_threshold": "7-count upper interval reaches 0.90 or 8-count lower interval falls below 0.90", "status": "validated"},
-        {"claim_id": "C-Q4", "text": "The lowest confidence-feasible tested cost is 57 B spheres and no A cylinders.", "question_id": "Q4", "artifact_ids": ["q4-mc", "final-results", "figure-f3", "paper"], "metric": "material cost", "value": 0.09550441666912972, "unit": "CNY", "uncertainty": "100000 replications; 95% Wilson interval [0.90095, 0.90462]", "baseline": "56 B and every cheaper frontier neighbor", "failure_threshold": "selected lower interval below 0.90 or cheaper candidate lower interval at least 0.90", "status": "validated"}
+        {"claim_id": "C-Q1", "text": "Group 1 is disconnected; groups 2 and 3 are connected when each attachment row is one A.", "question_id": "Q1", "artifact_ids": ["attachment-a", "geometry-code", "final-results", "paper"], "metric": "connected groups", "value": 2, "unit": "groups", "uncertainty": "deterministic row-level graph; positive paths certified by interior side contacts", "baseline": "all-pairs exact axis broadphase check", "failure_threshold": "path certificate fails or broadphase differs", "status": "validated"},
+        {"claim_id": "C-Q2", "text": "All four requested A fractions have failure-probability upper bounds below 1e-45.", "question_id": "Q2", "artifact_ids": ["bounds-code", "final-results", "figure-f2", "paper"], "metric": "largest failure-probability upper bound", "value": 6.35e-46, "unit": "probability", "uncertainty": "analytic direct-bridge sufficient condition", "baseline": "direct bridge only", "failure_threshold": "analytic bound not reproduced", "status": "validated"},
+        {"claim_id": "C-Q3", "text": "Eight A are sufficient and seven A are insufficient by analytic lower and upper bounds.", "question_id": "Q3", "artifact_ids": ["bounds-code", "final-results", "figure-f1", "paper"], "metric": "minimum A count", "value": 8, "unit": "conductors", "uncertainty": "deterministic analytic bounds", "baseline": "direct bridge plus terminal-pair union bound", "failure_threshold": "8 lower bound <=0.90 or 7 upper bound >=0.90", "status": "validated"},
+        {"claim_id": "C-Q4", "text": "57 B and zero A is cheaper than every other confidence-feasible integer combination.", "question_id": "Q4", "artifact_ids": ["bounds-code", "final-results", "figure-f3", "paper"], "metric": "material cost", "value": 0.0955044166691297, "unit": "CNY", "uncertainty": "exhaustive 216-candidate analytic proof", "baseline": "all lower-cost integer combinations", "failure_threshold": "selected lower bound <=0.90 or any cheaper upper bound >=0.90", "status": "validated"},
     ]
-    evidence_dir = root / "evidence"
-    evidence_dir.mkdir(parents=True, exist_ok=True)
-    (evidence_dir / "artifact_registry.json").write_text(json.dumps({"schema_version": "1.0", "artifacts": artifacts}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (evidence_dir / "claim_evidence.json").write_text(json.dumps({"schema_version": "1.0", "claims": claims}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(evidence_dir / "artifact_registry.json")
-    print(evidence_dir / "claim_evidence.json")
+    evidence = root / "evidence"; evidence.mkdir(parents=True, exist_ok=True)
+    (evidence / "artifact_registry.json").write_text(json.dumps({"schema_version": "1.0", "artifacts": artifacts}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (evidence / "claim_evidence.json").write_text(json.dumps({"schema_version": "1.0", "claims": claims}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return 0
 
 

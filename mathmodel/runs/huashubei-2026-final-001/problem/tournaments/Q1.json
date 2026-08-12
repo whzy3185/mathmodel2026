@@ -16,8 +16,8 @@
   },
   "candidates": [
     {
-      "name": "periodic-identity connectivity graph with union-find",
-      "formulation": "Infer fragments of the same wrapped conductor from exact opposite-seam endpoint matches, union those identity edges, add virtual left/right electrodes, and use finite-axis distance only for additional inter-conductor edges. Recover a BFS path for every positive classification.",
+      "name": "row-level flat-cylinder certified connectivity graph",
+      "formulation": "Treat each official attachment row as one A conductor. Build a non-periodic row graph, use a capsule supergraph to refute negative cases, and require interior-interior axis-distance certificates for every positive flat-cylinder path edge.",
       "assumptions": [
         "The supplied endpoints define the conductive axis actually present in the cube.",
         "Periodic wrapping follows the official boundary rule.",
@@ -42,16 +42,16 @@
       "refutation_evidence": [
         "any returned path edge exceeds 61.8 nm after independent recomputation",
         "classification changes under algebraically equivalent endpoint ordering",
-        "periodic translation search misses a brute-force image case"
+        "a positive path contains an endpoint-controlled capsule edge without a flat-cylinder certificate"
       ],
       "expected_failure_modes": [
         "floating-point ambiguity at the threshold",
-        "incorrect association of periodic fragments",
+        "incorrectly merging attachment rows",
         "false face contact from radius/axis confusion"
       ],
       "rejection_evidence": [],
       "decision": "primary",
-      "decision_reason": "It follows the official statement that wrapped pieces remain parts of one conductor and returns paths whose decisive edges are exact periodic identities."
+      "decision_reason": "It follows the official attachment statement that each row is one A and distinguishes valid flat-cylinder side contacts from capsule-only endpoint artifacts."
     },
     {
       "name": "independent bounded segment-distance minimization",
@@ -119,7 +119,7 @@
       "decision_reason": "It adds discretization bias and extreme cost where exact finite-segment geometry is available."
     }
   ],
-  "primary_model": "periodic-identity connectivity graph with union-find",
+  "primary_model": "row-level flat-cylinder certified connectivity graph",
   "fallback_model": "independent bounded segment-distance minimization",
   "stop_conditions": [
     "official periodic-boundary wording cannot be reconciled with the supplied coordinates",
@@ -129,10 +129,10 @@
   "team_approval": {
     "approved": true,
     "approver": "repository owner whzy3185",
-    "approved_at": "2026-08-12T00:12:58+08:00",
-    "plan_hash": "40799f84c1391d3590f3252cb8af2a7132c9f403e9b29bb7bc9ba07768efb501",
+    "approved_at": "2026-08-12T09:22:13+08:00",
+    "plan_hash": "de783319787893cd7444f9a7a6a5addd880a428e7c09cb13fb7b79618816a889",
     "method": "user_message",
     "authorization_text": "继续",
-    "record_reason": "run-scoped authorization reused after attack-test evidence forced an in-scope model repair"
+    "record_reason": "run-scoped authorization reused for final plan alignment after adversarial review"
   }
 }

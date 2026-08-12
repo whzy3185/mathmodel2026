@@ -3,30 +3,30 @@
   "run_id": "huashubei-2026-final-001",
   "competition": "2026 第七届华数杯",
   "created_at": "2026-08-11T21:43:32+08:00",
-  "current_stage": "paper-complete",
+  "current_stage": "post-review-repaired",
   "official_rules_checked_at": "2026-08-11T00:00:00+08:00",
   "problem_id": "2026-HUASHUBEI-A",
   "decisions": [
-    {"decision_id": "DEC-001", "stage": "rules-and-intake", "decision": "Use the user-supplied 2026 seventh Huashu Cup ZIP as the authoritative problem bundle.", "evidence": ["rules/rules_manifest.json", "data/provenance/manifest.json"], "status": "current"},
-    {"decision_id": "DEC-002", "stage": "problem-selection", "decision": "Select 2026 problem A and retain B as second choice.", "evidence": ["data/eda_report.md", "selection/problem_selection.json"], "status": "current"},
-    {"decision_id": "DEC-003", "stage": "training", "decision": "Use mature CUMCM work as link-only method exemplars; transfer verification patterns, not prose or unlicensed code.", "evidence": ["training/source_manifest.json", "training/method_cards.md"], "status": "current"},
-    {"decision_id": "DEC-004", "stage": "authorization", "decision": "Repository owner authorized the full run by explicit chat message 继续; subsequent in-scope evidence repairs reuse this run-scoped authorization.", "evidence": ["problem/tournaments/Q1.json", "problem/tournaments/Q2.json", "problem/tournaments/Q3.json", "problem/tournaments/Q4.json"], "status": "current"},
-    {"decision_id": "DEC-005", "stage": "attack-test", "decision": "Reject the disconnected-fragment interpretation after an independent attack showed that official wording keeps wrapped pieces as one conductor; invalidate all earlier high-threshold numerical outputs.", "evidence": ["paper/paper.md", "outputs/data/final_results.json"], "status": "current"},
-    {"decision_id": "DEC-006", "stage": "execution", "decision": "Use exact periodic crossing probabilities for sufficiency and an optimistic capsule graph only to refute cheaper/lower-count candidates.", "evidence": ["src/a/geometry.py", "src/a/run_pure_b.py", "outputs/data/literal_q3_final_50000.json", "outputs/data/literal_q4_final_100000.json"], "status": "current"},
-    {"decision_id": "DEC-007", "stage": "paper", "decision": "Freeze Q1 all-connected, Q2 approximately one, Q3 8A, and Q4 57B as the headline results under the literal periodic-object interpretation.", "evidence": ["outputs/data/final_results.json", "paper/paper.md"], "status": "current"}
+    {"decision_id": "DEC-001", "stage": "intake", "decision": "Use the user-supplied official 2026 problem bundle.", "evidence": ["rules/rules_manifest.json"], "status": "current"},
+    {"decision_id": "DEC-002", "stage": "selection", "decision": "Select problem A.", "evidence": ["selection/problem_selection.json"], "status": "current"},
+    {"decision_id": "DEC-003", "stage": "authorization", "decision": "Repository owner authorized the full run and in-scope repairs by explicit 继续 messages.", "evidence": ["problem/tournaments/Q1.json", "problem/tournaments/Q4.json"], "status": "current"},
+    {"decision_id": "DEC-004", "stage": "review-repair", "decision": "After adversarial QA, enforce the official each-row-is-one-A rule for Q1, remove ±500 seam inference, and delete unconditional periodic minimum-image simulation code.", "evidence": ["src/a/geometry.py", "outputs/data/final_results.json"], "status": "current"},
+    {"decision_id": "DEC-005", "stage": "proof", "decision": "Replace Monte Carlo selection claims with a direct-bridge lower bound and an opposite-electrode terminal-pair union upper bound.", "evidence": ["src/a/analytic_bounds.py", "tests/test_analytic_bounds.py"], "status": "current"},
+    {"decision_id": "DEC-006", "stage": "optimization", "decision": "Exhaust all 216 cheaper nonnegative integer candidates and all 164 cheaper strictly-positive mixture candidates.", "evidence": ["outputs/data/final_results.json", "outputs/figures/F3_q4_cost_validation.pdf"], "status": "current"},
+    {"decision_id": "DEC-007", "stage": "paper", "decision": "Freeze Q1 as group1 disconnected and groups2/3 connected; retain Q2, 8A Q3, 57B Q4, and add 1A+50B for the strict-positive interpretation.", "evidence": ["paper/paper.md", "evidence/claim_evidence.json"], "status": "current"}
   ],
   "assumptions": [
-    "Wrapped fragments remain parts of the same conductive medium.",
-    "Centers are uniform and A orientations are isotropic.",
-    "A surface separation no greater than 1.8 nm creates a connection.",
-    "The run is a post-deadline AI workflow reproduction, not a live contest submission."
+    "Each Q1 attachment row is one A conductor.",
+    "Random centers are independent and uniform; A orientations are independent and isotropic.",
+    "Only material portions that actually cross a boundary are translated.",
+    "The run is a post-deadline AI workflow reproduction, not a live submission."
   ],
   "parameters": [
-    {"name": "single-A periodic X bridge probability", "value": 0.2547123889803847, "unit": "probability", "source": "analytic support-function derivation"},
-    {"name": "single-B periodic X bridge probability", "value": 0.04, "unit": "probability", "source": "analytic sphere geometry"},
-    {"name": "confidence level", "value": 0.95, "unit": "probability", "source": "preregistered validation rule"}
+    {"name": "q_A", "value": 0.2547123889803847, "unit": "probability", "source": "analytic flat-cylinder support"},
+    {"name": "q_B", "value": 0.04, "unit": "probability", "source": "analytic sphere boundary layer"},
+    {"name": "electrode shell probability", "value": 0.00018, "unit": "probability per side", "source": "g/L"}
   ],
   "artifacts": ["outputs/data/final_results.json", "outputs/figures/F1_q3_threshold.pdf", "outputs/figures/F2_q2_failure_scale.pdf", "outputs/figures/F3_q4_cost_validation.pdf", "paper/paper.md"],
-  "open_risks": ["official periodic-fragment identity wording is structurally ambiguous", "flat-cylinder inter-particle distances are bounded by an optimistic capsule surrogate", "Q4 optimality is restricted to the enumerated low-cost integer frontier"],
-  "ai_usage": [{"date": "2026-08-11", "usage": "source audit, code drafting, execution, independent attack testing, figure generation and paper draft; all numerical claims trace to executable artifacts"}]
+  "open_risks": ["probability results are conditional on the specified uniform/isotropic random generator", "Q1 negative proof uses a capsule supergraph while positive paths use certified side contacts"],
+  "ai_usage": [{"date": "2026-08-12", "usage": "main-agent repair after three-way adversarial QA; erroneous periodic simulation removed and analytic proof substituted"}]
 }

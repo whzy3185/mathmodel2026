@@ -20,4 +20,4 @@
 - 仓库所有者已通过对话“继续”完成 run-scoped 授权，当前四份模型计划均通过哈希校验。
 - 本项目发生在比赛截止时间之后，定位为 AI 工作流复现实验，不冒充符合 2026 AI 章程的参赛作品。
 
-权威机器结果为 `outputs/data/final_results.json`，论文为 `paper/paper.md`，证据链位于 `evidence/`。
+第二轮攻击性 QA 后，已删除错误的无条件周期最小像模拟，Q1 改为官方“每行一个 A”，Q3/Q4 改为可复核的解析上下界和全整数穷举。权威机器结果为 `outputs/data/final_results.json`，论文为 `paper/paper.md`，证据链位于 `evidence/`。

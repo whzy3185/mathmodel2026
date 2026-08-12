@@ -1,7 +1,7 @@
 {
   "problem_id": "2026-HUASHUBEI-A",
   "subquestion": "Q2: estimate the conduction probabilities at the four specified A-material volume fractions",
-  "target_claim": "Estimate each requested probability with a reproducible continuous-geometry Monte Carlo experiment and report sample size, successes, fixed seeds, and a 95% Wilson interval.",
+  "target_claim": "Bound each requested conduction probability reproducibly from the exact single-A periodic crossing event and report the corresponding failure-probability order of magnitude.",
   "data_audit": {
     "unit_table_complete": true,
     "temporal_order_preserved": true,
@@ -18,8 +18,8 @@
   },
   "candidates": [
     {
-      "name": "analytic periodic-bridge bound with graph Monte Carlo validation",
-      "formulation": "Derive the exact probability that one isotropically oriented flat cylinder crosses the periodic X boundary, use 1-(1-q_A)^N as a conservative conduction lower bound, and validate low-count behavior with a periodic identity graph and Wilson intervals.",
+      "name": "analytic periodic-bridge probability bound",
+      "formulation": "Derive the exact probability that one isotropically oriented flat cylinder crosses the periodic X boundary and use 1-(1-q_A)^N as a rigorous conduction lower bound without sampling error.",
       "assumptions": [
         "Rod centers are spatially uniform and independent.",
         "Rod orientations are isotropic on the sphere.",
@@ -38,21 +38,18 @@
       "engineering_gate": "pass",
       "validation_gate": "pass",
       "validation_plan": [
-        "verify uniform orientation moments E[u_i]≈0 and E[u_i^2]≈1/3",
-        "run increasing batch sizes and track interval width",
-        "compare indexed neighbor search to all-pairs on small samples",
-        "repeat final estimates with independent seeds"
+        "derive E|u_x|=1/2 and E sqrt(1-u_x^2)=pi/4 from the uniform-sphere marginal",
+        "check particle-count rounding against achieved volume fractions",
+        "recompute failure probabilities in log space to avoid underflow"
       ],
       "refutation_evidence": [
-        "probabilities materially decrease with increasing volume fraction beyond interval overlap",
-        "indexed and all-pairs graphs disagree",
-        "orientation diagnostics reject isotropy"
+        "the assumed center distribution is not uniform or orientations are not isotropic",
+        "the direct-crossing event does not produce a left-right path under the official clipping rule"
       ],
       "expected_failure_modes": [
         "rod-count rounding alters nominal volume fraction",
-        "rare-event variance near transition",
-        "missed periodic neighbors",
-        "runtime growth near dense regimes"
+        "floating-point underflow when reporting failure probability",
+        "distributional assumptions do not match the intended random generator"
       ],
       "rejection_evidence": [],
       "decision": "primary",
@@ -124,21 +121,20 @@
       "decision_reason": "Useful only as a rough plausibility check, not as the requested estimator."
     }
   ],
-  "primary_model": "analytic periodic-bridge bound with graph Monte Carlo validation",
+  "primary_model": "analytic periodic-bridge probability bound",
   "fallback_model": "continuous-rod Monte Carlo with periodic cell lists",
   "stop_conditions": [
-    "Q1 geometry kernel has not passed human-approved validation",
-    "95% interval half-width remains above the preregistered tolerance at the compute budget",
-    "independent seeds produce unresolved discrepancies",
-    "neighbor acceleration disagrees with all-pairs checks"
+    "the official random-position or orientation distribution differs from uniform/isotropic",
+    "the periodic clipping rule is clarified to disconnect the two portions of one crossing object",
+    "particle-count rounding cannot be reconciled with the requested fractions"
   ],
   "team_approval": {
     "approved": true,
     "approver": "repository owner whzy3185",
-    "approved_at": "2026-08-12T00:12:58+08:00",
-    "plan_hash": "eabfed794649f817c15a6ca923063f804c869b0ab62515af7574d5987ab5deb5",
+    "approved_at": "2026-08-12T09:22:13+08:00",
+    "plan_hash": "d1c6e84f67b391fff5b1a52c02e6d6a741ba175c140d05efb93709f5f125e000",
     "method": "user_message",
     "authorization_text": "继续",
-    "record_reason": "run-scoped authorization reused after attack-test evidence forced an in-scope model repair"
+    "record_reason": "run-scoped authorization reused for final plan alignment after adversarial review"
   }
 }

@@ -11,13 +11,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src/a"))
 
 from geometry import (  # noqa: E402
-    ROD_LENGTH,
     all_pair_edges,
+    connectivity,
     sampled_broadphase_edges,
-    seeded_a_configuration,
-    infer_periodic_identity_edges,
+    segment_distance_certificates,
     segment_distances,
-    split_wrapped_axis,
 )
 
 
@@ -36,12 +34,11 @@ class GeometryTests(unittest.TestCase):
         d2 = segment_distances(p1, p0, q1, q0)
         np.testing.assert_allclose(d1, d2, atol=1e-12)
 
-    def test_wrapping_conserves_length(self) -> None:
-        direction = np.array([1.0, 2.0, 3.0])
-        pieces = split_wrapped_axis(np.array([4900.0, 4900.0, 4900.0]), direction)
-        total = sum(np.linalg.norm(b - a) for a, b in pieces)
-        self.assertAlmostEqual(total, ROD_LENGTH, places=7)
-        self.assertTrue(all(np.max(np.abs(np.r_[a, b])) <= 5000 for a, b in pieces))
+    def test_certificate_identifies_interior_contact(self) -> None:
+        p0 = np.array([[0, 0, 0]], float); p1 = np.array([[10, 0, 0]], float)
+        q0 = np.array([[5, -1, 0]], float); q1 = np.array([[5, 1, 0]], float)
+        distance, s, t = segment_distance_certificates(p0, p1, q0, q1)
+        np.testing.assert_allclose(distance, [0]); np.testing.assert_allclose(s, [0.5]); np.testing.assert_allclose(t, [0.5])
 
     def test_broadphase_matches_all_pairs(self) -> None:
         rng = np.random.default_rng(11)
@@ -51,17 +48,17 @@ class GeometryTests(unittest.TestCase):
         broad, _, _ = sampled_broadphase_edges(starts, ends)
         self.assertEqual({tuple(x) for x in exact}, {tuple(x) for x in broad})
 
-    def test_seeded_configuration_is_prefix_stable(self) -> None:
-        centers_small, directions_small = seeded_a_configuration(20260811, 10)
-        centers_large, directions_large = seeded_a_configuration(20260811, 20)
-        np.testing.assert_array_equal(centers_small, centers_large[:10])
-        np.testing.assert_array_equal(directions_small, directions_large[:10])
+    def test_no_unconditional_periodic_minimum_image(self) -> None:
+        starts = np.array([[-100, 4990, 0], [-100, -4990, 0]], float)
+        ends = np.array([[100, 4990, 0], [100, -4990, 0]], float)
+        edges, _ = all_pair_edges(starts, ends)
+        self.assertEqual(edges.tolist(), [])
 
-    def test_periodic_identity_edge_inference(self) -> None:
+    def test_rows_are_not_merged_by_matching_seams(self) -> None:
         starts = np.array([[-5000, 1, 2], [100, 3, 4]], float)
         ends = np.array([[-100, 3, 4], [5000, 1, 2]], float)
-        edges = infer_periodic_identity_edges(starts, ends)
-        self.assertEqual(edges.tolist(), [[0, 1]])
+        result = connectivity(starts, ends)
+        self.assertFalse(result.connected)
 
 
 if __name__ == "__main__":

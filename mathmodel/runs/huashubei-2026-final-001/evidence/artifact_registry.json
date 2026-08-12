@@ -8,31 +8,66 @@
       "source_artifacts": [],
       "content_hash": "6d31c44022b08840b5e791dd11b431cbcdc187e0f2ff33f613d45728646d0c0a",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     },
     {
-      "artifact_id": "q3-mc",
-      "type": "result",
-      "path": "outputs/data/literal_q3_final_50000.json",
+      "artifact_id": "attachment-a",
+      "type": "data",
+      "path": "data/raw/A/attachment.xlsx",
       "source_artifacts": [
         "official-a"
       ],
-      "content_hash": "d39118cee4c04f34b050ae87968fea35f23a4160e26a41e3aab79155cf3a2288",
+      "content_hash": "6dc68dd49356aeab483906a524ff79855b454fcaccd168f81ff3a3ad989c4c51",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     },
     {
-      "artifact_id": "q4-mc",
-      "type": "result",
-      "path": "outputs/data/literal_q4_final_100000.json",
-      "source_artifacts": [
-        "official-a"
-      ],
-      "content_hash": "852828f571f8f633bd21c96ff1ff4f56f27f35550e39be08e90e00dc7a01ded6",
+      "artifact_id": "requirements",
+      "type": "model",
+      "path": "requirements.txt",
+      "source_artifacts": [],
+      "content_hash": "842c7f8805bdbf6567c822780c03329bfe3f150869047f25dbccd60ed5ef7bac",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "geometry-code",
+      "type": "model",
+      "path": "src/a/geometry.py",
+      "source_artifacts": [
+        "requirements"
+      ],
+      "content_hash": "f879622af26f538eb74347cdb294b93bd1d55959fc6d63547565f0915912a191",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "bounds-code",
+      "type": "model",
+      "path": "src/a/analytic_bounds.py",
+      "source_artifacts": [
+        "requirements"
+      ],
+      "content_hash": "1c73adad3cc7a09eb350f9442511ff1fe62920a3abebf26b9a6337a88e1ecd10",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "result-builder",
+      "type": "model",
+      "path": "src/a/build_corrected_results.py",
+      "source_artifacts": [
+        "geometry-code",
+        "bounds-code"
+      ],
+      "content_hash": "609ba41ca207c837906cb9649306838270bde0c7961b88cafeb4bff2e905afd6",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     },
     {
@@ -40,12 +75,25 @@
       "type": "result",
       "path": "outputs/data/final_results.json",
       "source_artifacts": [
-        "q3-mc",
-        "q4-mc"
+        "official-a",
+        "attachment-a",
+        "result-builder"
       ],
-      "content_hash": "f5f279547666351b8160e6cfa4d9f30b217bc7a8f218685a51053c9d19d0b6ee",
+      "content_hash": "a83ea8b6d921c55b13845f1276ccf3d12a277a86f56c1f9703f8fe72da90513d",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "figure-code",
+      "type": "model",
+      "path": "src/a/build_final_artifacts.py",
+      "source_artifacts": [
+        "requirements"
+      ],
+      "content_hash": "b9c5f17ea39356e45517a813ac52ae37d52c76d47925cd5acbf3407b5c7efbd9",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     },
     {
@@ -53,11 +101,12 @@
       "type": "figure",
       "path": "outputs/figures/F1_q3_threshold.pdf",
       "source_artifacts": [
-        "final-results"
+        "final-results",
+        "figure-code"
       ],
-      "content_hash": "cee159365f1a0c2d5ffa49809abbc87229b532ca8875ed4a82713e1177b3946f",
+      "content_hash": "325dd21ef5552118ecbbc05b39bd6b08a1807a0cba9f65a024e097e82c183956",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     },
     {
@@ -65,11 +114,12 @@
       "type": "figure",
       "path": "outputs/figures/F2_q2_failure_scale.pdf",
       "source_artifacts": [
-        "final-results"
+        "final-results",
+        "figure-code"
       ],
-      "content_hash": "ebd2e4e50f074e4805aba4f8961b4fbd6ab72f09bbd35fb4090c5a6e3a21d3c9",
+      "content_hash": "a1d60b6ccf3c2535a5d189bdf736bb9cf8b9e7145792b8a7d6272f47d6feaabd",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     },
     {
@@ -77,11 +127,12 @@
       "type": "figure",
       "path": "outputs/figures/F3_q4_cost_validation.pdf",
       "source_artifacts": [
-        "final-results"
+        "final-results",
+        "figure-code"
       ],
-      "content_hash": "9f5292914a3627440468abd9e96b9cfa8d5424cf4bbac45ba39e5ddd1cb84e82",
+      "content_hash": "493f39fef2092abd1e7cd4d68a7159bf3326b23f10f1a5ad647ab0013a58640b",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     },
     {
@@ -94,9 +145,9 @@
         "figure-f2",
         "figure-f3"
       ],
-      "content_hash": "38a8e6b9e13412975c3d703046c56592b2efc28475175901c1f7fc8295fa14a6",
+      "content_hash": "67236962e742d9eec9a18afdd945475d887d42d52e28c90122e942401f4d5fc3",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-11T16:20:53.734726+00:00",
+      "created_at": "2026-08-12T01:26:37.936911+00:00",
       "status": "current"
     }
   ]

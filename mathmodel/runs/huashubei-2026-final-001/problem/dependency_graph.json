@@ -10,7 +10,7 @@
   "edges": [
     {"from": "geometry_kernel", "to": "q1_connectivity", "artifact": "exact pairwise and boundary predicates"},
     {"from": "geometry_kernel", "to": "q2_probability", "artifact": "deterministic connectivity evaluator"},
-    {"from": "q2_probability", "to": "q3_threshold", "artifact": "probability estimator with Wilson interval"},
+    {"from": "q2_probability", "to": "q3_threshold", "artifact": "direct-bridge analytic probability"},
     {"from": "geometry_kernel", "to": "q4_mixture", "artifact": "A-A, A-B and B-B predicates"},
     {"from": "q2_probability", "to": "q4_mixture", "artifact": "sampling and uncertainty protocol"}
   ],
