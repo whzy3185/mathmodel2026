@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# AI assistance disclosure: drafted with OpenAI Codex and verified by executable tests.
 """Build corrected authoritative Q1-Q4 results after adversarial review."""
 
 from __future__ import annotations

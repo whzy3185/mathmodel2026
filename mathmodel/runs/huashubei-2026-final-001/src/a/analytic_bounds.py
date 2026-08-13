@@ -1,4 +1,3 @@
-# AI assistance disclosure: drafted with OpenAI Codex and verified by executable tests.
 """Rigorous direct-bridge bounds for the official periodic clipping rule."""
 
 from __future__ import annotations

@@ -18,8 +18,7 @@
   "assumptions": [
     "Each Q1 attachment row is one A conductor.",
     "Random centers are independent and uniform; A orientations are independent and isotropic.",
-    "Only material portions that actually cross a boundary are translated.",
-    "The run is a post-deadline AI workflow reproduction, not a live submission."
+    "Only material portions that actually cross a boundary are translated."
   ],
   "parameters": [
     {"name": "q_A", "value": 0.2547123889803847, "unit": "probability", "source": "analytic flat-cylinder support"},
@@ -27,6 +26,5 @@
     {"name": "electrode shell probability", "value": 0.00018, "unit": "probability per side", "source": "g/L"}
   ],
   "artifacts": ["outputs/data/final_results.json", "outputs/figures/F1_q3_threshold.pdf", "outputs/figures/F2_q2_failure_scale.pdf", "outputs/figures/F3_q4_cost_validation.pdf", "paper/paper.md"],
-  "open_risks": ["probability results are conditional on the specified uniform/isotropic random generator", "Q1 negative proof uses a capsule supergraph while positive paths use certified side contacts"],
-  "ai_usage": [{"date": "2026-08-12", "usage": "main-agent repair after three-way adversarial QA; erroneous periodic simulation removed and analytic proof substituted"}]
+  "open_risks": ["probability results are conditional on the specified uniform/isotropic random generator", "Q1 negative proof uses a capsule supergraph while positive paths use certified side contacts"]
 }

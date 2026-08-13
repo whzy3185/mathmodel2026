@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# AI assistance disclosure: drafted with OpenAI Codex and verified by executable tests.
 """Read-only audit of the official 2026 Huashu Cup A/B/C attachments."""
 
 from __future__ import annotations

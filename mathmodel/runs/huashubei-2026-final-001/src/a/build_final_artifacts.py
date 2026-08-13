@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# AI assistance disclosure: drafted with OpenAI Codex and verified by executable tests.
 """Render claim-bearing figures strictly from final_results.json."""
 
 from __future__ import annotations

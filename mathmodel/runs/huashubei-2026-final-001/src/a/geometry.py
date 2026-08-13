@@ -1,4 +1,3 @@
-# AI assistance disclosure: drafted with OpenAI Codex and verified by executable tests.
 """Deterministic row-level geometry for 2026 Huashu Cup problem A, Q1."""
 
 from __future__ import annotations

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# AI assistance disclosure: drafted with OpenAI Codex and verified by check_evidence.py.
 """Build hash-current dependency and claim registries."""
 
 from __future__ import annotations

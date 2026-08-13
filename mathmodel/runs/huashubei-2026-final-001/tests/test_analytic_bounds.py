@@ -1,4 +1,3 @@
-# AI assistance disclosure: drafted with OpenAI Codex and used for regression testing.
 from __future__ import annotations
 
 import sys

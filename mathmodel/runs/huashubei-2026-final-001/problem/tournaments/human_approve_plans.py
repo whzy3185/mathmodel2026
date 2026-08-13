@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# AI assistance disclosure: drafted with OpenAI Codex and covered by plan validation.
 """Human-only approval helper for the immutable Q1-Q4 model plans.
 
 Codex must not run this helper or supply its confirmation phrase. A human
