@@ -23,3 +23,5 @@
 第二轮攻击性 QA 后，已删除错误的无条件周期最小像模拟，Q1 改为官方“每行一个 A”，Q3/Q4 改为可复核的解析上下界和全整数穷举。权威机器结果为 `outputs/data/final_results.json`，论文为 `paper/paper.md`，证据链位于 `evidence/`。
 
 完整排版成果位于 `paper/华数杯A题完整论文.docx`、`paper/华数杯A题完整论文.pdf` 和 `paper/paper_full.md`；候选图、入选图、参考资源、攻击性审查报告、题面、附件、结果、源码、测试与证据文件汇总于 `paper/华数杯A题论文_支撑材料包.zip`。
+
+成熟国赛参考已扩展为 472 篇去重后的 CUMCM 单篇论文级链接索引，详见 `training/cumcm_high_score_papers_catalog.md`。目录不镜像第三方全文，并把“官方论文展示匹配”与“GitHub 整理库优秀论文标注”分开记录，避免把展示论文或候选集误写为全国一等奖。

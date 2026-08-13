@@ -37,6 +37,10 @@ def package_files() -> list[tuple[Path, str]]:
         (RUN / "training/award_paper_writing_visual_guide.md", "training/award_paper_writing_visual_guide.md"),
         (RUN / "training/expanded_paper_sources.md", "training/expanded_paper_sources.md"),
         (RUN / "training/source_manifest_expanded.json", "training/source_manifest_expanded.json"),
+        (RUN / "training/cumcm_high_score_papers_catalog.json", "training/cumcm_high_score_papers_catalog.json"),
+        (RUN / "training/cumcm_high_score_papers_catalog.csv", "training/cumcm_high_score_papers_catalog.csv"),
+        (RUN / "training/cumcm_high_score_papers_catalog.md", "training/cumcm_high_score_papers_catalog.md"),
+        (RUN / "training/scripts/build_cumcm_reference_catalog.py", "training/scripts/build_cumcm_reference_catalog.py"),
     ]
     dynamic: list[tuple[Path, str]] = []
     for path in sorted((RUN / "outputs/figures_v2").glob("*.png")):

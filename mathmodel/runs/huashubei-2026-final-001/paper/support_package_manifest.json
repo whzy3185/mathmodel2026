@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "run_id": "huashubei-2026-final-001",
   "description": "Full paper, figure candidates, selected figures, references, review reports and reproducibility files",
-  "file_count": 97,
+  "file_count": 102,
   "files": [
     {
       "archive_path": "paper/华数杯A题完整论文.docx",
@@ -91,14 +91,38 @@
     {
       "archive_path": "training/expanded_paper_sources.md",
       "source_path": "training/expanded_paper_sources.md",
-      "bytes": 8908,
-      "sha256": "6a1ee6ce89815e198ee27803e6129e4816897a3bc0dc93ed99220457078d4a31"
+      "bytes": 10023,
+      "sha256": "b5fc686149b11bb5a0bd4511b24d5736b1efa38e2e216d1226e3c479fb303c95"
     },
     {
       "archive_path": "training/source_manifest_expanded.json",
       "source_path": "training/source_manifest_expanded.json",
       "bytes": 8781,
       "sha256": "ff9efd8f8047e2c3da1ac37810fceda7077b601982383f3898c69de399dfefb7"
+    },
+    {
+      "archive_path": "training/cumcm_high_score_papers_catalog.json",
+      "source_path": "training/cumcm_high_score_papers_catalog.json",
+      "bytes": 637112,
+      "sha256": "5069eebcfb652e5bd65e530606b62f03d1e5eff06d7531fc6a3ed887e938a018"
+    },
+    {
+      "archive_path": "training/cumcm_high_score_papers_catalog.csv",
+      "source_path": "training/cumcm_high_score_papers_catalog.csv",
+      "bytes": 372295,
+      "sha256": "1528ca70a93a0c1df7a0b0341b17107289dcc3defd7c8e4c524280ddf0cc73f2"
+    },
+    {
+      "archive_path": "training/cumcm_high_score_papers_catalog.md",
+      "source_path": "training/cumcm_high_score_papers_catalog.md",
+      "bytes": 3419,
+      "sha256": "6d8a15ea6b396c601918c8a63f7fa4cc66dafc7de78207fbc99d3fce20670a74"
+    },
+    {
+      "archive_path": "training/scripts/build_cumcm_reference_catalog.py",
+      "source_path": "training/scripts/build_cumcm_reference_catalog.py",
+      "bytes": 16743,
+      "sha256": "b4e6f9b5c033955635a871d04e9ed07c63da1386da523d66fea5869e2f107dcf"
     },
     {
       "archive_path": "figures/01_problem_geometry.png",
@@ -509,6 +533,12 @@
       "sha256": "7e35f96e7ae7fcfbbba2327d1f0f6a5bf80d86218fd9c68b2392226b7f7c43bc"
     },
     {
+      "archive_path": "review_reports/figure_blind_audit_2026-08-13.md",
+      "source_path": "reports/figure_blind_audit_2026-08-13.md",
+      "bytes": 3646,
+      "sha256": "b9b9e3cf612370f3509e3d9e7ff4783905fe3992d39c21e475f8ddcce65cbc20"
+    },
+    {
       "archive_path": "review_reports/model_reasonableness_review.md",
       "source_path": "reports/model_reasonableness_review.md",
       "bytes": 27406,
@@ -559,8 +589,8 @@
     {
       "archive_path": "src/a/build_support_package.py",
       "source_path": "src/a/build_support_package.py",
-      "bytes": 4351,
-      "sha256": "02068843ec062050f6efe79786cf1b5bb2885e59d09e88a691c594838007855e"
+      "bytes": 4809,
+      "sha256": "b65842c7994be2d653d0c229dc12f604732454c362dcb75dab7ef55562a5580f"
     },
     {
       "archive_path": "src/a/geometry.py",

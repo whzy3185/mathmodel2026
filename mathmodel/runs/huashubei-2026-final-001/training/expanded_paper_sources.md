@@ -10,6 +10,8 @@
 
 ## 2. 扩展后统计
 
+第二轮已新增论文级目录 `cumcm_high_score_papers_catalog.json/.csv/.md`：从固定 GitHub 成熟总库的 513 个 PDF 中，排除赛题、规则、附件、合集、评述与重复项后，形成 **472 篇单篇论文记录**。其中 **18 篇**已按年份和展示编号匹配中国大学生在线官方论文展示，另 **454 篇**保留为“整理库优秀论文标注、待官方逐项核验”。该目录与下面 15 项“资源源/案例级清单”统计口径不同，不能相加，也不能把全部 472 篇称为全国一等奖。
+
 本次清单共 **15 项**：
 
 - GitHub：13 项；Hugging Face：2 项。
@@ -18,6 +20,7 @@
 - 聚合论文库或格式模板：3 项。
 - 许可明确、原则上可公开纳入的仓库：7 项；无许可证或内容来源权利链不清、仅可链接/元数据研究：8 项。
 - 当前实际落入 `training/external_repos` 的外部全文快照：**0 项**。曾尝试浅克隆许可明确仓库，但网络中断造成不完整工作树，已全部移除，避免提交残缺或权利边界不清的内容。后续若重新搬运，应固定 commit，并把代码许可与论文版权分开复核。
+- CUMCM 单篇参考记录：472 篇；只纳入元数据、固定链接和 Git blob 哈希，不纳入 PDF 全文。
 
 ## 3. 高价值资源表
 
@@ -42,6 +45,10 @@
 | HF-CUMCM-KB | Hugging Face | CUMCM 知识库，约 5.9 GB | C：上传者描述，当前缺少逐项证据 | 无明确许可证；仅链接，不下载/再分发 | 发现线索，不作为训练语料或奖项事实依据 |
 
 ## 4. 来源链接与固定版本
+
+- CUMCM 历年优秀论文总库：https://github.com/Xiaocold-B216/cumcm-modeling-Award-Collection ，commit `a042ecf898feaba6fc81d543a10e0188db8b2b12`；仓库未声明许可证，只作链接索引。
+- CUMCM 官网历年论文展示入口：https://www.mcm.edu.cn/html_cn/block/018500ec1a6bd8c7e9997133def2b590.html 。
+- 中国大学生在线论文展示索引：https://dxs.moe.gov.cn/zx/hd/sxjm/sxjmlw/qkt_sxjm_lw_lwzs.shtml 。
 
 - CUMCM 2023 A：https://github.com/linggm3/2023_CUMCM_National-First-Prize ，commit `486768dc1aa6e74622f8b0628ae32db3b51291f4`。
 - CUMCM 2020 B：https://github.com/seanys/CUMCM2020-Desert-Game ，commit `d5757bbb41e3435b22278bd36156bd8ba2d6274a`。
