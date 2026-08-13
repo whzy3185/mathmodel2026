@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0",
+  "run_id": "huashubei-2026-final-001",
+  "description": "Clean full paper and reproducibility support files",
+  "file_count": 35,
+  "files": [
+    {
+      "archive_path": "paper/华数杯A题完整论文_清洁版.docx",
+      "source_path": "paper/华数杯A题完整论文_清洁版.docx",
+      "bytes": 1038945,
+      "sha256": "6f46d361650586a29a0ae3a611ecedfa9d21ab932fedcad53b24c7bc7a1723c6"
+    },
+    {
+      "archive_path": "paper/华数杯A题完整论文_清洁版.pdf",
+      "source_path": "paper/华数杯A题完整论文_清洁版.pdf",
+      "bytes": 1461251,
+      "sha256": "9a31331c092cabfd77a05f14c0337d9b83a02bb4a5a9435e83060031fc39cff7"
+    },
+    {
+      "archive_path": "paper/paper_full.md",
+      "source_path": "paper/paper_full.md",
+      "bytes": 40532,
+      "sha256": "68917d82d6ae2976e2c3349940975673e618451ef8950b3065e100964c6f3e66"
+    },
+    {
+      "archive_path": "official/official_problem_bundle.zip",
+      "source_path": "input/attachments/official_problem_bundle.zip",
+      "bytes": 12161341,
+      "sha256": "f3be40932aeafcaec92af6447a770cd4fb6f9d21321afe9f66c8453f29a48cbd"
+    },
+    {
+      "archive_path": "official/problem_A.pdf",
+      "source_path": "input/problems/problem_A.pdf",
+      "bytes": 1246236,
+      "sha256": "6d31c44022b08840b5e791dd11b431cbcdc187e0f2ff33f613d45728646d0c0a"
+    },
+    {
+      "archive_path": "official/attachment_A.xlsx",
+      "source_path": "data/raw/A/attachment.xlsx",
+      "bytes": 58207,
+      "sha256": "6dc68dd49356aeab483906a524ff79855b454fcaccd168f81ff3a3ad989c4c51"
+    },
+    {
+      "archive_path": "official/official_format_rules.pdf",
+      "source_path": "rules/official_format_rules.pdf",
+      "bytes": 341577,
+      "sha256": "7aa7cc14ad61819a2b30444a6283dc6dba170dcd69c1232bc1b3be19f1ab4e22"
+    },
+    {
+      "archive_path": "results/final_results.json",
+      "source_path": "outputs/data/final_results.json",
+      "bytes": 9774,
+      "sha256": "a83ea8b6d921c55b13845f1276ccf3d12a277a86f56c1f9703f8fe72da90513d"
+    },
+    {
+      "archive_path": "reproduction/requirements.txt",
+      "source_path": "requirements.txt",
+      "bytes": 90,
+      "sha256": "842c7f8805bdbf6567c822780c03329bfe3f150869047f25dbccd60ed5ef7bac"
+    },
+    {
+      "archive_path": "evidence/artifact_registry.json",
+      "source_path": "evidence/artifact_registry.json",
+      "bytes": 6492,
+      "sha256": "4e2f6138c70d9819c54b619fc42046d981aa92c338bf8d3c9a82ac96a3b9ead1"
+    },
+    {
+      "archive_path": "evidence/claim_evidence.json",
+      "source_path": "evidence/claim_evidence.json",
+      "bytes": 2567,
+      "sha256": "84d9f32b8df61854e5a632c83540e8690ba40f5a3081166a64ba53209335f683"
+    },
+    {
+      "archive_path": "evidence/figure_contracts.md",
+      "source_path": "evidence/figure_contracts.md",
+      "bytes": 3107,
+      "sha256": "ffca96f7bd0d674379a46980db16e63b7955e0dd5b744826c51f28b32ebed48d"
+    },
+    {
+      "archive_path": "figures/01_problem_geometry.png",
+      "source_path": "outputs/figures_v2/01_problem_geometry.png",
+      "bytes": 88837,
+      "sha256": "9e70f6936a325bd55b84f011699ab1a14c25bda0b98ae948a0b944fa3a54d506"
+    },
+    {
+      "archive_path": "figures/02_workflow.png",
+      "source_path": "outputs/figures_v2/02_workflow.png",
+      "bytes": 112244,
+      "sha256": "a8e51798da0e67147a0cbfd2ff830e764890c43b5849e5f9d3bab31ae847e307"
+    },
+    {
+      "archive_path": "figures/03_data_audit.png",
+      "source_path": "outputs/figures_v2/03_data_audit.png",
+      "bytes": 78326,
+      "sha256": "186b2aaa4f19fbf6a64545be3001d990befd6e9474bcc8b930e9b282ae21efea"
+    },
+    {
+      "archive_path": "figures/04_q1_xy_projection.png",
+      "source_path": "outputs/figures_v2/04_q1_xy_projection.png",
+      "bytes": 110079,
+      "sha256": "7a719f304b1c1c193bcbf7c6674f97e52c677e5c51c6f98b405090cde0c145bb"
+    },
+    {
+      "archive_path": "figures/05_q1_xz_projection.png",
+      "source_path": "outputs/figures_v2/05_q1_xz_projection.png",
+      "bytes": 108881,
+      "sha256": "b60d701f9886b793a626d3da3e406f749e0dc88bf0c852898c8b3968dbb5f86e"
+    },
+    {
+      "archive_path": "figures/06_flat_cylinder_certificate.png",
+      "source_path": "outputs/figures_v2/06_flat_cylinder_certificate.png",
+      "bytes": 68983,
+      "sha256": "76e7563216c3769c79a269d6e0621bdf59c43e478403457311a20af782844455"
+    },
+    {
+      "archive_path": "figures/07_direct_bridge_mechanism.png",
+      "source_path": "outputs/figures_v2/07_direct_bridge_mechanism.png",
+      "bytes": 78166,
+      "sha256": "bcc05c4ea55f47066fc1b125c7f2d2da258d493be8cc0ffbada2ded90373eea2"
+    },
+    {
+      "archive_path": "figures/08_orientation_support_curve.png",
+      "source_path": "outputs/figures_v2/08_orientation_support_curve.png",
+      "bytes": 57793,
+      "sha256": "451aed64ad13cc02a181c36bfb41c19dd72fca44c568f13138a5f81a847516b7"
+    },
+    {
+      "archive_path": "figures/09_event_bounds.png",
+      "source_path": "outputs/figures_v2/09_event_bounds.png",
+      "bytes": 69627,
+      "sha256": "af27bb787f4b582175a740f6e345ed0a452a84aea6dd49169be1412de7a04619"
+    },
+    {
+      "archive_path": "figures/10_q2_failure_scale_cn.png",
+      "source_path": "outputs/figures_v2/10_q2_failure_scale_cn.png",
+      "bytes": 62326,
+      "sha256": "287b5bbdcdaf5486eb730577f52908b4f65df7682a7036a77023e6a42c0d64f8"
+    },
+    {
+      "archive_path": "figures/11_q3_threshold_cn.png",
+      "source_path": "outputs/figures_v2/11_q3_threshold_cn.png",
+      "bytes": 67367,
+      "sha256": "115f17e64f58151e45f07257c657c77a58edc47a49865933f81d27e46383fca9"
+    },
+    {
+      "archive_path": "figures/12_q4_integer_domain.png",
+      "source_path": "outputs/figures_v2/12_q4_integer_domain.png",
+      "bytes": 84744,
+      "sha256": "6099441595e97a349105a3edaf9aaf278ef999cf36221ab14156a2ad38e5cabb"
+    },
+    {
+      "archive_path": "figures/13_parameter_sensitivity.png",
+      "source_path": "outputs/figures_v2/13_parameter_sensitivity.png",
+      "bytes": 67039,
+      "sha256": "2002c6979b17c456fd8e65dd0538d8c0d9af53237f0b4bc6aa1549205a458f38"
+    },
+    {
+      "archive_path": "src/a/analytic_bounds.py",
+      "source_path": "src/a/analytic_bounds.py",
+      "bytes": 5863,
+      "sha256": "e63045e240d3b9496389723baa07d6f12c1a14bbe52fbfa40602e38147c03702"
+    },
+    {
+      "archive_path": "src/a/build_corrected_results.py",
+      "source_path": "src/a/build_corrected_results.py",
+      "bytes": 3294,
+      "sha256": "678c668233e9549476618b162a73a9eb02abc39788d0d696ce92ee5c918cd23d"
+    },
+    {
+      "archive_path": "src/a/build_evidence_registry.py",
+      "source_path": "src/a/build_evidence_registry.py",
+      "bytes": 4734,
+      "sha256": "6ca3ca4e54db2b81cb2f02d110d38c3cedbcd247de6f04516ad14269b26c793f"
+    },
+    {
+      "archive_path": "src/a/build_final_artifacts.py",
+      "source_path": "src/a/build_final_artifacts.py",
+      "bytes": 3188,
+      "sha256": "3815cf1a2740a1234cbb5ba0cc1f62b74df48ce2ac3e1847af4c0944cf5a8600"
+    },
+    {
+      "archive_path": "src/a/build_full_paper.py",
+      "source_path": "src/a/build_full_paper.py",
+      "bytes": 39749,
+      "sha256": "5e5569a5454148083c305fdde7724cd8d4cb116e057c9429ece75adc79ca2501"
+    },
+    {
+      "archive_path": "src/a/build_support_package.py",
+      "source_path": "src/a/build_support_package.py",
+      "bytes": 3492,
+      "sha256": "41de9a5b8773707304ab0953ce30dfe4f281daa3773ab47494658f6ee08180e2"
+    },
+    {
+      "archive_path": "src/a/geometry.py",
+      "source_path": "src/a/geometry.py",
+      "bytes": 7029,
+      "sha256": "64f9962e99d98f63313c4876f5dd4c53775cb1773c09913c511d949ab4ca1495"
+    },
+    {
+      "archive_path": "tests/test_a_geometry.py",
+      "source_path": "tests/test_a_geometry.py",
+      "bytes": 2551,
+      "sha256": "376ed7661ce459815841739f3245c42a5aabf110378004e972f70059368c2509"
+    },
+    {
+      "archive_path": "tests/test_analytic_bounds.py",
+      "source_path": "tests/test_analytic_bounds.py",
+      "bytes": 2120,
+      "sha256": "e03d856cddddcde59420bdccc56074b6943c0bbd3bb0cd421e5a4bf5e70f6375"
+    },
+    {
+      "archive_path": "tests/test_final_results.py",
+      "source_path": "tests/test_final_results.py",
+      "bytes": 1838,
+      "sha256": "3ed840c3f0253dee455d899bf87f06c0765212b5d85607bcedb7a234d0cb3db6"
+    }
+  ]
+}

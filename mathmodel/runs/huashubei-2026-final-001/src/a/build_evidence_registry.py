@@ -28,6 +28,9 @@ def main() -> int:
         ("figure-f2", "figure", "outputs/figures/F2_q2_failure_scale.pdf", ["final-results", "figure-code"]),
         ("figure-f3", "figure", "outputs/figures/F3_q4_cost_validation.pdf", ["final-results", "figure-code"]),
         ("paper", "paper", "paper/paper.md", ["final-results", "figure-f1", "figure-f2", "figure-f3"]),
+        ("paper-full-md", "paper", "paper/paper_full.md", ["final-results", "attachment-a"]),
+        ("paper-full-docx", "paper", "paper/华数杯A题完整论文_清洁版.docx", ["paper-full-md"]),
+        ("paper-full-pdf", "paper", "paper/华数杯A题完整论文_清洁版.pdf", ["paper-full-docx"]),
     ]
     artifacts = []
     for artifact_id, artifact_type, relative, sources in specs:

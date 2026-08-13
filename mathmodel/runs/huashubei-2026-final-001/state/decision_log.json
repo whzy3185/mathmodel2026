@@ -25,6 +25,6 @@
     {"name": "q_B", "value": 0.04, "unit": "probability", "source": "analytic sphere boundary layer"},
     {"name": "electrode shell probability", "value": 0.00018, "unit": "probability per side", "source": "g/L"}
   ],
-  "artifacts": ["outputs/data/final_results.json", "outputs/figures/F1_q3_threshold.pdf", "outputs/figures/F2_q2_failure_scale.pdf", "outputs/figures/F3_q4_cost_validation.pdf", "paper/paper.md"],
+  "artifacts": ["outputs/data/final_results.json", "outputs/figures/F1_q3_threshold.pdf", "outputs/figures/F2_q2_failure_scale.pdf", "outputs/figures/F3_q4_cost_validation.pdf", "paper/paper.md", "paper/paper_full.md", "paper/华数杯A题完整论文_清洁版.docx", "paper/华数杯A题完整论文_清洁版.pdf", "paper/华数杯A题论文_支撑材料包.zip"],
   "open_risks": ["probability results are conditional on the specified uniform/isotropic random generator", "Q1 negative proof uses a capsule supergraph while positive paths use certified side contacts"]
 }

@@ -21,3 +21,5 @@
 - 本项目发生在比赛截止时间之后，定位为赛后建模复现实验。
 
 第二轮攻击性 QA 后，已删除错误的无条件周期最小像模拟，Q1 改为官方“每行一个 A”，Q3/Q4 改为可复核的解析上下界和全整数穷举。权威机器结果为 `outputs/data/final_results.json`，论文为 `paper/paper.md`，证据链位于 `evidence/`。
+
+完整排版成果位于 `paper/华数杯A题完整论文_清洁版.docx`、`paper/华数杯A题完整论文_清洁版.pdf` 和 `paper/paper_full.md`；相关题面、附件、图表、结果、源码、测试与证据文件汇总于 `paper/华数杯A题论文_支撑材料包.zip`。

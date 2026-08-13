@@ -8,7 +8,7 @@
       "source_artifacts": [],
       "content_hash": "6d31c44022b08840b5e791dd11b431cbcdc187e0f2ff33f613d45728646d0c0a",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -20,7 +20,7 @@
       ],
       "content_hash": "6dc68dd49356aeab483906a524ff79855b454fcaccd168f81ff3a3ad989c4c51",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -30,7 +30,7 @@
       "source_artifacts": [],
       "content_hash": "842c7f8805bdbf6567c822780c03329bfe3f150869047f25dbccd60ed5ef7bac",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -42,7 +42,7 @@
       ],
       "content_hash": "64f9962e99d98f63313c4876f5dd4c53775cb1773c09913c511d949ab4ca1495",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -54,7 +54,7 @@
       ],
       "content_hash": "e63045e240d3b9496389723baa07d6f12c1a14bbe52fbfa40602e38147c03702",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -67,7 +67,7 @@
       ],
       "content_hash": "678c668233e9549476618b162a73a9eb02abc39788d0d696ce92ee5c918cd23d",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -81,7 +81,7 @@
       ],
       "content_hash": "a83ea8b6d921c55b13845f1276ccf3d12a277a86f56c1f9703f8fe72da90513d",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -93,7 +93,7 @@
       ],
       "content_hash": "3815cf1a2740a1234cbb5ba0cc1f62b74df48ce2ac3e1847af4c0944cf5a8600",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -106,7 +106,7 @@
       ],
       "content_hash": "325dd21ef5552118ecbbc05b39bd6b08a1807a0cba9f65a024e097e82c183956",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -119,7 +119,7 @@
       ],
       "content_hash": "a1d60b6ccf3c2535a5d189bdf736bb9cf8b9e7145792b8a7d6272f47d6feaabd",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -132,7 +132,7 @@
       ],
       "content_hash": "493f39fef2092abd1e7cd4d68a7159bf3326b23f10f1a5ad647ab0013a58640b",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     },
     {
@@ -147,7 +147,44 @@
       ],
       "content_hash": "6b1fc1b3fdcf10c109f59fd5ea5ba6f1c6d52f5d0f2b713e0d3a46c0cc212639",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:06:04.604770+00:00",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "paper-full-md",
+      "type": "paper",
+      "path": "paper/paper_full.md",
+      "source_artifacts": [
+        "final-results",
+        "attachment-a"
+      ],
+      "content_hash": "68917d82d6ae2976e2c3349940975673e618451ef8950b3065e100964c6f3e66",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "paper-full-docx",
+      "type": "paper",
+      "path": "paper/华数杯A题完整论文_清洁版.docx",
+      "source_artifacts": [
+        "paper-full-md"
+      ],
+      "content_hash": "6f46d361650586a29a0ae3a611ecedfa9d21ab932fedcad53b24c7bc7a1723c6",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "paper-full-pdf",
+      "type": "paper",
+      "path": "paper/华数杯A题完整论文_清洁版.pdf",
+      "source_artifacts": [
+        "paper-full-docx"
+      ],
+      "content_hash": "9a31331c092cabfd77a05f14c0337d9b83a02bb4a5a9435e83060031fc39cff7",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-13T06:53:58.650132+00:00",
       "status": "current"
     }
   ]
