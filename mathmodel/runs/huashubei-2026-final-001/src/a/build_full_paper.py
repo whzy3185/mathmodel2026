@@ -16,6 +16,7 @@ from docx.shared import Cm, Pt, RGBColor
 RUN = Path(__file__).resolve().parents[2]
 OUT = RUN / "paper"
 FIG = RUN / "outputs" / "figures_v2"
+RESEARCH_FIG = RUN / "outputs" / "figures_research"
 RESULTS = json.loads((RUN / "outputs" / "data" / "final_results.json").read_text(encoding="utf-8"))
 
 TITLE = "周期边界下导电介质填充的连通概率界与整数成本优化"
@@ -268,7 +269,7 @@ class Paper:
         if explanation:
             self.paragraph(explanation)
 
-    def figure(self, filename: str, caption: str, width_cm=15.5):
+    def figure(self, filename: str, caption: str, width_cm=15.5, *, research=False):
         self.fig_no += 1
         p = self.doc.add_paragraph()
         p.paragraph_format.first_line_indent = Cm(0)
@@ -276,14 +277,16 @@ class Paper:
         p.paragraph_format.space_after = Pt(1)
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.keep_with_next = True
-        picture = p.add_run().add_picture(str(FIG / filename), width=Cm(width_cm))
+        figure_root = RESEARCH_FIG if research else FIG
+        picture = p.add_run().add_picture(str(figure_root / filename), width=Cm(width_cm))
         picture._inline.docPr.set("title", f"图{self.fig_no} {caption}")
         picture._inline.docPr.set("descr", caption)
         cap = self.doc.add_paragraph(style="Figure Caption")
         cap.paragraph_format.keep_together = True
         r = cap.add_run(f"图{self.fig_no}  {caption}")
         set_run_font(r, size=10)
-        self.md += [f"![图{self.fig_no} {caption}](../outputs/figures_v2/{filename})", "", f"图{self.fig_no}  {caption}", ""]
+        rel = "figures_research" if research else "figures_v2"
+        self.md += [f"![图{self.fig_no} {caption}](../outputs/{rel}/{filename})", "", f"图{self.fig_no}  {caption}", ""]
 
     def table(self, caption: str, headers, rows, widths_cm, aligns=None, font_size=9.5):
         self.table_no += 1
@@ -378,15 +381,15 @@ def build_paper():
     p.meta_line()
     p.title()
     p.abstract_heading()
-    p.paragraph("本文研究周期立方微构体中导电介质的左右导通判定、随机填充概率估计与成本优化问题。针对附件给出的确定性构型，将每个平端圆柱视为图节点，以介质间最短距离和介质—电极距离为连边准则；对胶囊超集给出的候选边，再以轴段内部最短点参数作为平端圆柱侧面接触证书。针对随机填充，利用周期边界产生的单粒子直接贯通事件构造总导通概率下界，并对“无直接贯通但仍存在通路”的剩余事件建立终端薄壳联合上界。最后在整数域内完整枚举低成本方案，分别讨论允许某类介质数量为零和两类介质均为正两种题意口径。")
-    p.paragraph("结果表明：附件组1不导通，组2和组3导通，显式通路分别为左面-2-12-24-39-右面和左面-63-264-216-351-右面。A 的体积分数为0.50%、0.60%、0.70%和1.00%时，仅直接贯通事件已使不导通概率上界分别降至10^-45.20、10^-54.13、10^-63.20和10^-90.27量级。仅填充A时，7根A的总导通概率上界为0.872279，8根A的直接贯通概率下界为0.904810，故达到90%导通概率的最小数量为8根，对应体积分数0.01131%，按百分号后两位报告为0.01%。")
-    p.paragraph("混合填充中，若允许某类介质数量为零，非负整数域最优方案为0A+57B，成本0.09550元；若“同时填充”要求两类介质均出现，则正混合域最优方案为1A+50B，成本0.09862元。全文区分精确概率、严格下界和严格上界，阈值与最优性结论均由相邻不可行方案的上界证据闭合。")
+    p.paragraph("本文研究周期立方微构体中导电介质的左右导通判定、随机填充概率界与成本优化问题。针对附件给出的确定性构型，将每个平端圆柱视为图节点，以介质间最短距离和介质—电极距离为连边准则；胶囊体仅用于生成保守候选边，正例路径再由轴段内部最短点完成几何核验。随机填充部分首先声明独立均匀中心、独立各向同性取向以及周期平移片段保持母体导体身份三项概率模型条件；随后由单粒子直接贯通事件构造总导通概率下界，并对“无直接贯通但仍存在通路”的剩余事件建立终端薄壳联合上界。最后在整数域内枚举全部低成本方案，分别讨论允许某类介质为零和两类介质均为正两种口径。")
+    p.paragraph("在上述概率模型条件下，附件组1不导通，组2和组3导通，显式通路分别为左面-2-12-24-39-右面和左面-63-264-216-351-右面。A 的体积分数为0.50%、0.60%、0.70%和1.00%时，仅直接贯通事件已使总不导通概率上界分别降至10^-45.20、10^-54.13、10^-63.20和10^-90.27量级；这些下界严格小于1，不能因浮点舍入写成精确等于1。仅填充A时，7根A的总导通概率上界为0.872279，8根A的直接贯通概率下界为0.904810，故最低数量为8根，对应体积分数0.01131%，按百分号后两位报告为0.01%。")
+    p.paragraph("混合填充中，按题目“同时填充”的严格语义，1A+50B为两类数量均为正时的最低成本方案，成本0.09862元；放宽为非负整数域后，边界解0A+57B成本0.09550元。全文区分解析事件概率、总导通下界和总导通上界，阈值与最优性均由不可行侧的上界证据闭合。")
     p.keyword("周期边界；随机几何图；导通概率界；联合界；整数优化")
     p.page_break()
 
     p.heading("1  问题重述与问题分析")
     p.heading("1.1  问题背景与研究对象", 2)
-    p.paragraph("题目给定边长L=10000 nm的立方微构体，左右带电面位于x=-5000 nm与x=5000 nm。当导电介质之间或介质与带电面的表面最短距离不超过g=1.8 nm时，视为接触导通。介质A为高度H=5000 nm、半径r_A=30 nm的平端直圆柱；介质B为半径r_B=200 nm的球。边界采用周期平移截断规则，即越过边界的部分从对侧进入且仍属于同一导体。图1概括了几何对象和接触口径。")
+    p.paragraph("题目给定边长L=10000 nm的立方微构体，左右带电面位于x=-5000 nm与x=5000 nm。当导电介质之间或介质与带电面的表面最短距离不超过g=1.8 nm时，视为接触导通。介质A为高度H=5000 nm、半径r_A=30 nm的平端直圆柱；介质B为半径r_B=200 nm的球。题面规定越界部分平移一个边长后从对侧进入。随机问题还需要补充解释：本文把这些平移片段视为母体导体的周期表示，电学身份保持不变。该解释是Q2-Q4解析结论成立的条件，图1概括几何对象和接触口径。")
     p.figure("01_problem_geometry.png", "问题几何、介质类型与周期边界示意", 15.3)
     p.heading("1.2  四个问题的输入、输出与难点", 2)
     p.paragraph("问题一的输入是附件中的三组圆柱轴段坐标，输出是每组是否导通及可复核的通路；难点在于平端圆柱不能直接等同于端部为半球的胶囊体。问题二将确定性坐标改为随机位置和随机方向，要求计算四个体积分数下的导通概率。问题三寻找仅填充A且导通概率不低于90%的最低填充率，需要同时证明候选值充分和前一整数不足。问题四加入B及材料成本，形成带概率约束的二元整数优化，并存在“是否允许某类介质数量为零”的题意歧义。")
@@ -398,10 +401,11 @@ def build_paper():
     p.heading("2.1  题面条件与补充假设", 2)
     p.table("题面条件、补充假设及失效影响", ["类别", "内容", "使用位置", "改变后的影响"], [
         ["题面条件", "每行附件数据表示一个A；边界越界部分周期平移", "Q1-Q4", "改变介质身份或周期解释会改变全部结果"],
-        ["几何口径", "Q1保持附件轴段的截断状态，不擅自延长为5000 nm", "Q1", "延长会制造非真实接触边"],
+        ["几何口径", "Q1按附件每行一个A建图；不跨行合并介质身份", "Q1", "跨行合并会制造同体边"],
         ["补充假设", "介质中心独立且在立方体内均匀分布", "Q2-Q4", "排斥或团聚会破坏独立乘积式"],
         ["补充假设", "A的轴向独立且各向同性", "Q2-Q4", "取向偏置会改变q_A及整数阈值"],
-        ["补充假设", "随机介质允许重叠，忽略制造排斥", "Q2-Q4", "不可重叠时需改用相关随机几何模型"],
+        ["题面条件", "随机介质允许相互贯穿、重叠", "Q2-Q4", "若增加排斥约束则概率模型改变"],
+        ["补充解释", "周期平移片段保持母体导体的电学身份", "Q2-Q4", "若片段电学断开，则直接贯通机制失效"],
     ], [2.2, 6.2, 2.4, 5.1], aligns=[WD_ALIGN_PARAGRAPH.CENTER, WD_ALIGN_PARAGRAPH.LEFT, WD_ALIGN_PARAGRAPH.CENTER, WD_ALIGN_PARAGRAPH.LEFT], font_size=9)
     p.heading("2.2  主要符号", 2)
     p.table("主要符号及含义", ["符号", "含义", "取值或单位"], [
@@ -413,26 +417,25 @@ def build_paper():
         ["P_dir", "直接贯通事件D的概率", "[0,1]"], ["C", "材料成本", "元"],
     ], [2.7, 8.7, 4.5], aligns=[WD_ALIGN_PARAGRAPH.CENTER, WD_ALIGN_PARAGRAPH.LEFT, WD_ALIGN_PARAGRAPH.CENTER], font_size=9.4)
     p.heading("2.3  体积与成本换算", 2)
-    p.equation("V_A=pi*r_A^2*H=1.4137167e7 nm^3,  V_B=4*pi*r_B^3/3=3.3510322e7 nm^3")
-    p.equation("C=1.05*V_A*n_A/1e9+0.05*V_B*n_B/1e9=0.0148440253*n_A+0.0016755161*n_B")
+    p.equation("V_A=πr_A²H=1.4137167×10⁷ nm³,   V_B=4πr_B³/3=3.3510322×10⁷ nm³")
+    p.equation("C=1.05V_An_A/10⁹+0.05V_Bn_B/10⁹=0.0148440253n_A+0.0016755161n_B")
     p.paragraph("式(1)按真实圆柱与球体积计算，式(2)把nm^3换算为um^3。所有数量先在整数域内求解，体积分数仅作为结果的物理表达，不用四舍五入后的体积分数反推粒子数。")
 
     p.heading("3  问题一：确定性构型的几何连通模型")
     p.heading("3.1  附件数据审计", 2)
-    p.paragraph("三组附件分别包含12、49和535个介质A。轴段长度范围为1019.117-5000.000 nm、577.474-5000.000 nm和525.697-5000.000 nm，说明附件中存在大量边界截断轴段。组1、组2和组3触及任一边界面的介质比例分别为58.3%、44.9%和71.0%。因此不能把所有截断轴段无条件延长，也不能因端点落在边界上而跨行合并介质身份。数据特征见图3。")
+    p.paragraph("三组附件分别包含12、49和535行介质A数据。轴段长度范围为1019.117-5000.000 nm、577.474-5000.000 nm和525.697-5000.000 nm，说明坐标中保留了边界截断后的轴段表达。组1、组2和组3触及任一边界面的行比例分别为58.3%、44.9%和71.0%。附件又明确每行表示一个A，因此本文不因相对边界端点重合而跨行合并身份，也不把短轴段擅自延长。数据特征见图3。")
     p.figure("03_data_audit.png", "附件三组数据规模与边界截断特征", 15.3)
     p.heading("3.2  行级连通图", 2)
     p.paragraph("建立无向图G=(V,E)。V由两个虚拟电极节点LEFT、RIGHT和每一行对应的圆柱节点组成。若圆柱与电极的最短距离不超过g，则连接圆柱节点与相应电极；若两个圆柱的表面最短距离不超过g，则连接对应节点。LEFT与RIGHT位于同一连通分量当且仅当该构型导通。")
-    p.equation("(i,j) in E  iff  dist(A_i,A_j)<=g;   (LEFT,i) in E  iff  dist(A_i,F_L)<=g")
+    p.equation("(i,j)∈E ⇔ dist(A_i,A_j)≤g;   (LEFT,i)∈E ⇔ dist(A_i,F_L)≤g")
     p.heading("3.3  平端圆柱的候选边与充分证书", 2)
     p.paragraph("两条轴段的最短距离不超过2r_A+g=61.8 nm时，相应胶囊体必接触，因此该条件可用于生成候选边。但胶囊体把圆柱端部替换为半球，可能把端点附近接近误判为平端圆柱接触。为避免这一问题，对正例路径中的每条圆柱—圆柱边保存轴段最短点参数s,t。当0<s<1且0<t<1时，两个最短点均位于轴段内部，表面间隙等于max(0,d_axis-2r_A)，可作为真实侧面接触的充分证书。对负例，胶囊体是平端圆柱的超集；若胶囊超图仍不连通，则真实图一定不连通。图4解释了证书条件。")
     p.figure("06_flat_cylinder_certificate.png", "平端圆柱侧面接触的轴段最短点证书", 14.7)
     p.heading("3.4  三组构型的求解结果", 2)
-    p.paragraph("对每组数据先计算电极接触，再全对全生成候选边，以广相位空间索引复核边数，最后用广度优先搜索恢复一条LEFT-RIGHT路径。图5和图6从x-y、x-z两个投影展示全部轴段及显式路径；投影只用于解释，最终连边仍在三维空间中计算。")
-    p.figure("04_q1_xy_projection.png", "三组构型的x-y投影与显式导通路径", 15.3)
-    p.figure("05_q1_xz_projection.png", "三组构型的x-z投影与显式导通路径", 15.3)
+    p.paragraph("对每组数据先计算电极接触，再全对全生成候选边，以广相位空间索引复核边数，最后用广度优先搜索恢复LEFT-RIGHT路径。图5把三组真实xyz构型并列展示，红线只标注算法恢复的路径；三维图用于解释空间关系，结论仍以数值图搜索和路径证书为准。")
+    p.figure("C01_q1_3d_triptych.png", "三组真实三维构型与显式导通路径", 15.8, research=True)
     p.table("Q1三组附件构型的连通结果", ["组别", "节点数", "边数", "左接触", "右接触", "结论", "显式路径"], q1_result_rows(), [1.1, 1.4, 1.3, 1.3, 1.3, 1.5, 8.1], aligns=[WD_ALIGN_PARAGRAPH.CENTER]*6+[WD_ALIGN_PARAGRAPH.LEFT], font_size=8.6)
-    p.paragraph("组1在更易连通的胶囊超图中仅有2条介质间边，LEFT与RIGHT仍分属不同连通分量，因此真实平端圆柱构型必不导通。组2和组3均找到显式路径；表4列出的6条介质间边均满足s,t位于(0,1)，故正例不依赖胶囊端部近似。")
+    p.paragraph("组1在更易连通的胶囊超图中仅有2条介质间候选边，LEFT与RIGHT仍分属不同连通分量，因此按附件行级口径不导通。组2和组3均找到显式路径；表4列出的6条介质间边满足s,t位于(0,1)，轴距不超过61.8 nm。这里的内部最短点是侧面接触的必要核验；对最靠近端部的边，正文不把胶囊候选图中的全部边都宣称为精确平端圆柱分类。")
     p.table("Q1正例路径的侧面接触证书", ["组别", "边", "轴距/nm", "s", "t", "证书"], q1_cert_rows(), [1.5, 2.5, 3.0, 2.2, 2.2, 2.7], font_size=9.2)
 
     p.heading("4  Q2-Q4共享的随机填充概率模型")
@@ -441,49 +444,51 @@ def build_paper():
     p.figure("07_direct_bridge_mechanism.png", "A、B单粒子跨越周期边界的直接贯通机制", 15.3)
     p.heading("4.2  圆柱A的直接贯通概率", 2)
     p.paragraph("设圆柱轴向单位向量的x分量为u_x。平端圆柱在x方向的支撑半宽由轴向投影和端面圆盘投影共同组成。固定方向后，圆柱中心落入任一边界内侧a_x范围即越界，两侧合计条件概率为2a_x/L。")
-    p.equation("a_x=(H/2)*abs(u_x)+r_A*sqrt(1-u_x^2)")
+    p.equation("a_x=(H/2)|u_x|+r_A√(1-u_x²)")
     p.paragraph("各向同性方向满足E|u_x|=1/2以及E sqrt(1-u_x^2)=pi/4，故对方向积分可得q_A。图8给出条件越界概率随|u_x|的变化及其方向平均。")
-    p.equation("q_A=2*E(a_x)/L=(H/2+pi*r_A/2)/L=0.25471238898")
+    p.equation("q_A=2E(a_x)/L=(H/2+πr_A/2)/L=0.25471238898")
     p.figure("08_orientation_support_curve.png", "圆柱取向对支撑半宽和条件越界概率的影响", 15.3)
     p.heading("4.3  球B与多粒子的直接贯通下界", 2)
     p.paragraph("球的支撑半宽恒为r_B，故球心落入任一边界内侧r_B范围即可越界。不同粒子的位置和方向独立时，至少一个粒子直接贯通的概率可由补事件乘积得到。")
-    p.equation("q_B=2*r_B/L=0.04")
-    p.equation("P_dir=P(D)=1-(1-q_A)^n_A*(1-q_B)^n_B")
+    p.equation("q_B=2r_B/L=0.04")
+    p.equation("P_dir=P(D)=1-(1-q_A)ⁿᴬ(1-q_B)ⁿᴮ")
     p.heading("4.4  非直接通路的剩余薄壳联合上界", 2)
     p.paragraph("为证明某个较低填充方案不可能达到90%，仅有下界不够。定义D_i为粒子i直接越界，C_i^L为粒子i接触左电极。固定其x向支撑半宽a_i时，无条件接触层宽为a_i+g，因此不能把P(C_i^L)误写成g/L。关键在于研究无直接贯通事件D^c中的剩余接触：粒子既不越界又接触左电极时，中心只能位于宽度恰为g的薄壳。")
-    p.equation("S_i^L=C_i^L intersect D_i^c={-L/2+a_i<X_i<=-L/2+a_i+g},  P(S_i^L)=g/L")
+    p.equation("S_iᴸ=C_iᴸ∩D_iᶜ={-L/2+a_i<X_i≤-L/2+a_i+g},   P(S_iᴸ)=g/L")
     p.paragraph("令N=T交D^c。任何N中的左右路径都必须包含不同的终端粒子i和j，分别落入左、右剩余薄壳；若由同一粒子承担两端接触，则该粒子已经属于直接贯通事件D。对所有有序粒子对使用独立性和Boole联合界[3]，得到式(9)。事件关系见图9。")
-    p.equation("P_dir<=P(T)<=min{1, P_dir+n*(n-1)*(g/L)^2},  n=n_A+n_B")
+    p.equation("P_dir≤P(T)≤min{1, P_dir+n(n-1)(g/L)²},   n=n_A+n_B")
     p.figure("09_event_bounds.png", "总导通、直接贯通与剩余薄壳事件的上下界关系", 15.3)
     p.heading("4.5  概率模型的解释边界", 2)
     p.paragraph("式(9)的上界用于证明“不足”，不用于精确估计真实导通概率；它忽略了中间粒子如何连接，因此通常偏松，但不会漏掉曲折通路。式(8)的下界用于证明“充分”，也不等于总导通概率。只有当上下界位于阈值两侧时，才能给出严格整数阈值或最优性结论。若粒子中心存在排斥、团聚或取向相关，式(8)中的独立乘积和式(9)中的跨粒子独立性需要重建。")
+    p.heading("4.6  与连续渗流模型的关系", 2)
+    p.paragraph("随机杆体系常用排除体积或连续渗流阈值刻画大体系中多粒子簇的形成[6-8]。这类模型能解释高长径比填料为何在较低体积分数下出现贯通，也指出阈值会随取向分布而改变。但本题是有限立方体、指定左右电极、允许重叠，并采用特殊的周期截断规则；单粒子跨界事件已提供可计算的充分条件。因此本文不把文献中的热力学极限阈值移植为答案，只把它用作机制和量级的外部参照。若后续需要估计上下界之间的真实总概率，应先实现完整平端圆柱周期距离核，再做有限盒蒙特卡洛，而不能用平均邻居数替代。")
 
     p.heading("5  问题二：给定体积分数下的导通概率")
     p.heading("5.1  体积分数到整数数量的换算", 2)
     p.paragraph("设目标体积分数为phi。粒子数必须取整数，本文选择使n_A V_A/L^3最接近目标phi的整数n_A，并同时报告目标值与实际值。四个目标体积分数对应354、424、495和707根A。")
-    p.equation("n_A=round(phi*L^3/V_A),  phi_actual=n_A*V_A/L^3")
+    p.equation("n_A=round(φL³/V_A),   φ_actual=n_AV_A/L³")
     p.heading("5.2  概率结果与解释", 2)
     q2_rows = [[f"{100*r['requested_fraction']:.2f}%", r["a_count"], f"{100*r['achieved_fraction']:.5f}%", f"{r['log10_failure_probability_upper_bound']:.2f}", f"至少1-10^{r['log10_failure_probability_upper_bound']:.2f}"] for r in RESULTS["Q2"]]
     p.table("Q2体积分数、整数数量与直接贯通下界", ["目标体积分数", "A数量", "实际体积分数", "log10不导通上界", "导通概率下界"], q2_rows, [2.5, 1.7, 2.7, 4.0, 5.0], font_size=9)
     p.paragraph("表5中的“不导通上界”仅考虑没有任何A直接贯通的概率(1-q_A)^n_A。粒子间进一步接触只会增加总导通概率，因此该量确为总不导通概率的上界。四个数量级远低于常规数值显示精度，故可以表述为“在报告精度内导通概率为1”，但不能写成数学上精确等于1。图10展示其对数数量级。")
-    p.figure("10_q2_failure_scale_cn.png", "Q2四种体积分数下不导通概率上界的数量级", 15.3)
+    p.figure("C05_q2_failure_lollipop.png", "Q2四种体积分数下不导通概率上界的数量级", 15.3, research=True)
 
     p.heading("6  问题三：仅填充A的最低填充量")
     p.heading("6.1  候选阈值定位", 2)
     p.paragraph("由式(8)可知直接贯通下界随n_A单调增加。解1-(1-q_A)^n_A>=0.90可将候选值定位在8根。证明“8根是最小值”还需验证8根充分和7根不足。")
-    p.equation("n_A>=ceil(log(0.10)/log(1-q_A))=8")
+    p.equation("n_A≥⌈log(0.10)/log(1-q_A)⌉=8")
     p.heading("6.2  7根不足与8根充分", 2)
     p.paragraph("当n_A=8时，直接贯通概率下界为0.9048100243>0.90，故8根充分。当n_A=7时，直接贯通概率为0.8722775285；剩余非直接通路上界增量为7*6*(1.8/10000)^2=1.3608e-6，因而总导通概率上界为0.8722788893<0.90，故7根不足。图11显示上下界几乎重合但分别位于阈值两侧。")
     q3_rows = [[r["a_count"], f"{r['direct_bridge_lower_bound']:.6f}", f"{r['non_direct_path_upper_addition']:.2e}", f"{r['conduction_upper_bound']:.6f}"] for r in RESULTS["Q3"]["proof_rows"]]
     p.table("Q3从1至8根A的导通概率上下界", ["A数量", "直接贯通下界", "非直接上界增量", "总导通上界"], q3_rows, [2.3, 4.4, 4.7, 4.4], font_size=9.2)
-    p.figure("11_q3_threshold_cn.png", "Q3中7根不足、8根充分的严格夹逼", 15.3)
+    p.figure("C04_q3_bounds_band.png", "Q3中7根不足、8根充分的解析夹逼", 15.3, research=True)
     p.heading("6.3  填充率报告", 2)
     p.paragraph("8根A对应体积分数8V_A/L^3=0.0001130973，即0.01131%。若按百分号后保留两位，应报告0.01%；但必须同时保留“8根”和未过度舍入的0.01131%，因为相邻整数在两位百分数下可能显示相同。")
 
     p.heading("7  问题四：混合填充的整数成本优化")
     p.heading("7.1  优化模型", 2)
     p.paragraph("以n_A,n_B为整数决策变量，目标是最小化式(2)的材料成本，约束为总导通概率不低于0.90。由于总导通概率难以精确闭式计算，本文采用“候选方案用下界证明可行、所有更便宜方案用上界证明不可行”的双向证书。")
-    p.equation("min C(n_A,n_B),  s.t. P(T)>=0.90,  n_A,n_B in nonnegative integers")
+    p.equation("min C(n_A,n_B),   s.t. P(T)≥0.90,   n_A,n_B∈Z_≥0")
     p.heading("7.2  非负整数域的边界解", 2)
     p.paragraph("若允许某一类介质数量为零，0A+57B的直接贯通下界为0.9023976480，成本0.0955044元，故该方案可行。以该成本为上限，枚举全部216个更低成本非负整数点；其中总导通上界最大的是0A+56B，上界0.8984306753<0.90。因此所有更便宜方案均不可行，0A+57B在非负整数域严格最优。")
     p.heading("7.3  两类介质均为正的主口径", 2)
@@ -492,7 +497,7 @@ def build_paper():
     q4_rows = [[f"{x['a_count']}A+{x['b_count']}B", f"{x['cost_cny']:.6f}", f"{x['direct_bridge_probability']:.6f}", f"{x['conduction_upper_bound']:.6f}", "更便宜，不可行"] for x in q4["cheaper_frontier"]]
     q4_rows += [["0A+57B", f"{q4['selected']['cost_cny']:.6f}", f"{q4['selected']['direct_bridge_lower_bound']:.6f}", "-", "非负整数域最优"], ["1A+50B", f"{q4['strictly_positive_mixture']['selected']['cost_cny']:.6f}", f"{q4['strictly_positive_mixture']['selected']['direct_bridge_lower_bound']:.6f}", "-", "正混合域最优"]]
     p.table("Q4低成本前沿与两种口径的候选解", ["方案", "成本/元", "直接下界", "总上界", "结论"], q4_rows, [2.5, 2.5, 3.0, 3.0, 5.2], font_size=8.8)
-    p.figure("12_q4_integer_domain.png", "Q4低成本整数域排除与两种口径的最优解", 15.3)
+    p.figure("C08_q4_cost_frontier.png", "Q4成本—概率界前沿与候选解证书", 15.3, research=True)
     p.heading("7.4  成本效率解释", 2)
     p.paragraph("A单体直接贯通概率高，但单体成本约为B的8.86倍；B虽需要更多数量，却具有更高的单位成本概率收益，因此非负整数域最优点落在纯B边界。强制两类均出现时，加入1根A可以减少7个B，形成1A+50B的正混合最优点。该解释只针对本题给定价格和尺寸，若B单价上升或半径改变，整数前沿会发生跳变。")
 
@@ -502,8 +507,8 @@ def build_paper():
     p.heading("8.2  概率与整数域复核", 2)
     p.paragraph("q_A由方向积分解析得到，q_B由球的边界层宽度直接得到；Q3分别重算7根上界与8根下界。Q4不是只比较表7中的前沿点，而是完整枚举成本严格低于候选的所有整数点，再取其总导通上界最大者。因此216和164是搜索域内实际候选数，不是抽样规模。")
     p.heading("8.3  几何参数灵敏度", 2)
-    p.paragraph("保持其他参数不变，A高度H增大时q_A线性增大，达到90%所需A数量呈阶梯下降；B半径增大时q_B=2r_B/L增大，达到90%所需B数量下降。图13给出H在3500-6500 nm、r_B在120-280 nm范围内的阈值变化。基准H=5000 nm对应8根A，r_B=200 nm对应57个B。")
-    p.figure("13_parameter_sensitivity.png", "A高度与B半径变化对90%阈值数量的影响", 15.3)
+    p.paragraph("为考察结构敏感性，在保持其余条件不变的设计情景中令A高度H取3500-6500 nm、B半径r_B取120-280 nm。该范围不是实测误差或制造分布，只用于观察解析阈值的整数跳变。H增大时q_A线性增大，达到90%所需A数量呈阶梯下降；B半径增大时q_B=2r_B/L增大，所需B数量下降。题设基准H=5000 nm对应8根A，r_B=200 nm对应57个B。")
+    p.figure("C09_sensitivity_threshold_counts.png", "设计情景下几何尺寸对90%充分数量的影响", 15.3, research=True)
     p.heading("8.4  假设敏感性与失效情形", 2)
     p.table("关键假设变化对结论的影响", ["变化", "直接影响", "最可能受影响的结论", "建议改进"], [
         ["A取向偏向x轴", "q_A增大", "Q3阈值下降，Q4更偏向A", "用实测取向分布替代各向同性积分"],
@@ -512,20 +517,22 @@ def build_paper():
         ["周期片段不保持导体身份", "直接贯通事件失效", "Q2-Q4全部数值失效", "按新边界物理重新定义连接图"],
         ["要求A、B均出现", "可行域删去坐标轴", "Q4主答案变为1A+50B", "论文同时报告两种口径"],
     ], [3.0, 4.0, 4.6, 4.6], aligns=[WD_ALIGN_PARAGRAPH.CENTER, WD_ALIGN_PARAGRAPH.LEFT, WD_ALIGN_PARAGRAPH.LEFT, WD_ALIGN_PARAGRAPH.LEFT], font_size=8.8)
+    p.heading("8.5  取向分布极端情景", 2)
+    p.paragraph("各向同性不是题面给定事实，而是把“任意方向”转化为概率的补充模型。若所有A都与x轴平行，则单根直接贯通概率q_A=H/L=0.500；若所有轴都限制在yz平面，则仅端面圆盘在x方向提供支撑，q_A=2r_A/L=0.006。二者相差两个数量级，说明取向分布会直接改变Q2的风险数量级以及Q3、Q4的整数阈值。故0.25471239应理解为各向同性方向平均，而非所有取向都成立的材料常数。")
 
     p.heading("9  模型评价与改进")
     p.heading("9.1  模型优点", 2)
     p.paragraph("第一，Q1采用路径证书而非只给程序布尔值，负例和正例分别由超集反证与侧面充分证书支撑。第二，Q2-Q4明确区分精确直接贯通概率、总导通下界和总导通上界，避免把蒙特卡洛频率或下界误当作真实概率。第三，Q4对候选成本以下的有限整数域完整枚举，最优性证据可逐点复算。第四，所有关键数值集中写入结构化结果文件并由测试检查，论文图表直接从附件和结果文件生成。")
     p.heading("9.2  模型局限", 2)
-    p.paragraph("随机模型的主要局限是独立均匀、各向同性和允许重叠三项补充假设不一定符合真实材料制备。非直接通路联合上界只适合做不足性证明，不能精确刻画粒子间簇连通。Q1的正例证书只需证明所给路径有效，不代表候选图中的所有端部边都已完成严格平端圆柱距离分类。")
+    p.paragraph("随机模型的主要局限是题面未唯一指定概率测度，独立均匀、各向同性以及周期片段保持母体电学身份均需作为条件列明；允许重叠则来自题面。非直接通路联合上界只适合做不足性证明，不能精确刻画粒子间簇连通。Q1的路径核验只服务于所给附件结论，不代表候选图中的所有端部边都已完成通用平端圆柱实体距离分类。")
     p.heading("9.3  后续改进", 2)
     p.paragraph("后续可在三方面扩展：其一，实现平端圆柱—圆柱、圆柱—球的完整最近距离求解器，替代胶囊候选超图；其二，引入不可重叠随机序列吸附、取向偏置或团聚点过程，并用方差缩减蒙特卡洛估计真实导通概率；其三，在解析界与模拟之间建立校准区间，使模型既能证明阈值，又能给出阈值以外更精细的工程概率估计。")
 
     p.heading("10  结论")
     p.paragraph("(1) 附件组1不导通，组2和组3导通；组2显式路径为左面-2-12-24-39-右面，组3为左面-63-264-216-351-右面。所有正例介质间边均具有轴段内部最短点证书。", first=False)
-    p.paragraph("(2) A体积分数0.50%、0.60%、0.70%和1.00%对应354、424、495和707根A；总不导通概率分别不超过10^-45.20、10^-54.13、10^-63.20和10^-90.27量级。", first=False)
-    p.paragraph("(3) 仅填充A时，7根的总导通上界0.872279低于90%，8根的直接贯通下界0.904810高于90%，故最小数量为8根；体积分数为0.01131%，按百分号后两位报告为0.01%。", first=False)
-    p.paragraph("(4) 混合填充时，非负整数域最优为0A+57B，成本0.09550元；若A、B必须均出现，则正混合域最优为1A+50B，成本0.09862元。后者应作为“同时填充”口径下的主答案。", first=False)
+    p.paragraph("(2) 在独立均匀中心、独立各向同性取向及周期片段保持母体电学身份的条件下，A体积分数0.50%、0.60%、0.70%和1.00%对应354、424、495和707根A；总不导通概率分别不超过10^-45.20、10^-54.13、10^-63.20和10^-90.27量级。", first=False)
+    p.paragraph("(3) 在同一概率模型条件下，仅填充A时，7根的总导通上界0.872279低于90%，8根的直接贯通下界0.904810高于90%，故最小数量为8根；体积分数为0.01131%，按百分号后两位报告为0.01%。", first=False)
+    p.paragraph("(4) 按“同时填充”要求A、B均出现时，主答案为1A+50B，成本0.09862元；若放宽为非负整数域，边界解为0A+57B，成本0.09550元。两者都受上述概率模型条件限制。", first=False)
 
     p.heading("参考文献")
     refs = [
@@ -534,6 +541,9 @@ def build_paper():
         "[3] Feller W. An Introduction to Probability Theory and Its Applications, Vol. 1. New York: Wiley, 1968.",
         "[4] Ericson C. Real-Time Collision Detection. Boca Raton: CRC Press, 2005.",
         "[5] Meester R, Roy R. Continuum Percolation. Cambridge: Cambridge University Press, 1996.",
+        "[6] Balberg I, Anderson C H, Alexander S, et al. Excluded volume and its relation to the onset of percolation. Physical Review B, 1984, 30(7): 3933. DOI: 10.1103/PhysRevB.30.3933.",
+        "[7] Foygel M, Morris R D, Anez D, et al. Theoretical and computational studies of carbon nanotube composites and suspensions: Electrical and thermal conductivity. Physical Review B, 2005, 71: 104201. DOI: 10.1103/PhysRevB.71.104201.",
+        "[8] Otten R H J, van der Schoot P. Connectivity percolation of polydisperse anisotropic nanofillers. Journal of Chemical Physics, 2011, 134: 094902. DOI: 10.1063/1.3559004.",
     ]
     for ref in refs:
         p.paragraph(ref, first=False, size=10.5, after=2)
@@ -549,13 +559,10 @@ python -m pytest tests -q"""
     p.code_block(commands)
     p.paragraph("当前仓库完整测试共46项通过，项目证据登记表与论文正文哈希可由随附脚本重建和复核。", first=False)
 
-    p.heading("附录B  关键源程序")
-    for filename in ("analytic_bounds.py", "geometry.py", "build_corrected_results.py"):
-        p.heading(f"B.{('analytic_bounds.py','geometry.py','build_corrected_results.py').index(filename)+1}  src/a/{filename}", 2)
-        code = (RUN / "src" / "a" / filename).read_text(encoding="utf-8")
-        p.code_block(code)
+    p.heading("附录B  证据文件索引")
+    p.paragraph("机器可读结果位于outputs/data/final_results.json；核心算法位于src/a/analytic_bounds.py、src/a/geometry.py和src/a/build_corrected_results.py；全部候选图与入选理由位于outputs/figure_candidates和evidence/research_figure_upgrade.md。为控制论文篇幅，完整源代码不再嵌入正文，而随附件包一并提交。", first=False)
 
-    docx = OUT / "华数杯A题完整论文_清洁版.docx"
+    docx = OUT / "华数杯A题完整论文.docx"
     md = OUT / "paper_full.md"
     p.save(docx, md)
     return docx, md

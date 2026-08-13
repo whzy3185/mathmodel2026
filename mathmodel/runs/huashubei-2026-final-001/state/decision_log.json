@@ -3,7 +3,7 @@
   "run_id": "huashubei-2026-final-001",
   "competition": "2026 第七届华数杯",
   "created_at": "2026-08-11T21:43:32+08:00",
-  "current_stage": "post-review-repaired",
+  "current_stage": "post-review-repaired-and-rendered",
   "official_rules_checked_at": "2026-08-11T00:00:00+08:00",
   "problem_id": "2026-HUASHUBEI-A",
   "decisions": [
@@ -13,11 +13,14 @@
     {"decision_id": "DEC-004", "stage": "review-repair", "decision": "After adversarial QA, enforce the official each-row-is-one-A rule for Q1, remove ±500 seam inference, and delete unconditional periodic minimum-image simulation code.", "evidence": ["src/a/geometry.py", "outputs/data/final_results.json"], "status": "current"},
     {"decision_id": "DEC-005", "stage": "proof", "decision": "Replace Monte Carlo selection claims with a direct-bridge lower bound and an opposite-electrode terminal-pair union upper bound.", "evidence": ["src/a/analytic_bounds.py", "tests/test_analytic_bounds.py"], "status": "current"},
     {"decision_id": "DEC-006", "stage": "optimization", "decision": "Exhaust all 216 cheaper nonnegative integer candidates and all 164 cheaper strictly-positive mixture candidates.", "evidence": ["outputs/data/final_results.json", "outputs/figures/F3_q4_cost_validation.pdf"], "status": "current"},
-    {"decision_id": "DEC-007", "stage": "paper", "decision": "Freeze Q1 as group1 disconnected and groups2/3 connected; retain Q2, 8A Q3, 57B Q4, and add 1A+50B for the strict-positive interpretation.", "evidence": ["paper/paper.md", "evidence/claim_evidence.json"], "status": "current"}
+    {"decision_id": "DEC-007", "stage": "paper", "decision": "Freeze Q1 as group1 disconnected and groups2/3 connected; retain Q2 and 8A Q3; make 1A+50B the strict simultaneous-fill main answer and report 0A+57B only as the relaxed-domain boundary solution.", "evidence": ["paper/paper_full.md", "evidence/claim_evidence.json"], "status": "current"},
+    {"decision_id": "DEC-008", "stage": "review-repair", "decision": "State the independent-uniform, isotropic-orientation and periodic electrical-identity conditions wherever Q2-Q4 results are claimed; preserve sub-machine failure probabilities in log space.", "evidence": ["outputs/data/final_results.json", "problem/tournaments/Q2.json", "paper/paper_full.md"], "status": "current"},
+    {"decision_id": "DEC-009", "stage": "figures", "decision": "Generate ten scientific figure candidates, select seven evidence-backed finalists, exclude the unproven optimal-recipe phase map, and use five finalists in the paper body.", "evidence": ["evidence/research_figure_upgrade.md", "outputs/figure_candidates", "outputs/figures_research"], "status": "current"}
   ],
   "assumptions": [
     "Each Q1 attachment row is one A conductor.",
     "Random centers are independent and uniform; A orientations are independent and isotropic.",
+    "A translated periodic portion remains electrically connected to its parent conductor.",
     "Only material portions that actually cross a boundary are translated."
   ],
   "parameters": [
@@ -25,6 +28,6 @@
     {"name": "q_B", "value": 0.04, "unit": "probability", "source": "analytic sphere boundary layer"},
     {"name": "electrode shell probability", "value": 0.00018, "unit": "probability per side", "source": "g/L"}
   ],
-  "artifacts": ["outputs/data/final_results.json", "outputs/figures/F1_q3_threshold.pdf", "outputs/figures/F2_q2_failure_scale.pdf", "outputs/figures/F3_q4_cost_validation.pdf", "paper/paper.md", "paper/paper_full.md", "paper/华数杯A题完整论文_清洁版.docx", "paper/华数杯A题完整论文_清洁版.pdf", "paper/华数杯A题论文_支撑材料包.zip"],
-  "open_risks": ["probability results are conditional on the specified uniform/isotropic random generator", "Q1 negative proof uses a capsule supergraph while positive paths use certified side contacts"]
+  "artifacts": ["outputs/data/final_results.json", "outputs/figures_research/C05_q2_failure_lollipop.pdf", "outputs/figures_research/C04_q3_bounds_band.pdf", "outputs/figures_research/C08_q4_cost_frontier.pdf", "paper/paper_full.md", "paper/华数杯A题完整论文.docx", "paper/华数杯A题完整论文.pdf", "paper/华数杯A题论文_支撑材料包.zip"],
+  "open_risks": ["probability results are conditional on the specified uniform/isotropic random generator and periodic electrical-identity interpretation", "Q1 uses a capsule candidate graph and does not implement a general flat-cylinder entity-distance oracle"]
 }

@@ -57,19 +57,19 @@
     },
     {
       "claim_id": "C-Q4",
-      "text": "57 B and zero A is cheaper than every other confidence-feasible integer combination.",
+      "text": "Under the strict both-materials-positive interpretation, 1 A plus 50 B is the least-cost solution; 0 A plus 57 B is the relaxed-domain boundary solution.",
       "question_id": "Q4",
       "artifact_ids": [
         "bounds-code",
         "final-results",
-        "figure-f3",
-        "paper"
+        "research-q4",
+        "paper-full-docx"
       ],
-      "metric": "material cost",
-      "value": 0.0955044166691297,
+      "metric": "strict-mixture material cost",
+      "value": 0.0986198291202929,
       "unit": "CNY",
-      "uncertainty": "exhaustive 216-candidate analytic proof",
-      "baseline": "all lower-cost integer combinations",
+      "uncertainty": "exhaustive 164-candidate analytic proof conditional on the declared probability model",
+      "baseline": "all lower-cost positive-integer combinations",
       "failure_threshold": "selected lower bound <=0.90 or any cheaper upper bound >=0.90",
       "status": "validated"
     }

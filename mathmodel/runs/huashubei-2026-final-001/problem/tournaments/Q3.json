@@ -9,7 +9,7 @@
       "using confirmation seeds to choose the threshold",
       "stopping after a favorable random batch"
     ],
-    "missingness_notes": "No analytic threshold is supplied; the claim is conditional on the modeled placement distribution and finite simulation precision."
+    "missingness_notes": "The threshold is conditional on the declared independent-uniform, isotropic and periodic-identity probability model; no sampling precision enters the analytic proof."
   },
   "baseline": {
     "name": "fixed grid with raw probability point estimates",
@@ -23,13 +23,14 @@
       "formulation": "Use 1-(1-q_A)^N as a rigorous sufficient lower bound. Conditional on no direct bridge, bound every remaining path by an ordered pair of distinct particles in the left/right g-wide electrode shells, giving N(N-1)(g/L)^2 as the non-direct addition.",
       "assumptions": [
         "True spanning probability is nondecreasing in A volume fraction under a coupled insertion construction.",
-        "The Q2 simulator represents the official random mechanism.",
+        "Independent uniform centers and independent isotropic orientations define the probability space.",
+        "A translated periodic portion remains electrically connected to its parent conductor.",
         "Integer rod counts are mapped back to achieved rather than nominal volume fractions."
       ],
       "parameter_sources": [
         "official problem_A.pdf",
-        "approved Q2 simulator",
-        "95% confidence and 0.90 target from the stated decision rule"
+        "approved Q2 analytic bound",
+        "0.90 target from the official problem"
       ],
       "assumption_gate": "pass",
       "data_gate": "pass",
@@ -53,7 +54,7 @@
       ],
       "rejection_evidence": [],
       "decision": "primary",
-      "decision_reason": "It binds numerical search precision to statistical evidence and reduces adjacent-point noise through common random numbers."
+      "decision_reason": "The adjacent integers are separated by analytic upper and lower bounds, so neither sampling noise nor optional stopping enters the threshold."
     },
     {
       "name": "fine fixed grid with isotonic probability fit",
@@ -133,10 +134,10 @@
   "team_approval": {
     "approved": true,
     "approver": "repository owner whzy3185",
-    "approved_at": "2026-08-12T09:22:13+08:00",
-    "plan_hash": "17fd4e5f14a98d90a948130dd57d8e8eec025e534ddf123d733f0fd5d7bc77e5",
+    "approved_at": "2026-08-13T17:23:54+08:00",
+    "plan_hash": "5016ed86981c2502c17c7fc46a9e272e731afd06c50a1a842dc5678b42129768",
     "method": "user_message",
     "authorization_text": "继续",
-    "record_reason": "run-scoped authorization reused for final plan alignment after adversarial review"
+    "record_reason": "run-scoped authorization reused after adversarial model-plan alignment"
   }
 }

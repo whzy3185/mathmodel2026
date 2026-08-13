@@ -21,8 +21,8 @@ def digest(path: Path) -> str:
 
 def package_files() -> list[tuple[Path, str]]:
     fixed = [
-        (PAPER / "华数杯A题完整论文_清洁版.docx", "paper/华数杯A题完整论文_清洁版.docx"),
-        (PAPER / "华数杯A题完整论文_清洁版.pdf", "paper/华数杯A题完整论文_清洁版.pdf"),
+        (PAPER / "华数杯A题完整论文.docx", "paper/华数杯A题完整论文.docx"),
+        (PAPER / "华数杯A题完整论文.pdf", "paper/华数杯A题完整论文.pdf"),
         (PAPER / "paper_full.md", "paper/paper_full.md"),
         (RUN / "input/attachments/official_problem_bundle.zip", "official/official_problem_bundle.zip"),
         (RUN / "input/problems/problem_A.pdf", "official/problem_A.pdf"),
@@ -33,10 +33,22 @@ def package_files() -> list[tuple[Path, str]]:
         (RUN / "evidence/artifact_registry.json", "evidence/artifact_registry.json"),
         (RUN / "evidence/claim_evidence.json", "evidence/claim_evidence.json"),
         (RUN / "evidence/figure_contracts.md", "evidence/figure_contracts.md"),
+        (RUN / "evidence/research_figure_upgrade.md", "evidence/research_figure_upgrade.md"),
+        (RUN / "training/award_paper_writing_visual_guide.md", "training/award_paper_writing_visual_guide.md"),
+        (RUN / "training/expanded_paper_sources.md", "training/expanded_paper_sources.md"),
+        (RUN / "training/source_manifest_expanded.json", "training/source_manifest_expanded.json"),
     ]
     dynamic: list[tuple[Path, str]] = []
     for path in sorted((RUN / "outputs/figures_v2").glob("*.png")):
         dynamic.append((path, f"figures/{path.name}"))
+    for path in sorted((RUN / "outputs/figures_research").glob("*")):
+        if path.is_file():
+            dynamic.append((path, f"figures_selected/{path.name}"))
+    for path in sorted((RUN / "outputs/figure_candidates").glob("*")):
+        if path.is_file():
+            dynamic.append((path, f"figure_candidates/{path.name}"))
+    for path in sorted((RUN / "reports").glob("*.md")):
+        dynamic.append((path, f"review_reports/{path.name}"))
     for path in sorted((RUN / "src/a").glob("*.py")):
         dynamic.append((path, f"src/a/{path.name}"))
     for path in sorted((RUN / "tests").glob("test_*.py")):
@@ -62,7 +74,7 @@ def main() -> int:
     manifest = {
         "schema_version": "1.0",
         "run_id": "huashubei-2026-final-001",
-        "description": "Clean full paper and reproducibility support files",
+        "description": "Full paper, figure candidates, selected figures, references, review reports and reproducibility files",
         "file_count": len(records),
         "files": records,
     }

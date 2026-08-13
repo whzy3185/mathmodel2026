@@ -8,7 +8,7 @@
     "leakage_risks": [
       "reusing final confirmation seeds during model selection"
     ],
-    "missingness_notes": "The problem supplies a stochastic placement mechanism but no sample size; sample size will be determined by interval precision."
+    "missingness_notes": "The statement allows arbitrary positions and directions but does not uniquely specify a probability measure. Results are conditional on independent uniform centers and independent isotropic A orientations."
   },
   "baseline": {
     "name": "center-point random geometric graph",
@@ -24,7 +24,7 @@
         "Rod centers are spatially uniform and independent.",
         "Rod orientations are isotropic on the sphere.",
         "The periodic cube removes edge-density bias.",
-        "Samples are independent within each reported estimate."
+        "A translated periodic portion remains electrically connected to its parent conductor."
       ],
       "parameter_sources": [
         "official problem_A.pdf",
@@ -53,11 +53,11 @@
       ],
       "rejection_evidence": [],
       "decision": "primary",
-      "decision_reason": "It preserves the stated geometry and stochastic mechanism while making uncertainty and convergence explicit."
+      "decision_reason": "It gives an analytic, sampling-free lower bound under the declared probability model and preserves failure probabilities in log space."
     },
     {
-      "name": "continuous-rod Monte Carlo with periodic cell lists",
-      "formulation": "Use the identical random mechanism and exact geometry kernel, but enumerate candidate interactions through a periodic uniform cell list rather than the primary spatial index.",
+      "name": "full-geometry Monte Carlo after kernel validation",
+      "formulation": "After implementing an exact finite flat-cylinder periodic distance kernel, simulate the same declared random mechanism to quantify the non-direct-network contribution.",
       "assumptions": [
         "The same spatially uniform, isotropic and independent placement model as the primary candidate."
       ],
@@ -69,12 +69,12 @@
       "data_gate": "pass",
       "complexity_gate": "pass",
       "identifiability_gate": "pass",
-      "engineering_gate": "pass",
+      "engineering_gate": "fail",
       "validation_gate": "pass",
       "validation_plan": [
-        "match all-pairs graphs on small cases",
-        "match primary estimates under common samples",
-        "audit neighbor-cell reach from rod length and threshold"
+        "validate flat-cylinder side-side, side-end and end-end distances against an independent oracle",
+        "verify simulated probabilities remain inside the analytic lower and upper bounds",
+        "report seeds, replication counts and interval construction"
       ],
       "refutation_evidence": [
         "cell list omits a pair accepted by all-pairs distance",
@@ -85,9 +85,11 @@
         "duplicate pair enumeration",
         "suboptimal cell width"
       ],
-      "rejection_evidence": [],
+      "rejection_evidence": [
+        "The current repository does not yet contain a general exact periodic flat-cylinder interaction kernel."
+      ],
       "decision": "fallback",
-      "decision_reason": "It retains the scientific model but replaces the most implementation-sensitive acceleration component."
+      "decision_reason": "It is an enhancement path, not executed evidence for the present paper."
     },
     {
       "name": "deterministic mean-field percolation threshold",
@@ -122,7 +124,7 @@
     }
   ],
   "primary_model": "analytic periodic-bridge probability bound",
-  "fallback_model": "continuous-rod Monte Carlo with periodic cell lists",
+  "fallback_model": "full-geometry Monte Carlo after kernel validation",
   "stop_conditions": [
     "the official random-position or orientation distribution differs from uniform/isotropic",
     "the periodic clipping rule is clarified to disconnect the two portions of one crossing object",
@@ -131,10 +133,10 @@
   "team_approval": {
     "approved": true,
     "approver": "repository owner whzy3185",
-    "approved_at": "2026-08-12T09:22:13+08:00",
-    "plan_hash": "d1c6e84f67b391fff5b1a52c02e6d6a741ba175c140d05efb93709f5f125e000",
+    "approved_at": "2026-08-13T17:23:54+08:00",
+    "plan_hash": "2f19a423c25d9f7984643405ba08025e2d79e957f854e9559df548c4ab4e4213",
     "method": "user_message",
     "authorization_text": "继续",
-    "record_reason": "run-scoped authorization reused for final plan alignment after adversarial review"
+    "record_reason": "run-scoped authorization reused after adversarial model-plan alignment"
   }
 }

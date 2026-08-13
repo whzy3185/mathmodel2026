@@ -5,6 +5,7 @@
     "each attachment row is one A conductor",
     "centers are independent and uniform",
     "A orientations are independent and isotropic",
+    "a translated periodic portion remains electrically connected to its parent conductor",
     "only material portions that actually cross a boundary are translated"
   ],
   "geometry": {
@@ -163,29 +164,37 @@
       "requested_fraction": 0.005,
       "a_count": 354,
       "achieved_fraction": 0.00500455709716854,
-      "direct_bridge_probability_lower_bound": 1.0,
-      "log10_failure_probability_upper_bound": -45.19733870065948
+      "direct_bridge_probability_lower_bound_expression": "1 - 10^(-45.197338700659)",
+      "direct_bridge_probability_lower_bound_float": null,
+      "log10_failure_probability_upper_bound": -45.19733870065948,
+      "float_note": "The lower bound is strictly below 1; binary64 rounds it to 1, so the log10 failure bound is authoritative."
     },
     {
       "requested_fraction": 0.006,
       "a_count": 424,
       "achieved_fraction": 0.005994158783049325,
-      "direct_bridge_probability_lower_bound": 1.0,
-      "log10_failure_probability_upper_bound": -54.13466556237181
+      "direct_bridge_probability_lower_bound_expression": "1 - 10^(-54.134665562372)",
+      "direct_bridge_probability_lower_bound_float": null,
+      "log10_failure_probability_upper_bound": -54.13466556237181,
+      "float_note": "The lower bound is strictly below 1; binary64 rounds it to 1, so the log10 failure bound is authoritative."
     },
     {
       "requested_fraction": 0.007,
       "a_count": 495,
       "achieved_fraction": 0.006997897635871263,
-      "direct_bridge_probability_lower_bound": 1.0,
-      "log10_failure_probability_upper_bound": -63.199668522108595
+      "direct_bridge_probability_lower_bound_expression": "1 - 10^(-63.199668522109)",
+      "direct_bridge_probability_lower_bound_float": null,
+      "log10_failure_probability_upper_bound": -63.199668522108595,
+      "float_note": "The lower bound is strictly below 1; binary64 rounds it to 1, so the log10 failure bound is authoritative."
     },
     {
       "requested_fraction": 0.01,
       "a_count": 707,
       "achieved_fraction": 0.009994977027395926,
-      "direct_bridge_probability_lower_bound": 1.0,
-      "log10_failure_probability_upper_bound": -90.26700130329449
+      "direct_bridge_probability_lower_bound_expression": "1 - 10^(-90.267001303294)",
+      "direct_bridge_probability_lower_bound_float": null,
+      "log10_failure_probability_upper_bound": -90.26700130329449,
+      "float_note": "The lower bound is strictly below 1; binary64 rounds it to 1, so the log10 failure bound is authoritative."
     }
   ],
   "Q3": {

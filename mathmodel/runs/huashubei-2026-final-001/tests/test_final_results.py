@@ -26,6 +26,17 @@ class FinalResultConsistencyTests(unittest.TestCase):
         self.assertLess(self.results["Q3"]["lower_neighbor_upper_bound"], 0.90)
         self.assertNotIn("replications", self.results["Q3"])
 
+    def test_q2_does_not_round_strict_lower_bound_to_one(self) -> None:
+        for row in self.results["Q2"]:
+            self.assertIsNone(row["direct_bridge_probability_lower_bound_float"])
+            self.assertTrue(row["direct_bridge_probability_lower_bound_expression"].startswith("1 - 10^("))
+            self.assertLess(row["log10_failure_probability_upper_bound"], 0)
+
+    def test_probability_model_conditions_are_explicit(self) -> None:
+        assumptions = " ".join(self.results["assumptions"])
+        for condition in ("independent and uniform", "independent and isotropic", "electrically connected"):
+            self.assertIn(condition, assumptions)
+
     def test_q4_global_and_positive_domains_are_closed(self) -> None:
         q4 = self.results["Q4"]
         self.assertEqual(q4["cheaper_integer_candidate_count"], 216)

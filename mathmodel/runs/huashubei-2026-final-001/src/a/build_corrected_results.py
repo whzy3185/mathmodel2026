@@ -49,8 +49,10 @@ def main() -> int:
             "requested_fraction": fraction,
             "a_count": count,
             "achieved_fraction": count * A_VOLUME / CUBE_VOLUME,
-            "direct_bridge_probability_lower_bound": 1 - 10**log10_failure,
+            "direct_bridge_probability_lower_bound_expression": f"1 - 10^({log10_failure:.12f})",
+            "direct_bridge_probability_lower_bound_float": None,
             "log10_failure_probability_upper_bound": log10_failure,
+            "float_note": "The lower bound is strictly below 1; binary64 rounds it to 1, so the log10 failure bound is authoritative.",
         })
     q3 = prove_q3()
     q3["volume_fraction"] = q3["selected_a_count"] * A_VOLUME / CUBE_VOLUME
@@ -65,6 +67,7 @@ def main() -> int:
             "each attachment row is one A conductor",
             "centers are independent and uniform",
             "A orientations are independent and isotropic",
+            "a translated periodic portion remains electrically connected to its parent conductor",
             "only material portions that actually cross a boundary are translated",
         ],
         "geometry": {"q_A": Q_A, "q_B": Q_B, "electrode_gap_layer_probability_per_particle_per_side": 1.8 / 10000},

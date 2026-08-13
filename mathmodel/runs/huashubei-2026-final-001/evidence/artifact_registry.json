@@ -8,7 +8,7 @@
       "source_artifacts": [],
       "content_hash": "6d31c44022b08840b5e791dd11b431cbcdc187e0f2ff33f613d45728646d0c0a",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -20,7 +20,7 @@
       ],
       "content_hash": "6dc68dd49356aeab483906a524ff79855b454fcaccd168f81ff3a3ad989c4c51",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -30,7 +30,7 @@
       "source_artifacts": [],
       "content_hash": "842c7f8805bdbf6567c822780c03329bfe3f150869047f25dbccd60ed5ef7bac",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -42,7 +42,7 @@
       ],
       "content_hash": "64f9962e99d98f63313c4876f5dd4c53775cb1773c09913c511d949ab4ca1495",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -54,7 +54,7 @@
       ],
       "content_hash": "e63045e240d3b9496389723baa07d6f12c1a14bbe52fbfa40602e38147c03702",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -65,9 +65,9 @@
         "geometry-code",
         "bounds-code"
       ],
-      "content_hash": "678c668233e9549476618b162a73a9eb02abc39788d0d696ce92ee5c918cd23d",
+      "content_hash": "1d846016b16ac0a15bb92cee317a4bc2d4a0af67df2c70f7f8b4305574c9595c",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -79,9 +79,9 @@
         "attachment-a",
         "result-builder"
       ],
-      "content_hash": "a83ea8b6d921c55b13845f1276ccf3d12a277a86f56c1f9703f8fe72da90513d",
+      "content_hash": "f1227f1ea89d4409bdb1b794fd81d1baaf95168ca0c3a033682c40e091b8b57f",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -93,7 +93,7 @@
       ],
       "content_hash": "3815cf1a2740a1234cbb5ba0cc1f62b74df48ce2ac3e1847af4c0944cf5a8600",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -106,7 +106,7 @@
       ],
       "content_hash": "325dd21ef5552118ecbbc05b39bd6b08a1807a0cba9f65a024e097e82c183956",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -119,7 +119,7 @@
       ],
       "content_hash": "a1d60b6ccf3c2535a5d189bdf736bb9cf8b9e7145792b8a7d6272f47d6feaabd",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -132,7 +132,7 @@
       ],
       "content_hash": "493f39fef2092abd1e7cd4d68a7159bf3326b23f10f1a5ad647ab0013a58640b",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -147,7 +147,7 @@
       ],
       "content_hash": "6b1fc1b3fdcf10c109f59fd5ea5ba6f1c6d52f5d0f2b713e0d3a46c0cc212639",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
@@ -158,33 +158,84 @@
         "final-results",
         "attachment-a"
       ],
-      "content_hash": "68917d82d6ae2976e2c3349940975673e618451ef8950b3065e100964c6f3e66",
+      "content_hash": "163c52a3bf3ad96026f354b76ccd9e67781c68a958e8cd18ef7f609fbfa7ff76",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "research-figure-code",
+      "type": "model",
+      "path": "src/a/build_research_figures.py",
+      "source_artifacts": [
+        "requirements"
+      ],
+      "content_hash": "e3aca5437dbed380d589f244a89e1e6b9e9cec50773345d58fa4f884bfba01b7",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "research-q2",
+      "type": "figure",
+      "path": "outputs/figures_research/C05_q2_failure_lollipop.pdf",
+      "source_artifacts": [
+        "final-results",
+        "research-figure-code"
+      ],
+      "content_hash": "50ae932a1da594a8001a20667bf937ed73461100973e5b730f8f6db2c1dda0b3",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "research-q3",
+      "type": "figure",
+      "path": "outputs/figures_research/C04_q3_bounds_band.pdf",
+      "source_artifacts": [
+        "final-results",
+        "research-figure-code"
+      ],
+      "content_hash": "97d422ab67e65632b2085042a1219bc97218c5b8e1007250cf38784c73e30338",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
+      "status": "current"
+    },
+    {
+      "artifact_id": "research-q4",
+      "type": "figure",
+      "path": "outputs/figures_research/C08_q4_cost_frontier.pdf",
+      "source_artifacts": [
+        "final-results",
+        "research-figure-code"
+      ],
+      "content_hash": "7fdd38c9aa2670ba820331cc4ef1dcb5b04b02d0daa2323842f8e062dcbcdde6",
+      "created_by": "reproducible project workflow",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
       "artifact_id": "paper-full-docx",
       "type": "paper",
-      "path": "paper/华数杯A题完整论文_清洁版.docx",
+      "path": "paper/华数杯A题完整论文.docx",
       "source_artifacts": [
         "paper-full-md"
       ],
-      "content_hash": "6f46d361650586a29a0ae3a611ecedfa9d21ab932fedcad53b24c7bc7a1723c6",
+      "content_hash": "f78bbcde8f18e1c95f802852cc960c0cdfa7a9407ab0af29041315f93c742a23",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     },
     {
       "artifact_id": "paper-full-pdf",
       "type": "paper",
-      "path": "paper/华数杯A题完整论文_清洁版.pdf",
+      "path": "paper/华数杯A题完整论文.pdf",
       "source_artifacts": [
         "paper-full-docx"
       ],
-      "content_hash": "9a31331c092cabfd77a05f14c0337d9b83a02bb4a5a9435e83060031fc39cff7",
+      "content_hash": "419f35a55ab4d148530b1825b6ce09ba314391068e47876b3ae4a0929be911e3",
       "created_by": "reproducible project workflow",
-      "created_at": "2026-08-13T06:53:58.650132+00:00",
+      "created_at": "2026-08-13T09:31:05.198994+00:00",
       "status": "current"
     }
   ]
