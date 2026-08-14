@@ -211,3 +211,11 @@
 7. 保存候选、评分、拒绝理由和最终选择，形成可追溯证据。
 
 具体执行规范见 [`figure-agent-workflow.md`](../math-modeling-competition/references/figure-agent-workflow.md)。
+
+## 10. 第二轮仓库与 Skill 审计补充
+
+第二轮已继续核查 AutoFigure、AutoFigure-Edit、Crafter/CraftEditor、LiveFigure、Scientific Illustrator、PaperVizAgent、ggplotAgent、SciVisAgentSkills，以及 K-Dense、SciPilot、engineering-figure-agent、neuromechanist figures plugin 等可安装或可复用候选。完整的许可证、仓库结构、论文实验、社区反馈、缺失文件和攻击测试队列见：
+
+- [`科研绘图仓库与Skill候选清单_2026-08-14.md`](./科研绘图仓库与Skill候选清单_2026-08-14.md)
+
+新增结论是：优先测试有脚本、测试、可编辑源文件和硬 QA 的项目；提示词型 Skill、无许可证项目、引用文件缺失的 Skill 和以聚合站评分作为主要证据的项目不进入论文生产链。数据图采用 K-Dense/SciPilot 规范与 PlotGen 式数值、文本、视觉三 critic；方法图采用 AutoFigure/Scientific Illustrator/Crafter 的多候选与原生 SVG/PPTX 路线。SciVisAgentSkills 证明工具特定 Skill 在受控任务中可能有效，但不能外推为通用论文作图已经成熟。
