@@ -11,7 +11,8 @@ from pathlib import Path
 
 RUN = Path(__file__).resolve().parents[2]
 PAPER = RUN / "paper"
-PACKAGE = PAPER / "华数杯A题论文_支撑材料包.zip"
+PAPER_STEM = "2023213805_赵奕程_第1次模拟训练论文"
+PACKAGE = PAPER / f"{PAPER_STEM}_支撑材料包.zip"
 MANIFEST = PAPER / "support_package_manifest.json"
 
 
@@ -21,9 +22,9 @@ def digest(path: Path) -> str:
 
 def package_files() -> list[tuple[Path, str]]:
     fixed = [
-        (PAPER / "华数杯A题完整论文.docx", "paper/华数杯A题完整论文.docx"),
-        (PAPER / "华数杯A题完整论文.pdf", "paper/华数杯A题完整论文.pdf"),
-        (PAPER / "paper_full.md", "paper/paper_full.md"),
+        (PAPER / f"{PAPER_STEM}.docx", f"paper/{PAPER_STEM}.docx"),
+        (PAPER / f"{PAPER_STEM}.pdf", f"paper/{PAPER_STEM}.pdf"),
+        (PAPER / f"{PAPER_STEM}.md", f"paper/{PAPER_STEM}.md"),
         (RUN / "input/attachments/official_problem_bundle.zip", "official/official_problem_bundle.zip"),
         (RUN / "input/problems/problem_A.pdf", "official/problem_A.pdf"),
         (RUN / "data/raw/A/attachment.xlsx", "official/attachment_A.xlsx"),

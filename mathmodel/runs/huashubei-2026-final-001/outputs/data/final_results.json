@@ -47,7 +47,9 @@
         {
           "from": "LEFT",
           "to": 2,
-          "type": "electrode_contact"
+          "type": "electrode_contact",
+          "surface_gap_nm": 0.0,
+          "flat_cylinder_sufficient": true
         },
         {
           "from": 2,
@@ -59,6 +61,8 @@
             0.6605417028926327,
             0.5215807717648109
           ],
+          "minimum_endpoint_margin_nm": 1435.9716850345276,
+          "axis_connector_orthogonality_residual": 3.4236502521878265e-14,
           "flat_cylinder_sufficient": true
         },
         {
@@ -71,6 +75,8 @@
             0.9192278400314472,
             0.34616762893408687
           ],
+          "minimum_endpoint_margin_nm": 403.86079984276427,
+          "axis_connector_orthogonality_residual": 4.858204116775511e-12,
           "flat_cylinder_sufficient": true
         },
         {
@@ -83,12 +89,16 @@
             0.9704454898985713,
             0.3096957601089077
           ],
+          "minimum_endpoint_margin_nm": 147.77255050714365,
+          "axis_connector_orthogonality_residual": 2.6480623249725e-12,
           "flat_cylinder_sufficient": true
         },
         {
           "from": 39,
           "to": "RIGHT",
-          "type": "electrode_contact"
+          "type": "electrode_contact",
+          "surface_gap_nm": 0.0,
+          "flat_cylinder_sufficient": true
         }
       ]
     },
@@ -113,7 +123,9 @@
         {
           "from": "LEFT",
           "to": 63,
-          "type": "electrode_contact"
+          "type": "electrode_contact",
+          "surface_gap_nm": 0.0,
+          "flat_cylinder_sufficient": true
         },
         {
           "from": 63,
@@ -125,6 +137,8 @@
             0.9615412759204023,
             0.8818195727844962
           ],
+          "minimum_endpoint_margin_nm": 192.04508143733975,
+          "axis_connector_orthogonality_residual": 9.103828801926284e-15,
           "flat_cylinder_sufficient": true
         },
         {
@@ -137,6 +151,8 @@
             0.5353671845167552,
             0.32352987342843237
           ],
+          "minimum_endpoint_margin_nm": 1617.6493671421615,
+          "axis_connector_orthogonality_residual": 1.3322676295501878e-15,
           "flat_cylinder_sufficient": true
         },
         {
@@ -149,12 +165,16 @@
             0.7223597683649057,
             0.19883241203704344
           ],
+          "minimum_endpoint_margin_nm": 981.8156916487718,
+          "axis_connector_orthogonality_residual": 2.8917146455142984e-13,
           "flat_cylinder_sufficient": true
         },
         {
           "from": 351,
           "to": "RIGHT",
-          "type": "electrode_contact"
+          "type": "electrode_contact",
+          "surface_gap_nm": 0.0,
+          "flat_cylinder_sufficient": true
         }
       ]
     }

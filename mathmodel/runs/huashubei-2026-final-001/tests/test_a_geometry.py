@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT / "src/a"))
 from geometry import (  # noqa: E402
     all_pair_edges,
     connectivity,
+    path_certificates,
     sampled_broadphase_edges,
     segment_distance_certificates,
     segment_distances,
@@ -38,6 +39,14 @@ class GeometryTests(unittest.TestCase):
         q0 = np.array([[5, -1, 0]], float); q1 = np.array([[5, 1, 0]], float)
         distance, s, t = segment_distance_certificates(p0, p1, q0, q1)
         np.testing.assert_allclose(distance, [0]); np.testing.assert_allclose(s, [0.5]); np.testing.assert_allclose(t, [0.5])
+
+    def test_flat_cylinder_certificate_records_geometric_margins(self) -> None:
+        starts = np.array([[0, 0, 0], [5, -4, 0]], float)
+        ends = np.array([[10, 0, 0], [5, 4, 0]], float)
+        certificate = path_certificates(starts, ends, [1, 2])[0]
+        self.assertTrue(certificate["flat_cylinder_sufficient"])
+        self.assertGreater(certificate["minimum_endpoint_margin_nm"], 0)
+        self.assertLessEqual(certificate["axis_connector_orthogonality_residual"], 1e-8)
 
     def test_broadphase_matches_all_pairs(self) -> None:
         rng = np.random.default_rng(11)

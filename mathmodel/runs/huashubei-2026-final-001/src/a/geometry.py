@@ -128,17 +128,54 @@ def path_certificates(starts: np.ndarray, ends: np.ndarray, path: list[int | str
     certificates = []
     for left_node, right_node in zip(path[:-1], path[1:]):
         if isinstance(left_node, str) or isinstance(right_node, str):
-            certificates.append({"from": left_node, "to": right_node, "type": "electrode_contact"})
+            rod_node = right_node if isinstance(left_node, str) else left_node
+            rod_index = int(rod_node) - 1
+            axis = ends[rod_index] - starts[rod_index]
+            length = float(np.linalg.norm(axis))
+            ux = float(axis[0] / length) if length > 0 else 0.0
+            radial_x = float(ROD_RADIUS * np.sqrt(max(0.0, 1 - ux * ux)))
+            xmin = float(min(starts[rod_index, 0], ends[rod_index, 0]) - radial_x)
+            xmax = float(max(starts[rod_index, 0], ends[rod_index, 0]) + radial_x)
+            face = "LEFT" if left_node == "LEFT" or right_node == "LEFT" else "RIGHT"
+            surface_gap = max(0.0, xmin + BOX_HALF) if face == "LEFT" else max(0.0, BOX_HALF - xmax)
+            certificates.append({
+                "from": left_node,
+                "to": right_node,
+                "type": "electrode_contact",
+                "surface_gap_nm": float(surface_gap),
+                "flat_cylinder_sufficient": bool(surface_gap <= GAP + 1e-10),
+            })
             continue
         i, j = left_node - 1, right_node - 1
         distance, s, t = segment_distance_certificates(
             starts[[i]], ends[[i]], starts[[j]], ends[[j]]
         )
+        u = ends[i] - starts[i]
+        v = ends[j] - starts[j]
+        len_u = float(np.linalg.norm(u))
+        len_v = float(np.linalg.norm(v))
+        p = starts[i] + s[0] * u
+        q = starts[j] + t[0] * v
+        connector = p - q
+        connector_norm = float(np.linalg.norm(connector))
+        if connector_norm > 1e-12:
+            orthogonality_residual = max(
+                abs(float(np.dot(connector / connector_norm, u / len_u))),
+                abs(float(np.dot(connector / connector_norm, v / len_v))),
+            )
+        else:
+            orthogonality_residual = 0.0
         interior = bool(1e-9 < s[0] < 1 - 1e-9 and 1e-9 < t[0] < 1 - 1e-9)
+        endpoint_margin = float(min(s[0] * len_u, (1 - s[0]) * len_u,
+                                    t[0] * len_v, (1 - t[0]) * len_v))
         certificates.append({
             "from": left_node, "to": right_node, "type": "interior_side_to_side" if interior else "capsule_only_unverified",
             "axis_distance_nm": float(distance[0]), "surface_gap_nm": float(max(0, distance[0] - 2 * ROD_RADIUS)),
             "segment_parameters": [float(s[0]), float(t[0])],
-            "flat_cylinder_sufficient": bool(interior and distance[0] <= AXIS_THRESHOLD),
+            "minimum_endpoint_margin_nm": endpoint_margin,
+            "axis_connector_orthogonality_residual": orthogonality_residual,
+            "flat_cylinder_sufficient": bool(
+                interior and distance[0] <= AXIS_THRESHOLD and orthogonality_residual <= 1e-8
+            ),
         })
     return certificates

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="453.543307pt" height="204.094488pt" viewBox="0 0 453.543307 204.094488" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-15T18:19:09.179851</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 204.094488 
+L 453.543307 204.094488 
+L 453.543307 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 27.968504 170.884233 
+L 422.929134 170.884233 
+Q 425.801575 170.884233 425.801575 168.010583 
+L 425.801575 31.512189 
+Q 425.801575 28.638539 422.929134 28.638539 
+L 27.968504 28.638539 
+Q 25.096063 28.638539 25.096063 31.512189 
+L 25.096063 168.010583 
+Q 25.096063 170.884233 27.968504 170.884233 
+z
+" clip-path="url(#pf355748f3e)" style="fill: #eef5f8; stroke: #176b87; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 58.488189 145.739792 
+L 185.952756 145.739792 
+Q 188.825197 145.739792 188.825197 142.866142 
+L 188.825197 62.044724 
+Q 188.825197 59.171074 185.952756 59.171074 
+L 58.488189 59.171074 
+Q 55.615748 59.171074 55.615748 62.044724 
+L 55.615748 142.866142 
+Q 55.615748 145.739792 58.488189 145.739792 
+z
+" clip-path="url(#pf355748f3e)" style="fill: #e6f4ed; stroke: #16835b; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 232.629921 145.739792 
+L 383.433071 145.739792 
+Q 386.305512 145.739792 386.305512 142.866142 
+L 386.305512 62.044724 
+Q 386.305512 59.171074 383.433071 59.171074 
+L 232.629921 59.171074 
+Q 229.75748 59.171074 229.75748 62.044724 
+L 229.75748 142.866142 
+Q 229.75748 145.739792 232.629921 145.739792 
+z
+" clip-path="url(#pf355748f3e)" style="fill: #fff0e8; stroke: #c2412d; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 189.749308 103.353449 
+Q 209.292678 103.353449 227.829818 103.353449 
+" clip-path="url(#pf355748f3e)" style="fill: none; stroke: #66717b; stroke-width: 0.9; stroke-linecap: round"/>
+    <path d="M 223.829818 101.353449 
+L 227.829818 103.353449 
+L 223.829818 105.353449 
+" clip-path="url(#pf355748f3e)" style="fill: none; stroke: #66717b; stroke-width: 0.9; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 8.7px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #176b87" x="38.740157" y="44.084409" transform="rotate(-0 38.740157 44.084409)">总导通事件 T</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #16835b" x="121.322835" y="92.57726" transform="rotate(-0 121.322835 92.57726)">直接贯通 D</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="121.322835" y="114.129638" transform="rotate(-0 121.322835 114.129638)">提供总导通下界</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #c2412d" x="308.031496" y="92.57726" transform="rotate(-0 308.031496 92.57726)">N = T 与 D 的补集之交</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="308.031496" y="114.129638" transform="rotate(-0 308.031496 114.129638)">无直接贯通但仍存在路径</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 7.5px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #c2412d" x="308.031496" y="131.012334" transform="rotate(-0 308.031496 131.012334)">必须由不同终端粒子落入左右 g 薄壳</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.4px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="229.03937" y="182.378835" transform="rotate(-0 229.03937 182.378835)">P(D) ≤ P(T) ≤ P(D) + n(n−1)(g/L)²</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf355748f3e">
+   <rect x="13.606299" y="8.16378" width="430.866142" height="179.60315"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="453.543307pt" height="243.779528pt" viewBox="0 0 453.543307 243.779528" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-15T18:19:03.601036</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 243.779528 
+L 453.543307 243.779528 
+L 453.543307 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 77.102362 84.295334 
+L 403.653543 84.295334 
+L 403.653543 25.868836 
+L 77.102362 25.868836 
+L 77.102362 84.295334 
+z
+" clip-path="url(#p633db8d18c)" style="fill: none; stroke: #66717b; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 85.266142 84.295334 
+L 85.266142 25.868836 
+" clip-path="url(#p633db8d18c)" style="fill: none; stroke: #c2412d; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 395.489764 84.295334 
+L 395.489764 25.868836 
+" clip-path="url(#p633db8d18c)" style="fill: none; stroke: #c2412d; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 60.774803 72.207093 
+L 130.166929 44.001197 
+" clip-path="url(#p633db8d18c)" style="fill: none; stroke: #176b87; stroke-width: 8"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 354.670866 72.207093 
+L 424.062992 44.001197 
+" clip-path="url(#p633db8d18c)" style="fill: none; stroke: #176b87; stroke-width: 8"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #25313c" x="42.406299" y="27.883543" transform="rotate(-0 42.406299 27.883543)">介质 A</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="240.377953" y="53.268849" transform="rotate(-0 240.377953 53.268849)">同一圆柱跨越周期边界，平移片段保留导体身份</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_3">
+    <path d="M 77.102362 210.174217 
+L 403.653543 210.174217 
+L 403.653543 151.747719 
+L 77.102362 151.747719 
+L 77.102362 210.174217 
+z
+" clip-path="url(#pba38104974)" style="fill: none; stroke: #66717b; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 83.225197 200.503625 
+C 88.204834 200.503625 92.981189 198.550628 96.502324 195.07476 
+C 100.023459 191.598892 102.00189 186.883942 102.00189 181.968322 
+C 102.00189 177.052702 100.023459 172.337751 96.502324 168.861883 
+C 92.981189 165.386015 88.204834 163.433019 83.225197 163.433019 
+C 78.24556 163.433019 73.469205 165.386015 69.94807 168.861883 
+C 66.426935 172.337751 64.448504 177.052702 64.448504 181.968322 
+C 64.448504 186.883942 66.426935 191.598892 69.94807 195.07476 
+C 73.469205 198.550628 78.24556 200.503625 83.225197 200.503625 
+z
+" clip-path="url(#pba38104974)" style="fill: #f5c04a; stroke: #d97706; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 397.530709 200.503625 
+C 402.510346 200.503625 407.2867 198.550628 410.807836 195.07476 
+C 414.328971 191.598892 416.307402 186.883942 416.307402 181.968322 
+C 416.307402 177.052702 414.328971 172.337751 410.807836 168.861883 
+C 407.2867 165.386015 402.510346 163.433019 397.530709 163.433019 
+C 392.551071 163.433019 387.774717 165.386015 384.253582 168.861883 
+C 380.732447 172.337751 378.754016 177.052702 378.754016 181.968322 
+C 378.754016 186.883942 380.732447 191.598892 384.253582 195.07476 
+C 387.774717 198.550628 392.551071 200.503625 397.530709 200.503625 
+z
+" clip-path="url(#pba38104974)" style="fill: #f5c04a; stroke: #d97706; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 85.266142 210.174217 
+L 85.266142 151.747719 
+" clip-path="url(#pba38104974)" style="fill: none; stroke: #c2412d; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 395.489764 210.174217 
+L 395.489764 151.747719 
+" clip-path="url(#pba38104974)" style="fill: none; stroke: #c2412d; stroke-linecap: square"/>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #25313c" x="42.406299" y="153.762426" transform="rotate(-0 42.406299 153.762426)">介质 B</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="240.377953" y="179.147732" transform="rotate(-0 240.377953 179.147732)">同一球越界后在对侧出现，仍视作单体直接贯通</text>
+   </g>
+  </g>
+  <g id="text_5">
+   <text style="font-size: 8.2px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="226.771654" y="235.247244" transform="rotate(-0 226.771654 235.247244)">直接贯通是总导通的充分事件，用于构造可证明的概率下界</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p633db8d18c">
+   <rect x="36.283465" y="9.751181" width="408.188976" height="88.647101"/>
+  </clipPath>
+  <clipPath id="pba38104974">
+   <rect x="36.283465" y="135.630064" width="408.188976" height="88.647101"/>
+  </clipPath>
+ </defs>
+</svg>

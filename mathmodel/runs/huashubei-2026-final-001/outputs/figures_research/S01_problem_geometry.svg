@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="453.543307pt" height="221.102362pt" viewBox="0 0 453.543307 221.102362" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-15T18:18:48.165651</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 221.102362 
+L 453.543307 221.102362 
+L 453.543307 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 82.091339 170.985827 
+L 354.942992 170.985827 
+L 354.942992 38.029606 
+L 82.091339 38.029606 
+L 82.091339 170.985827 
+z
+" clip-path="url(#p807e88b6eb)" style="fill: none; stroke: #66717b; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 82.091339 170.985827 
+L 88.91263 170.985827 
+L 88.91263 38.029606 
+L 82.091339 38.029606 
+z
+" clip-path="url(#p807e88b6eb)" style="fill: #bde7f3; stroke: #176b87; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 348.121701 170.985827 
+L 354.942992 170.985827 
+L 354.942992 38.029606 
+L 348.121701 38.029606 
+z
+" clip-path="url(#p807e88b6eb)" style="fill: #fad1c8; stroke: #c2412d; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 248.360315 76.295055 
+C 253.222077 76.295055 257.885368 74.825807 261.323152 72.210897 
+C 264.760937 69.595986 266.692535 66.048908 266.692535 62.350866 
+C 266.692535 58.652824 264.760937 55.105746 261.323152 52.490836 
+C 257.885368 49.875925 253.222077 48.406677 248.360315 48.406677 
+C 243.498553 48.406677 238.835262 49.875925 235.397478 52.490836 
+C 231.959693 55.105746 230.028094 58.652824 230.028094 62.350866 
+C 230.028094 66.048908 231.959693 69.595986 235.397478 72.210897 
+C 238.835262 74.825807 243.498553 76.295055 248.360315 76.295055 
+z
+" clip-path="url(#p807e88b6eb)" style="fill: #f5c04a; stroke: #d97706; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 137.514331 145.04315 
+L 290.993386 73.700787 
+" clip-path="url(#p807e88b6eb)" style="fill: none; stroke: #176b87; stroke-width: 9"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m563fb06a08" d="M 0 4.330127 
+C 1.148363 4.330127 2.249847 3.873878 3.061862 3.061862 
+C 3.873878 2.249847 4.330127 1.148363 4.330127 0 
+C 4.330127 -1.148363 3.873878 -2.249847 3.061862 -3.061862 
+C 2.249847 -3.873878 1.148363 -4.330127 0 -4.330127 
+C -1.148363 -4.330127 -2.249847 -3.873878 -3.061862 -3.061862 
+C -3.873878 -2.249847 -4.330127 -1.148363 -4.330127 0 
+C -4.330127 1.148363 -3.873878 2.249847 -3.061862 3.061862 
+C -2.249847 3.873878 -1.148363 4.330127 0 4.330127 
+z
+" style="stroke: #176b87"/>
+    </defs>
+    <g clip-path="url(#p807e88b6eb)">
+     <use xlink:href="#m563fb06a08" x="137.514331" y="145.04315" style="fill: #5bc0be; stroke: #176b87"/>
+     <use xlink:href="#m563fb06a08" x="290.993386" y="73.700787" style="fill: #5bc0be; stroke: #176b87"/>
+    </g>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 8.3px; font-family: 'Microsoft YaHei'; fill: #176b87" transform="translate(37.666535 102.471136)">左电极</text>
+    <text style="font-size: 8.3px; font-family: 'Microsoft YaHei'; fill: #176b87" transform="translate(21.991856 111.350677)">x = −5000 nm</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8.3px; font-family: 'Microsoft YaHei'; fill: #c2412d" transform="translate(374.467795 102.479566)">右电极</text>
+    <text style="font-size: 8.3px; font-family: 'Microsoft YaHei'; fill: #c2412d" transform="translate(361.871248 111.359107)">x = 5000 nm</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8.1px; font-family: 'Microsoft YaHei'; fill: #25313c" transform="translate(189.02265 121.997389)">A：平端圆柱</text>
+    <text style="font-size: 8.1px; font-family: 'Microsoft YaHei'; fill: #25313c" transform="translate(158.697642 130.662966)">H = 5000 nm，r_A = 30 nm</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="248.360315" y="64.585241" transform="rotate(-0 248.360315 64.585241)">B</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 267.499165 23.342444 
+Q 309.159405 26.555673 349.816394 29.691521 
+" style="fill: none; stroke: #c2412d; stroke-width: 0.9; stroke-linecap: round"/>
+    <path d="M 346.825599 27.89621 
+L 349.816394 29.691521 
+L 346.585668 31.006971 
+" style="fill: none; stroke: #c2412d; stroke-width: 0.9; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 7.8px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #c2412d" x="197.20063" y="20.194016" transform="rotate(-0 197.20063 20.194016)">越界片段平移一个边长并保留介质身份</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8.2px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #25313c" x="218.517165" y="192.064252" transform="rotate(-0 218.517165 192.064252)">接触判据：两实体表面最短距离不超过 1.8 nm</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p807e88b6eb">
+   <rect x="18.141732" y="8.844094" width="426.330709" height="194.570079"/>
+  </clipPath>
+ </defs>
+</svg>

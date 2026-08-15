@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.colors import BoundaryNorm, ListedColormap
+from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, Rectangle
 
 from analytic_bounds import (
     A_COST,
@@ -49,17 +50,19 @@ INK = "#25313C"
 
 
 def configure() -> None:
-    fonts = ["Microsoft YaHei", "SimHei", "Noto Sans CJK SC", "DejaVu Sans"]
+    # Manuscript target: one CJK-capable family at final insertion size.
+    # SVG text stays live and every finalist uses an uncropped physical canvas.
+    fonts = ["Microsoft YaHei"]
     mpl.rcParams.update({
-        "font.family": "sans-serif",
+        "font.family": fonts,
         "font.sans-serif": fonts,
         "axes.unicode_minus": False,
         "font.size": 9,
         "axes.titlesize": 10.5,
-        "axes.labelsize": 9,
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8,
-        "legend.fontsize": 8,
+        "axes.labelsize": 9.5,
+        "xtick.labelsize": 8.5,
+        "ytick.labelsize": 8.5,
+        "legend.fontsize": 8.2,
         "axes.edgecolor": "#66717B",
         "axes.linewidth": 0.75,
         "grid.color": "#D7DEE4",
@@ -70,6 +73,8 @@ def configure() -> None:
         "savefig.facecolor": "white",
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
+        "svg.fonttype": "none",
+        "savefig.bbox": "standard",
     })
 
 
@@ -101,14 +106,151 @@ def panel_label(ax, label: str) -> None:
 
 def save(fig, stem: str) -> None:
     CANDIDATES.mkdir(parents=True, exist_ok=True)
-    fig.savefig(CANDIDATES / f"{stem}.png", dpi=300, bbox_inches="tight", pad_inches=0.04)
-    fig.savefig(CANDIDATES / f"{stem}.pdf", bbox_inches="tight", pad_inches=0.04)
-    fig.savefig(CANDIDATES / f"{stem}.svg", bbox_inches="tight", pad_inches=0.04)
+    fig.savefig(CANDIDATES / f"{stem}.png", dpi=300)
+    fig.savefig(CANDIDATES / f"{stem}.pdf")
+    fig.savefig(CANDIDATES / f"{stem}.svg")
     plt.close(fig)
 
 
 def path_indices(result: dict) -> list[int]:
     return [int(x) - 1 for x in result["conductive_path_1_based"] if isinstance(x, int)]
+
+
+def s01_problem_geometry() -> None:
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 78 / 25.4))
+    fig.subplots_adjust(left=.04, right=.98, bottom=.08, top=.96)
+    ax.set_xlim(0, 10); ax.set_ylim(0, 6); ax.axis("off")
+    ax.add_patch(Rectangle((1.5, 1.0), 6.4, 4.1, fill=False, ec="#66717B", lw=1.2))
+    ax.add_patch(Rectangle((1.5, 1.0), .16, 4.1, fc="#BDE7F3", ec=BLUE, lw=.9))
+    ax.add_patch(Rectangle((7.74, 1.0), .16, 4.1, fc="#FAD1C8", ec=RED, lw=.9))
+    ax.plot([2.8, 6.4], [1.8, 4.0], color=BLUE, lw=9, solid_capstyle="butt")
+    ax.scatter([2.8, 6.4], [1.8, 4.0], s=75, color="#5BC0BE", edgecolor=BLUE, zorder=3)
+    ax.add_patch(Circle((5.4, 4.35), .43, fc="#F5C04A", ec=ORANGE, lw=1.0))
+    ax.text(.75, 3.05, "左电极\nx = −5000 nm", ha="center", va="center", color=BLUE, fontsize=8.3)
+    ax.text(8.65, 3.05, "右电极\nx = 5000 nm", ha="center", va="center", color=RED, fontsize=8.3)
+    ax.text(4.55, 2.45, "A：平端圆柱\nH = 5000 nm，r_A = 30 nm", ha="center", va="center", fontsize=8.1, color=INK)
+    ax.text(5.4, 4.35, "B", ha="center", va="center", fontsize=8, color=INK)
+    ax.annotate("越界片段平移一个边长并保留介质身份", xy=(7.85, 5.35), xytext=(4.2, 5.65),
+                ha="center", color=RED, fontsize=7.8,
+                arrowprops={"arrowstyle": "->", "color": RED, "lw": .9})
+    ax.text(4.7, .35, "接触判据：两实体表面最短距离不超过 1.8 nm", ha="center", color=INK, fontsize=8.2)
+    save(fig, "S01_problem_geometry")
+
+
+def s02_workflow() -> None:
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 78 / 25.4))
+    fig.subplots_adjust(left=.02, right=.98, bottom=.05, top=.96)
+    ax.set_xlim(0, 12); ax.set_ylim(0, 6); ax.axis("off")
+    boxes = [
+        (0.3, 3.4, 2.0, 1.25, "附件坐标\n数据审计", BLUE),
+        (2.8, 3.4, 2.1, 1.25, "确定性几何图\n路径证书", BLUE),
+        (5.4, 3.4, 2.2, 1.25, "共享概率模型\n上下界", ORANGE),
+        (8.2, 4.25, 1.9, 1.15, "Q2\n给定体积分数", GREEN),
+        (8.2, 2.65, 1.9, 1.15, "Q3\n7/8 根夹逼", GREEN),
+        (8.2, .95, 1.9, 1.15, "Q4\n整数成本优化", RED),
+        (10.55, .95, 1.15, 1.15, "检验\n与敏感性", "#66717B"),
+    ]
+    for x, y, w, h, label, color in boxes:
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=.05", fc="white", ec=color, lw=1.2))
+        ax.text(x + w / 2, y + h / 2, label, ha="center", va="center", fontsize=8.1, color=INK)
+    arrows = [((2.3,4.03),(2.8,4.03)),((4.9,4.03),(5.4,4.03)),((7.6,4.03),(8.2,4.82)),
+              ((7.6,4.03),(8.2,3.22)),((6.5,3.4),(8.2,1.52)),((10.1,1.52),(10.55,1.52))]
+    for start, end in arrows:
+        ax.add_patch(FancyArrowPatch(start, end, arrowstyle="->", mutation_scale=10, lw=1.0, color="#52606B"))
+    ax.text(6.5, 2.85, "直接贯通下界\n非直接通路上界", ha="center", va="top", fontsize=7.4, color=ORANGE)
+    ax.text(6.0, .35, "同一机器结果源驱动表格、图片与阈值证书", ha="center", fontsize=8, color=INK)
+    save(fig, "S02_workflow")
+
+
+def s03_data_audit(results, groups) -> None:
+    counts = np.array([len(s) for s, _ in groups])
+    boundary = []
+    for starts, ends in groups:
+        pts = np.vstack([starts, ends])
+        touched = np.any(np.isclose(np.abs(np.hstack([starts, ends])), BOX_HALF, atol=1e-6), axis=1)
+        boundary.append(100 * touched.mean())
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 78 / 25.4))
+    fig.subplots_adjust(left=.11, right=.98, bottom=.20, top=.94)
+    x = np.arange(3)
+    bars = ax.bar(x, np.log10(counts), width=.52, color=[BLUE, ORANGE, RED], alpha=.92)
+    for i, (bar, count, pct) in enumerate(zip(bars, counts, boundary)):
+        ax.text(bar.get_x()+bar.get_width()/2, bar.get_height()+.06, f"{count} 根", ha="center", fontsize=8.4, color=INK)
+        ax.text(bar.get_x()+bar.get_width()/2, bar.get_height()/2, f"边界触及\n{pct:.1f}%", ha="center", va="center", fontsize=7.8, color="white", weight="bold")
+    ax.set(xlabel="附件分组", ylabel="介质数量的常用对数", xticks=x, xticklabels=["组1", "组2", "组3"], ylim=(0, 3.0))
+    style_ax(ax)
+    ax.text(.01, .97, "轴段中位长度：2566、2677、3697 nm", transform=ax.transAxes, ha="left", va="top", fontsize=7.8, color=INK)
+    save(fig, "S03_data_audit")
+
+
+def s04_flat_cylinder_certificate() -> None:
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 68 / 25.4))
+    fig.subplots_adjust(left=.04, right=.98, bottom=.10, top=.96)
+    ax.set_xlim(0, 10); ax.set_ylim(0, 5); ax.axis("off")
+    ax.plot([1.2, 4.5], [1.4, 3.5], color=BLUE, lw=11, solid_capstyle="butt")
+    ax.plot([5.5, 8.9], [1.1, 3.9], color=ORANGE, lw=11, solid_capstyle="butt")
+    p = (3.8, 3.05); q = (6.15, 1.64)
+    ax.scatter(*zip(p, q), s=42, color=RED, zorder=4)
+    ax.plot([p[0], q[0]], [p[1], q[1]], color=RED, lw=1.2)
+    ax.text(5.0, 2.55, "轴段最近距离 d_axis", color=RED, fontsize=8, ha="center", rotation=-29)
+    ax.text(2.6, 3.7, "P(s)，0 < s < 1", fontsize=8, color=INK)
+    ax.text(7.0, 1.05, "Q(t)，0 < t < 1", fontsize=8, color=INK)
+    ax.text(5.0, .28, "内部最近点时，连接向量同时垂直两轴；侧面间隙 = max(0, d_axis − 2r_A) ≤ g",
+            ha="center", fontsize=8.2, color=INK)
+    save(fig, "S04_flat_cylinder_certificate")
+
+
+def s05_direct_bridge_mechanism() -> None:
+    fig, axes = plt.subplots(2, 1, figsize=(160 / 25.4, 86 / 25.4))
+    fig.subplots_adjust(left=.08, right=.98, bottom=.08, top=.96, hspace=.42)
+    for ax in axes:
+        ax.set_xlim(0, 10); ax.set_ylim(0, 2.2); ax.axis("off")
+        ax.set_xticks([]); ax.set_yticks([])
+        ax.add_patch(Rectangle((1.0,.35), 8.0, 1.45, fill=False, ec="#66717B", lw=1.0))
+        ax.plot([1.2, 1.2], [.35,1.8], color=RED, lw=1.0); ax.plot([8.8,8.8],[.35,1.8],color=RED,lw=1.0)
+    axes[0].plot([.6, 2.3], [.65, 1.35], color=BLUE, lw=8, solid_capstyle="butt")
+    axes[0].plot([7.8, 9.5], [.65, 1.35], color=BLUE, lw=8, solid_capstyle="butt")
+    axes[0].text(.15, 1.75, "介质 A", fontsize=8.5, weight="bold", color=INK)
+    axes[0].text(5.0, 1.12, "同一圆柱跨越周期边界，平移片段保留导体身份", ha="center", fontsize=8, color=INK)
+    axes[1].add_patch(Circle((1.15,1.05),.46,fc="#F5C04A",ec=ORANGE,lw=1.0))
+    axes[1].add_patch(Circle((8.85,1.05),.46,fc="#F5C04A",ec=ORANGE,lw=1.0))
+    axes[1].text(.15, 1.75, "介质 B", fontsize=8.5, weight="bold", color=INK)
+    axes[1].text(5.0, 1.12, "同一球越界后在对侧出现，仍视作单体直接贯通", ha="center", fontsize=8, color=INK)
+    fig.text(.5, .035, "直接贯通是总导通的充分事件，用于构造可证明的概率下界", ha="center", fontsize=8.2, color=INK)
+    save(fig, "S05_direct_bridge_mechanism")
+
+
+def s06_orientation_support() -> None:
+    u = np.linspace(0, 1, 300)
+    support = (5000 / 2) * u + ROD_RADIUS * np.sqrt(1 - u**2)
+    conditional = 2 * support / BOX_SIDE
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 76 / 25.4))
+    fig.subplots_adjust(left=.12, right=.98, bottom=.20, top=.94)
+    ax.plot(u, conditional, color=BLUE, lw=1.8)
+    ax.axhline(.25471238898, color=RED, lw=1.0, ls="--", label="各向同性平均 0.254712")
+    ax.fill_between(u, conditional, .25471238898, color=ORANGE, alpha=.18)
+    ax.set(xlabel="轴向 x 分量的绝对值 |u_x|", ylabel="固定取向下的直接越界概率", xlim=(0,1), ylim=(0,.52))
+    style_ax(ax); ax.legend(frameon=False, loc="upper left")
+    ax.annotate("平行 x 轴：0.500", (1, .5), xytext=(-102,-24), textcoords="offset points", fontsize=8, color=BLUE,
+                arrowprops={"arrowstyle":"->","color":BLUE,"lw":.8})
+    save(fig, "S06_orientation_support")
+
+
+def s07_event_bounds() -> None:
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 72 / 25.4))
+    fig.subplots_adjust(left=.03, right=.98, bottom=.08, top=.96)
+    ax.set_xlim(0, 12); ax.set_ylim(0, 5); ax.axis("off")
+    ax.add_patch(FancyBboxPatch((.4,.55),11.0,3.8,boxstyle="round,pad=.08",fc="#EEF5F8",ec=BLUE,lw=1.2))
+    ax.text(.7,4.0,"总导通事件 T",fontsize=8.7,color=BLUE,weight="bold")
+    ax.add_patch(FancyBboxPatch((1.25,1.25),3.55,2.25,boxstyle="round,pad=.08",fc="#E6F4ED",ec=GREEN,lw=1.1))
+    ax.text(3.0,2.65,"直接贯通 D",ha="center",fontsize=9,color=GREEN,weight="bold")
+    ax.text(3.0,2.05,"提供总导通下界",ha="center",fontsize=8,color=INK)
+    ax.add_patch(FancyBboxPatch((6.1,1.25),4.2,2.25,boxstyle="round,pad=.08",fc="#FFF0E8",ec=RED,lw=1.1))
+    ax.text(8.2,2.65,"N = T 与 D 的补集之交",ha="center",fontsize=9,color=RED,weight="bold")
+    ax.text(8.2,2.05,"无直接贯通但仍存在路径",ha="center",fontsize=8,color=INK)
+    ax.text(8.2,1.58,"必须由不同终端粒子落入左右 g 薄壳",ha="center",fontsize=7.5,color=RED)
+    ax.add_patch(FancyArrowPatch((4.85,2.35),(6.05,2.35),arrowstyle="->",mutation_scale=10,color="#66717B",lw=.9))
+    ax.text(6.0,.15,"P(D) ≤ P(T) ≤ P(D) + n(n−1)(g/L)²",ha="center",fontsize=8.4,color=INK)
+    save(fig, "S07_event_bounds")
 
 
 def draw_box_3d(ax) -> None:
@@ -120,7 +262,7 @@ def draw_box_3d(ax) -> None:
                 ax.plot(*zip(p, q), color="#B8C1C9", lw=0.45, alpha=0.7, zorder=0)
 
 
-def draw_rods_3d(ax, starts, ends, selected=(), background_cap=None) -> None:
+def draw_rods_3d(ax, starts, ends, selected=(), background_cap=None, annotate=True) -> None:
     selected = set(selected)
     ids = np.arange(len(starts))
     if background_cap and len(ids) > background_cap:
@@ -133,8 +275,9 @@ def draw_rods_3d(ax, starts, ends, selected=(), background_cap=None) -> None:
         ax.plot(*zip(starts[idx], ends[idx]), color=BLUE, alpha=0.24, lw=0.45, zorder=1)
     for idx in selected:
         ax.plot(*zip(starts[idx], ends[idx]), color=RED, lw=2.3, zorder=4)
-        mid = (starts[idx] + ends[idx]) / 2
-        ax.text(*mid, str(idx + 1), color=RED, fontsize=7, weight="bold", zorder=5)
+        if annotate:
+            mid = (starts[idx] + ends[idx]) / 2
+            ax.text(*mid, str(idx + 1), color=RED, fontsize=7, weight="bold", zorder=5)
 
 
 def c01_q1_3d_triptych(results, groups) -> None:
@@ -184,29 +327,36 @@ def c02_q1_multiview(results, groups) -> None:
 
 
 def c03_q1_path_certificate(results, groups) -> None:
-    fig = plt.figure(figsize=(9.2, 4.2), constrained_layout=True)
+    fig = plt.figure(figsize=(160 / 25.4, 82 / 25.4))
+    fig.subplots_adjust(left=.03, right=.97, bottom=.07, top=.97, wspace=.06)
     for pos, group_idx in enumerate((1, 2), 1):
         ax = fig.add_subplot(1, 2, pos, projection="3d")
         starts, ends = groups[group_idx]
         ids = path_indices(results["Q1"][group_idx])
-        draw_rods_3d(ax, starts, ends, ids)
+        draw_rods_3d(ax, starts, ends, ids, annotate=False)
+        connector_distances = []
         for left, right in zip(ids[:-1], ids[1:]):
             dist, s, t = segment_distance_certificates(starts[[left]], ends[[left]], starts[[right]], ends[[right]])
             p = starts[left] + s[0] * (ends[left] - starts[left])
             q = starts[right] + t[0] * (ends[right] - starts[right])
             ax.plot(*zip(p, q), color=GREEN, lw=1.8, ls="--", zorder=6)
-            mid = (p + q) / 2
-            ax.text(*mid, f"{dist[0]:.1f}", color=GREEN, fontsize=6.5, zorder=7)
+            connector_distances.append(float(dist[0]))
         cloud = np.vstack([starts[ids], ends[ids]])
         span = np.ptp(cloud, axis=0)
         center = np.mean(cloud, axis=0)
         radius = max(span.max() * 0.57, 500)
         ax.set(xlim=(center[0]-radius, center[0]+radius), ylim=(center[1]-radius, center[1]+radius),
-               zlim=(center[2]-radius, center[2]+radius), xlabel="x / nm", ylabel="y / nm", zlabel="z / nm")
-        ax.set_box_aspect((1, 1, 1)); ax.view_init(20, -60); ax.tick_params(labelsize=6, pad=0)
-        ax.set_title(f"组{group_idx + 1}：红线为路径介质，绿虚线为最短轴距 / nm")
-        panel_label(ax, chr(96 + pos))
-    fig.suptitle("Q1 显式路径的三维几何证书", weight="bold", color=INK)
+               zlim=(center[2]-radius, center[2]+radius))
+        ax.set_xticks([]); ax.set_yticks([]); ax.set_zticks([])
+        ax.set_box_aspect((1, 1, 1)); ax.view_init(20, -60)
+        path_text = "–".join(str(i + 1) for i in ids)
+        distance_text = "、".join(f"{d:.1f}" for d in connector_distances)
+        ax.text2D(.03, .94, f"组{group_idx + 1}  路径 {path_text}", transform=ax.transAxes,
+                  fontsize=8.3, weight="bold", color=INK, va="top")
+        ax.text2D(.03, .86, f"相邻轴线距 {distance_text} nm", transform=ax.transAxes,
+                  fontsize=7.4, color=GREEN, va="top")
+    fig.text(.5, .025, "红色：导通路径；绿色虚线：相邻杆件轴线的最近点连线；坐标单位：nm",
+             ha="center", va="bottom", fontsize=7.5, color=INK)
     save(fig, "C03_q1_path_certificate")
 
 
@@ -215,19 +365,29 @@ def c04_q3_bounds_band(results) -> None:
     x = np.array([r["a_count"] for r in rows])
     lo = np.array([r["direct_bridge_lower_bound"] for r in rows])
     hi = np.array([r["conduction_upper_bound"] for r in rows])
-    fig, ax = plt.subplots(figsize=(7.3, 4.2), constrained_layout=True)
-    ax.fill_between(x, lo, hi, color=ORANGE, alpha=0.42, label="解析夹逼区间")
-    ax.plot(x, lo, color=BLUE, marker="o", ms=4, lw=1.6, label="直接贯通下界")
-    ax.plot(x, hi, color=RED, marker="s", ms=3.5, lw=1.0, ls="--", label="总导通上界")
-    ax.axhline(.9, color=INK, lw=1.1, ls=(0, (5, 3)), label="目标 0.90")
-    ax.axvspan(7.5, 8.5, color=GREEN, alpha=.08)
-    ax.annotate("7 根：上界 0.872279 < 0.90", (7, hi[-2]), xytext=(4.4, .935),
-                arrowprops={"arrowstyle": "->", "color": RED}, color=RED)
-    ax.annotate("8 根：下界 0.904810 > 0.90", (8, lo[-1]), xytext=(5.1, .82),
-                arrowprops={"arrowstyle": "->", "color": GREEN}, color=GREEN)
-    ax.set(xlabel="A 介质数量 / 根", ylabel="导通概率", xlim=(1, 8.15), ylim=(.2, .96), xticks=x)
+    fig, axes = plt.subplots(1, 2, figsize=(160 / 25.4, 82 / 25.4),
+                             gridspec_kw={"width_ratios": [1.28, 1]})
+    fig.subplots_adjust(left=.09, right=.98, bottom=.18, top=.94, wspace=.29)
+    ax = axes[0]
+    ax.fill_between(x, lo, hi, color=ORANGE, alpha=.34, label="解析界差")
+    ax.plot(x, lo, color=BLUE, marker="o", ms=3.7, lw=1.45, label="直接贯通下界")
+    ax.plot(x, hi, color=RED, marker="s", ms=3.2, lw=1.0, ls="--", label="总导通上界")
+    ax.axhline(.9, color=INK, lw=1.0, ls=(0, (5, 3)), label="目标 0.90")
+    ax.set(xlabel="A 介质数量 / 根", ylabel="导通概率", xlim=(1, 8.12), ylim=(.2, .96), xticks=x)
     style_ax(ax); ax.legend(loc="lower right", frameon=False)
-    ax.set_title("Q3 阈值的解析夹逼：必要性与充分性在相邻整数处闭合", weight="bold", color=INK)
+
+    zoom = axes[1]
+    zoom.fill_between(x[-2:], lo[-2:], hi[-2:], color=ORANGE, alpha=.34)
+    zoom.scatter([7], [hi[-2]], marker="s", s=45, facecolor="white", edgecolor=RED, lw=1.4, zorder=4)
+    zoom.scatter([8], [lo[-1]], marker="o", s=47, color=BLUE, edgecolor="white", lw=.7, zorder=4)
+    zoom.axhline(.9, color=INK, lw=1.0, ls=(0, (5, 3)))
+    zoom.set(xlabel="A 介质数量 / 根", ylabel="阈值附近的概率界",
+             xlim=(6.72, 8.28), ylim=(.865, .91), xticks=[7, 8])
+    zoom.annotate("上界 0.872279", (7, hi[-2]), xytext=(7.08, .876), color=RED,
+                  arrowprops={"arrowstyle": "-", "color": RED, "lw": .8}, fontsize=8)
+    zoom.annotate("下界 0.904810", (8, lo[-1]), xytext=(7.06, .9065), color=BLUE,
+                  arrowprops={"arrowstyle": "-", "color": BLUE, "lw": .8}, fontsize=8)
+    style_ax(zoom)
     save(fig, "C04_q3_bounds_band")
 
 
@@ -236,16 +396,16 @@ def c05_q2_failure_lollipop(results) -> None:
     x = 100 * np.array([r["requested_fraction"] for r in rows])
     y = np.array([r["log10_failure_probability_upper_bound"] for r in rows])
     n = [r["a_count"] for r in rows]
-    fig, ax = plt.subplots(figsize=(7.2, 4.0), constrained_layout=True)
-    ax.vlines(x, 0, y, color="#AFC3CE", lw=2)
-    ax.scatter(x, y, s=52, c=[BLUE, GREEN, ORANGE, RED], edgecolor="white", lw=.8, zorder=3)
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 78 / 25.4))
+    fig.subplots_adjust(left=.13, right=.98, bottom=.20, top=.94)
+    ax.vlines(x, 0, y, color="#AFC3CE", lw=1.7)
+    ax.scatter(x, y, s=48, c=BLUE, marker="o", edgecolor="white", lw=.8, zorder=3)
     for xi, yi, ni in zip(x, y, n):
-        ax.text(xi, yi + 2.5, f"{ni} 根\n$10^{{{yi:.1f}}}$", ha="center", va="bottom", fontsize=8)
-    ax.set(xlabel="A 体积分数 / %", ylabel=r"$\log_{10}$（不导通概率上界）",
+        ax.text(xi, yi + 2.5, f"{ni} 根\n{yi:.1f}", ha="center", va="bottom", fontsize=8.2)
+    ax.set(xlabel="A 体积分数 / %", ylabel="以 10 为底的对数（不导通概率上界）",
            xticks=x, ylim=(-97, 4))
     ax.set_xticklabels([f"{v:.2f}" for v in x])
     style_ax(ax); ax.axhline(0, color=INK, lw=.7)
-    ax.set_title("Q2 不导通风险的数量级：普通概率坐标无法分辨的差异", weight="bold", color=INK)
     save(fig, "C05_q2_failure_lollipop")
 
 
@@ -302,22 +462,41 @@ def c07_q4_integer_domain(results) -> None:
 
 
 def c08_q4_cost_frontier(results) -> None:
-    selected = results["Q4"]["selected"]
-    a, b, p, cost = q4_lattice(selected["cost_cny"])
-    lower = np.array([direct_bridge_probability(int(x), int(y)) for x, y in zip(a, b)])
-    fig, ax = plt.subplots(figsize=(7.6, 4.7), constrained_layout=True)
-    sc = ax.scatter(cost, p, c=a, cmap="cividis", s=25, alpha=.58, edgecolor="none", label="整数候选（上界）")
-    frontier = results["Q4"]["cheaper_frontier"]
-    fx = np.array([r["cost_cny"] for r in frontier]); fy = np.array([r["conduction_upper_bound"] for r in frontier])
-    order = np.argsort(fx); ax.plot(fx[order], fy[order], color=RED, marker="o", ms=4, lw=1.6, label="更低成本前沿")
-    ax.vlines(selected["cost_cny"], selected["direct_bridge_lower_bound"], conduction_upper_bound(0, 57), color=GREEN, lw=4, alpha=.35)
-    ax.scatter([selected["cost_cny"]], [selected["direct_bridge_lower_bound"]], marker="*", s=130, color=GREEN, zorder=6, label="0A+57B 下界")
-    ax.axhline(.9, color=INK, ls="--", lw=1, label="目标 0.90")
-    ax.axvline(selected["cost_cny"], color=GREEN, ls=":", lw=1)
-    cb = fig.colorbar(sc, ax=ax, pad=.015); cb.set_label("A 数量 / 根")
-    ax.set(xlabel="材料成本 / 元", ylabel="导通概率界", ylim=(max(.5, p.min()-.02), .925))
-    style_ax(ax); ax.legend(loc="lower right", frameon=False)
-    ax.set_title("Q4 成本—概率前沿：最优点以充分下界越过约束", weight="bold", color=INK)
+    q4 = results["Q4"]
+    relaxed = q4["selected"]
+    formal = q4["strictly_positive_mixture"]["selected"]
+    a, b, upper, cost = q4_lattice(formal["cost_cny"])
+    positive_cheaper = (a >= 1) & (b >= 1) & (cost < formal["cost_cny"] - 1e-15)
+    relaxed_cheaper = cost < relaxed["cost_cny"] - 1e-15
+
+    fig, ax = plt.subplots(figsize=(160 / 25.4, 86 / 25.4))
+    fig.subplots_adjust(left=.12, right=.98, bottom=.18, top=.94)
+    ax.scatter(cost[positive_cheaper], upper[positive_cheaper], s=23, marker="o",
+               facecolor="white", edgecolor=GRAY, lw=.7, alpha=.72,
+               label="更低成本正混合点（总上界）")
+    ax.scatter(cost[relaxed_cheaper & ~positive_cheaper], upper[relaxed_cheaper & ~positive_cheaper],
+               s=18, marker="x", color="#8C6D31", lw=.8, alpha=.6,
+               label="放宽域边界点（总上界）")
+
+    bad_pos = q4["strictly_positive_mixture"]["maximum_upper_bound_among_cheaper"]
+    bad_rel = q4["maximum_upper_bound_among_cheaper"]
+    ax.scatter([bad_pos["cost_cny"]], [bad_pos["conduction_upper_bound"]],
+               marker="^", s=58, color=RED, edgecolor="white", lw=.6, zorder=6)
+    ax.annotate("1A+49B：上界 0.899244", (bad_pos["cost_cny"], bad_pos["conduction_upper_bound"]),
+                xytext=(-128, -23), textcoords="offset points", color=RED, fontsize=8,
+                arrowprops={"arrowstyle": "->", "color": RED, "lw": .8})
+    ax.scatter([bad_rel["cost_cny"]], [bad_rel["conduction_upper_bound"]],
+               marker="v", s=48, color="#8C6D31", edgecolor="white", lw=.6, zorder=6)
+
+    ax.scatter([formal["cost_cny"]], [formal["direct_bridge_lower_bound"]],
+               marker="D", s=65, color=ORANGE, edgecolor="white", lw=.8, zorder=7,
+               label="1A+50B（主口径下界）")
+    ax.scatter([relaxed["cost_cny"]], [relaxed["direct_bridge_lower_bound"]],
+               marker="*", s=110, color=GREEN, edgecolor="white", lw=.8, zorder=7,
+               label="0A+57B（放宽域下界）")
+    ax.axhline(.9, color=INK, ls=(0, (5, 3)), lw=1, label="目标 0.90")
+    ax.set(xlabel="材料成本 / 元", ylabel="导通概率界", xlim=(.08, .1003), ylim=(.835, .908))
+    style_ax(ax); ax.legend(loc="lower left", frameon=False, ncol=2, columnspacing=1.0)
     save(fig, "C08_q4_cost_frontier")
 
 
@@ -330,18 +509,22 @@ def c09_sensitivity_threshold_counts() -> None:
     q_a = heights / (2 * BOX_SIDE) + 2 * ROD_RADIUS * (math.pi / 4) / BOX_SIDE
     radii = np.linspace(120, 280, 161)
     q_b = 2 * radii / BOX_SIDE
-    fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.9), constrained_layout=True)
+    fig, axes = plt.subplots(1, 2, figsize=(160 / 25.4, 82 / 25.4))
+    fig.subplots_adjust(left=.09, right=.98, bottom=.20, top=.94, wspace=.30)
     axes[0].step(heights, required_count(q_a), where="mid", color=BLUE, lw=1.8)
     axes[0].scatter([5000], [required_count(np.array([5000/(2*BOX_SIDE)+2*ROD_RADIUS*(math.pi/4)/BOX_SIDE]))[0]], color=RED, s=35, zorder=3)
     axes[0].axvline(5000, color=RED, ls=":", lw=.8)
-    axes[0].set(xlabel="A 高度 H / nm", ylabel="达到 90% 所需 A 数量 / 根", title="A 几何高度敏感性")
-    style_ax(axes[0]); panel_label(axes[0], "a")
+    axes[0].set(xlabel="A 高度 H / nm", ylabel="达到 90% 所需 A 数量 / 根")
+    axes[0].annotate("基准：8 根", (5000, 8), xytext=(5100, 9.2), fontsize=7.8, color=RED,
+                     arrowprops={"arrowstyle":"-","color":RED,"lw":.7})
+    style_ax(axes[0])
     axes[1].step(radii, required_count(q_b), where="mid", color=ORANGE, lw=1.8)
     axes[1].scatter([SPHERE_RADIUS], [required_count(np.array([2*SPHERE_RADIUS/BOX_SIDE]))[0]], color=RED, s=35, zorder=3)
     axes[1].axvline(SPHERE_RADIUS, color=RED, ls=":", lw=.8)
-    axes[1].set(xlabel="B 半径 R / nm", ylabel="达到 90% 所需 B 数量 / 个", title="B 半径敏感性")
-    style_ax(axes[1]); panel_label(axes[1], "b")
-    fig.suptitle("设计情景敏感性：整数阈值的阶梯响应", weight="bold", color=INK)
+    axes[1].set(xlabel="B 半径 R / nm", ylabel="达到 90% 所需 B 数量 / 个")
+    axes[1].annotate("基准：57 个", (200, 57), xytext=(210, 66), fontsize=7.8, color=RED,
+                     arrowprops={"arrowstyle":"-","color":RED,"lw":.7})
+    style_ax(axes[1])
     save(fig, "C09_sensitivity_threshold_counts")
 
 
@@ -388,11 +571,16 @@ def c10_sensitivity_cost_phase() -> None:
 
 
 SELECTED = [
-    "C01_q1_3d_triptych",
+    "S01_problem_geometry",
+    "S02_workflow",
+    "S03_data_audit",
+    "S04_flat_cylinder_certificate",
     "C03_q1_path_certificate",
+    "S05_direct_bridge_mechanism",
+    "S06_orientation_support",
+    "S07_event_bounds",
     "C04_q3_bounds_band",
     "C05_q2_failure_lollipop",
-    "C07_q4_integer_domain",
     "C08_q4_cost_frontier",
     "C09_sensitivity_threshold_counts",
 ]
@@ -410,6 +598,13 @@ def select_finalists() -> None:
 def main() -> int:
     configure()
     results, groups = load()
+    s01_problem_geometry()
+    s02_workflow()
+    s03_data_audit(results, groups)
+    s04_flat_cylinder_certificate()
+    s05_direct_bridge_mechanism()
+    s06_orientation_support()
+    s07_event_bounds()
     builders = [c01_q1_3d_triptych, c02_q1_multiview, c03_q1_path_certificate]
     for fn in builders: fn(results, groups)
     c04_q3_bounds_band(results)
@@ -420,7 +615,7 @@ def main() -> int:
     c09_sensitivity_threshold_counts()
     c10_sensitivity_cost_phase()
     select_finalists()
-    print(f"generated 10 candidates in {CANDIDATES}")
+    print(f"generated 17 candidates in {CANDIDATES}")
     print(f"selected {len(SELECTED)} finalists in {FINAL}")
     return 0
 
